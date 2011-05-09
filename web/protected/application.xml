@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<application id="KangTianProperty" mode="Debug">
+  <!-- alias definitions and namespace usings
+  <paths>
+    <alias id="myalias" path="./lib" />
+    <using namespace="Application.common.*" />
+  </paths>
+  -->
+
+	<paths>
+	    <using namespace="System.I18N.*" />
+	    <using namespace="System.Web.UI.ActiveControls.*" />
+	</paths>
+
+	<!-- configurations for modules -->
+	<modules>
+		<module id="security" class="TSecurityManager" EncryptionKey="KangTianPropertyCool" ValidationKey="KangTianPropertyCool" />
+		
+		<module id="request" class="THttpRequest" UrlManager="friendly-url" />
+		<module id="friendly-url" class="System.Web.TUrlMapping" EnableCustomUrl="true" UrlPrefix="/">	
+		
+			<url ServiceParameter="FileLoader.FileLoaderController" pattern="asset/{assetId}/{param}" parameters.assetId="\w+"  parameters.param=".+" />
+			
+			<url ServiceParameter="Login.Login" pattern="login.html" />
+			
+			<url ServiceParameter="Search.SearchController" pattern="search/{searchcontent}" parameters.searchcontent=".+" />
+			
+			<url ServiceParameter="ContactUs.ContactUsController" pattern="contactus.html"/>
+			<url ServiceParameter="AboutUs.AboutUsController" pattern="aboutus.html"/>
+			<url ServiceParameter="Services.ServicesController" pattern="services.html"/>
+			<url ServiceParameter="ContentLoader.ContentLoaderController" pattern="content/{title}.html" parameters.title=".+" />
+			<url ServiceParameter="ContentList.ContentListController" pattern="contentlist/category/{categorytitle}.html" parameters.categorytitle=".+" />
+			
+			<url ServiceParameter="NewsLetter.NewsLetterController" pattern="newsletter/{action}.html" parameters.action="\w+" />
+			<url ServiceParameter="NewsLetter.NewsLetterController" pattern="newsletter/{action}/{key}.html" parameters.action="\w+" parameters.key="\w+" />
+			
+			<url ServiceParameter="Projects.ProjectsController" pattern="{searchby}.html" parameters.searchby="projects"/>
+			<url ServiceParameter="Projects.ProjectsController" pattern="{searchby}.html" parameters.searchby="buying"/>
+			<url ServiceParameter="Projects.ProjectsController" pattern="{searchby}.html" parameters.searchby="selling"/>
+			<url ServiceParameter="Projects.ProjectsController" pattern="{searchby}.html" parameters.searchby="renting"/>
+			
+			<url ServiceParameter="Projects.ProjectsController" 
+						pattern="project/{searchby}/{propertyTypeIds}/{buildingTypeIds}/{buildingStatusIds}/{maxPrice}/{minPrice}/{suburbs}" 
+						parameters.searchby="search"
+						parameters.propertyTypeIds="((\w+)|(\d+)|(,))+"
+						parameters.buildingTypeIds="((\w+)|(,))+"
+						parameters.buildingStatusIds="((\w+)|(\d+)|(,))+"
+						parameters.maxPrice="((\w+)|(\d+)|(,))+"
+						parameters.minPrice="((\w+)|(\d+)|(,))+"
+						parameters.suburbs="((\w+)|(,)|( ))+"
+						/>
+			<url ServiceParameter="Projects.ViewProject.ViewProjectController" pattern="project/{title}.html" parameters.title=".+" />
+			
+			<url ServiceParameter="StaffProfiles.StaffProfilesController" pattern="staffprofiles.html"/>
+			<url ServiceParameter="StaffProfiles.StaffProfilesController" pattern="staffprofiles/{id}.html" parameters.id="\d+" />
+			
+			<!--  ################################################# -->
+			<!--  Admin Page 										-->
+			<!--  ################################################# -->
+			<url ServiceParameter="Admin.Home.HomeController" pattern="admin/" />
+			
+			<!--  Content Page -->
+			<url ServiceParameter="Admin.Listing.ContentCategory.ContentCategoryController" pattern="admin/list/contentcategory.html" />
+			<url ServiceParameter="Admin.Listing.ContentController.ContentController" pattern="admin/list/content.html" />
+			<url ServiceParameter="Admin.Listing.ContentController.ContentController" pattern="admin/list/content/{searchby}/{id}.html" parameters.id="\d+" parameters.searchby="\w+"/>
+			<url ServiceParameter="Admin.Editing.ContentController.ContentController" pattern="admin/add/content.html" />
+			<url ServiceParameter="Admin.Editing.ContentController.ContentController" pattern="admin/edit/content/{id}.html" parameters.id="\d+" />
+			
+			<url ServiceParameter="Admin.Listing.ProjectController.ProjectController" pattern="admin/list/project.html" />
+			<url ServiceParameter="Admin.Editing.ProjectController.ProjectController" pattern="admin/add/project.html" />
+			<url ServiceParameter="Admin.Editing.ProjectController.ProjectController" pattern="admin/edit/project/{id}.html" parameters.id="\d+" />
+			
+			<url ServiceParameter="Admin.Listing.SubscriberController.SubscriberController" pattern="admin/list/subscriber.html" />
+			
+			<url ServiceParameter="Admin.Listing.BannerController.BannerController" pattern="admin/list/banners.html" />
+			<url ServiceParameter="Admin.Listing.ContactController.ContactController" pattern="admin/list/contacts.html" />
+			
+			<url ServiceId='stream' ServiceParameter="" pattern="stream" />
+		</module>
+	
+		<module id="globalization" class="TGlobalization">
+		    <translation type="XLIFF"
+		        source="Application.messages"
+		        marker="@@"
+		        autosave="true" cache="true" />
+		</module>
+	</modules>
+
+	<!-- configuration for available services -->
+	<services>
+		<service id="page" class="TPageService" DefaultPage="Home">
+			<modules>
+			  <module id="auth" class="System.Security.TAuthManager" UserManager="users" ReturnUrl="/login.html" LoginPage="Login.Login" AuthExpire="3600"/>
+			  <module id="users" class="Application.classes.WebUser.WebUserManager"/>
+			</modules>
+		</service>
+		<service id="stream" class="Application.pages.Stream.StreamController">
+		</service>
+	</services>
+	<!-- application parameters -->
+	<parameters>
+	  <parameter id="AppTitle" value="Australian Realty Group (ARG)" />
+	  <parameter id="AppVersion" value="3.0.1"/>
+	</parameters>
+
+</application>

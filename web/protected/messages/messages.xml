@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file original="I18N Example IndexPage" source-language="EN" datatype="plaintext" date="2010-04-27T20:32:43Z">
+        <body>
+        	//-- start of Menu ----------------------------------------------------- 
+				<trans-unit>
+					<source>Menu.home</source>
+					<target>Home</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>Menu.buying</source>
+					<target>Buying</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>Menu.selling</source>
+					<target>Selling</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>Menu.renting</source>
+					<target>Renting</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>Menu.contactus</source>
+					<target>Contact Us</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>Menu.aboutus</source>
+					<target>About Us</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>Menu.news</source>
+					<target>News</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>Menu.project</source>
+					<target>Projects</target>
+				</trans-unit>
+				
+        	//-- end of Menu ----------------------------------------------------- 
+			
+			//-- start of contact us ----------------------------------------------------- 
+				<trans-unit>
+					<source>ContactUs.title</source>
+					<target>Please feel free to contact us!</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>ContactUs.yourname</source>
+					<target>Your Name</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>ContactUs.youremail</source>
+					<target>Your Email</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>ContactUs.emailcontent</source>
+					<target>Email Content</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>ContactUs.submitbutton</source>
+					<target>Send Message</target>
+				</trans-unit>
+			
+				<trans-unit>
+					<source>ContactUs.successfullSent</source>
+					<target>Your email has been successfully sent! Thank you!</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>ContactUs.spamChecking</source>
+					<target>Please help us to stop spam</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>ContactUs.spamCheckingError</source>
+					<target>Please Type In </target>
+				</trans-unit>
+			//-- end of contact us ----------------------------------------------------- 
+			
+			//-- start of about us ----------------------------------------------------- 
+				<trans-unit>
+					<source>AboutUs.aboutUs</source>
+					<target>About Us</target>
+				</trans-unit>
+			//-- end of about us -----------------------------------------------------
+			
+			//-- start of Login ----------------------------------------------------- 
+				<trans-unit>
+					<source>username</source>
+					<target>username</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>password</source>
+					<target>password</target>
+				</trans-unit>
+			//-- end of Login -----------------------------------------------------
+			
+			//-- start of news letter ----------------------------------------------------- 
+				<trans-unit>
+					<source>NewsLetter.newsletter</source>
+					<target>newsletter</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>NewsLetter.email</source>
+					<target>Email Address</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>NewsLetter.subscribe</source>
+					<target>subscribe</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>NewsLetter.unsubscribe</source>
+					<target>unsubscribe</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>NewsLetter.invalidEmailAddr</source>
+					<target>Invalid Email Address</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>NewsLetter.emailAddrRequired</source>
+					<target>Email Address Required</target>
+				</trans-unit>
+			//-- end of news letter -----------------------------------------------------
+			
+			//-- start of content ----------------------------------------------------- 
+				<trans-unit>
+					<source>home.left</source>
+					<target>homepage left</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>home.right</source>
+					<target>homepage right</target>
+				</trans-unit>
+			//-- end of content -----------------------------------------------------
+			
+			//-- start of pagination ----------------------------------------------------- 
+				<trans-unit>
+					<source>pagination.selectPage</source>
+					<target>Select Page</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>pagination.goToPage</source>
+					<target>Go To Page</target>
+				</trans-unit>
+			//-- end of pagination -----------------------------------------------------
+			
+			//-- start of project ----------------------------------------------------- 
+				<trans-unit>
+					<source>Project.viewDetailsBtn</source>
+					<target>Vew Details</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>project.houseInfo</source>
+					<target>Vew Details</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>project.houseDetails</source>
+					<target>Property Description</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>project.images</source>
+					<target>Property Images</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>project.map</source>
+					<target>Map</target>
+				</trans-unit>
+			//-- end of project -----------------------------------------------------
+			
+			//-- start of content title --------------------------------------------
+				<trans-unit>
+					<source>content.welcome</source>
+					<target>welcome</target>
+				</trans-unit>
+					
+				<trans-unit>
+					<source>content.whychooseus</source>
+					<target>why choose us</target>
+				</trans-unit>
+					
+				<trans-unit>
+					<source>content.successStories</source>
+					<target>success stories</target>
+				</trans-unit>
+					
+				<trans-unit>
+					<source>content.yourBenifits</source>
+					<target>your benefits</target>
+				</trans-unit>
+					
+				<trans-unit>
+					<source>content.newsHeadlines</source>
+					<target>News Headlines</target>
+				</trans-unit>
+					
+				<trans-unit>
+					<source>content.whatsnew</source>
+					<target>what's new</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>content.customersays</source>
+					<target>customer says</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>content.projects</source>
+					<target>Projects</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>content.usefullinks</source>
+					<target>Useful Links</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>content.popularServices</source>
+					<target>Services</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>content.activities</source>
+					<target>Activities</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>content.readmore</source>
+					<target>Read More</target>
+				</trans-unit>
+			//-- end of content title --------------------------------------------
+			
+			//-- start of propertyQuickSearch--------------------------------------------
+				<trans-unit>
+					<source>propertyQuickSearch.title</source>
+					<target>Quick Search</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>propertyQuickSearch.submitBtn</source>
+					<target>Submit</target>
+				</trans-unit>
+			//-- end of propertyQuickSearch--------------------------------------------
+		</body>
+    </file>
+</xliff>
