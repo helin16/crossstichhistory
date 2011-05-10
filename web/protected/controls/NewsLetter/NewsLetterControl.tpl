@@ -7,7 +7,7 @@
 </script>
 <com:TActiveHiddenField ID="subscripionErrorMsg" />
 <com:TPanel ID="newLetterPanel" DefaultButton="subscribeBtn">
-	<table style='width:100%;padding:0px;margin:20px 0 0 0px;height:110px;'  border='0' cellspacing="0" cellpadding="0">
+	<table style='width:100%;padding:0px;margin:20px 0 0 0px;height:110px;'  border='1' cellspacing="0" cellpadding="0">
 		<tr valign='top'>
 			<td style="width:6px;background:transparent url(<%=$this->imageRootPath%>images/newsletter_left.png) no-repeat right top;">&nbsp;</td>
 			<td style="background:transparent url(<%=$this->imageRootPath%>images/newsletter_mid.png) repeat-x left top;">

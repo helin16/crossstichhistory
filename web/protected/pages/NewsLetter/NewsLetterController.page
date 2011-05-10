@@ -1,0 +1,41 @@
+<com:TContent ID="MainContent">
+	<div class="bodyWrapper">
+		<com:TPanel ID="subscriberPanel" style="padding-left:20%;">
+			<table border='0' width="60%" cellspacing="0" cellpadding="0" style="border:10px #cccccc solid;padding:30px;">
+				<tr>
+					<td colspan="2" style="padding:0 0 20px 0;">
+						<h3 style="margin:0px;font-size:18px;"><%[NewsLetter.newsletter]%></h3>
+						<com:TLabel ID="description" />
+					</td>
+				</tr>
+				<tr valign="top">
+					<td><%[ContactUs.youremail]%>:</td>
+					<td>
+						<com:TTextBox ID="emailAddr" ValidationGroup="Group1"/><br />
+						<com:TRequiredFieldValidator    
+							ValidationGroup="Group1"
+							ControlToValidate="emailAddr"
+							Display="Dynamic"
+							Text="<%[NewsLetter.emailAddrRequired]%>" />
+						<com:TEmailAddressValidator   
+							ValidationGroup="Group1"
+							ControlToValidate="emailAddr"
+							Display="Dynamic"
+							Text="<%[NewsLetter.invalidEmailAddr]%>" />
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td>
+						<br />
+						<com:TButton ID="subscribeBtn" OnClick="Page.subscribe" Text="<%[NewsLetter.subscribe]%>" ValidationGroup="Group1"/>
+						<com:TButton ID="unsubscribeBtn" OnClick="Page.unsubscribe" Text="<%[NewsLetter.unsubscribe]%>" ValidationGroup="Group1"/>
+					</td>
+				</tr>
+			</table>
+		</com:TPanel>
+		
+		<com:TPanel ID="msgPanel" style="width:100%;font-size:24px;">
+		</com:TPanel>
+	</div>
+</com:TContent>

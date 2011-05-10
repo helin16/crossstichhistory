@@ -51,7 +51,7 @@
 											<td>
 												<com:Application.controls.QuickSearch.QuickSearch ID="quickSearch"/>
 											</td>
-											<td style="width:312px; height:26px; background: #ffffff url('/Theme/default/images/topMenu_bottomMenu_bg.gif') no-repeat left top;">
+											<td style="width:312px;">
 												&nbsp;
 											</td>
 										</tr>

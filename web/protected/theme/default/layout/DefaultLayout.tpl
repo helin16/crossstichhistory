@@ -22,7 +22,10 @@
 					<div class="innerWrapper">
 						<table width="100%">
 							<tr>
-								<td valign="top">
+								<td valign="top" width="230px" style="padding: 10px 0 10px 0;">
+									<!--<com:Application.controls.NewsLetter.NewsLetterControl ID="newsletter" ImageRootPath="/Theme/<%=$this->Page->getDefaultThemeName()%>/"/> -->
+								</td>
+								<td valign="top" style="padding: 15px; height:500px; text-align:left;">
 									<com:TLabel ID="infoMsg" style="font-weight:bold;font-size:18px;color:green;"/>
 									<com:TLabel ID="errorMsg" style="font-weight:bold;font-size:18px;color:#ff0000;"/>
 									<com:TContentPlaceHolder ID="MainContent" />
@@ -33,18 +36,8 @@
 				</div>
 				<com:TPanel ID="footerPanel" style="width:100%;">
 					<div class="innerWrapper">
-						<table border='0' cellspacing="0" cellpadding="0" width="100%">
-							<tr style="vertical-align:bottom;">
-								<td style="width:6px; height:6px; background: #ffffff url('/Theme/default/images/roundCorner_leftTop.png') no-repeat right top;"></td>
-								<td style="border-top:1px #0098e6 solid; ">
-								</td>
-								<td style="width:6px;background: #ffffff url('/Theme/default/images/roundCorner_rightTop.png') no-repeat left top;"></td>
-							</tr>
-							<tr valign='top'>
-								<td style="width:6px; border-left:1px #0098e6 solid;">
-								</td>
-								<td>
-									<table border='0' cellspacing="0" cellpadding="0" width="100%">
+						<%= $this->getRoundCornerHead()%>
+									<table border='0' cellspacing="0" cellpadding="0" width="100%" style="margin: 5px 10px 5px 10px;">
 										<tr valign='top'>
 											<td width='23%'>
 												<com:Application.classes.Content.ContentListControl ID="activityList" CategoryName="<%[content.activities]%>" />
@@ -63,16 +56,7 @@
 											</td>
 										</tr>
 									</table>
-								</td>
-								<td style="width:6px; border-right:1px #0098e6 solid;">
-								</td>
-							</tr>
-							<tr style="height:6px;" valign="top">
-								<td style="width:6px; background: #ffffff url('/Theme/default/images/roundCorner_leftBottom.png') no-repeat right bottom;"></td>
-								<td style="border-bottom:1px #0098e6 solid;"></td>
-								<td style="width:6px;background: #ffffff url('/Theme/default/images/roundCorner_rightBottom.png') no-repeat left bottom;"></td>
-							</tr>
-						</table>
+						<%= $this->getRoundCornerFooter()%>
 					</div>
 				</com:TPanel>
 				<div id="copyright" style="width:100%;margin-top: 15px;">
