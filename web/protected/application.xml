@@ -28,17 +28,12 @@
 			
 			<url ServiceParameter="ContactUs.ContactUsController" pattern="contactus.html"/>
 			<url ServiceParameter="AboutUs.AboutUsController" pattern="aboutus.html"/>
-			<url ServiceParameter="Services.ServicesController" pattern="services.html"/>
 			<url ServiceParameter="ContentLoader.ContentLoaderController" pattern="content/{title}.html" parameters.title=".+" />
 			<url ServiceParameter="ContentList.ContentListController" pattern="contentlist/category/{categorytitle}.html" parameters.categorytitle=".+" />
 			
 			<url ServiceParameter="NewsLetter.NewsLetterController" pattern="newsletter/{action}.html" parameters.action="\w+" />
 			<url ServiceParameter="NewsLetter.NewsLetterController" pattern="newsletter/{action}/{key}.html" parameters.action="\w+" parameters.key="\w+" />
 			
-			<url ServiceParameter="Projects.ProjectsController" pattern="{searchby}.html" parameters.searchby="projects"/>
-			<url ServiceParameter="Projects.ProjectsController" pattern="{searchby}.html" parameters.searchby="buying"/>
-			<url ServiceParameter="Projects.ProjectsController" pattern="{searchby}.html" parameters.searchby="selling"/>
-			<url ServiceParameter="Projects.ProjectsController" pattern="{searchby}.html" parameters.searchby="renting"/>
 			
 			<url ServiceParameter="Projects.ProjectsController" 
 						pattern="project/{searchby}/{propertyTypeIds}/{buildingTypeIds}/{buildingStatusIds}/{maxPrice}/{minPrice}/{suburbs}" 
