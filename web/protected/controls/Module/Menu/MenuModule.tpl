@@ -52,7 +52,11 @@
 												<com:Application.controls.QuickSearch.QuickSearch ID="quickSearch"/>
 											</td>
 											<td style="width:312px;">
-												&nbsp;
+												<div style="float:right;padding: 0 20px 0 0; font-weight:bold; color:#ffffff; ">
+													<a style="color:#ffffff; text-decoration:none;" href="/contentlist/category/News Headlines.html" ><%[Menu.news]%></a>
+													&nbsp;&nbsp; | &nbsp;&nbsp;
+													<a style="color:#ffffff; text-decoration:none;" href="/contactus.html" ><%[Menu.contactus]%></a>
+												</div>
 											</td>
 										</tr>
 									</table>

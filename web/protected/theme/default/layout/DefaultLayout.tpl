@@ -5,13 +5,14 @@
 	<meta http-equiv="Cache-Control" content="no-cache"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta http-equiv="content-language" content="en"/>
-	<meta name="description" content="Managed by a team of expertise with over 10 years of experience in this industry, ARG has built its profile from nothing to well over thousand happy investors ever since its establishment in Oct 2008.A team that believes in customer orientated, ARG offers what is suitable investment portfolio for their customer. These services include investment strategies, market research, overseas investment and funding management.ARG has been actively promoting the importance of investment for their customers� retirement planning through seminars and workshop">
-	<meta name="keywords" content="Real,Estate,for,sale,Australia,property,real estate,for sale by owner,real estate online,Australian real estate,Property,real estate,For sale by owner,real estate in Australia,No commission,Sydney real estate,real estate in Sydney,Melbourne real estate,real estate in Melbourne,Australia Realty,Brisbane real estate,real estate in Brisbane,Adelaide real estate,real estate in Adelaide,Perth real estate,real estate for sale by owner,property,for sale by owner,real estate in Perth,Hobart real estate,real estate in Hobart,Gold coast real estate,real estate Gold Coast,real estate for sale by owner,Newcastle real estate,real estate in Newcastle,Northern Territory real estate,for sale by owner,real estate in Northern Territory,www.australiarealty.com,victoria real estate,queensland real estate, wa real estate,tasmania real estate,sa real estate,for sale by owner,www.australiarealty.com,www.australiarealty.com.au,victoria real estate,queensland real estate,real estate for sale by owner,farms for sale,properties for sale,australian properties for sale,sydney real estate,brisbane real estate, melbourne real estate,brisbane property, melbourne property,sydney property, real estate for sale,australian real estate">
+	<meta name="description" content="Welcome to Australian Cross Stitch Story. Completed Products are Great Gifts and Wall Decorations. The Store Owner Is a Cross Stitch Lover. Let's Stitch Up The World With Peace, Joyfulness and Storyline! ">
+	<meta name="keywords" content="Cross stich, Completed Products,Melbourne, Australia">
 	<link rel="stylesheet" type="text/css" href="/Theme/<%=$this->Page->getDefaultThemeName() %>/default.css" />
 </com:THead>
 <body>
 	<center>
 		<com:TForm>
+			<br />
 			<div style="width:910px;text-align: center;">
 				<div id="topMenu" style="width:100%;">
 					<div class="innerWrapper">
@@ -22,13 +23,18 @@
 					<div class="innerWrapper">
 						<table width="100%">
 							<tr>
-								<td valign="top" width="230px" style="padding: 10px 0 10px 0;">
-									<!--<com:Application.controls.NewsLetter.NewsLetterControl ID="newsletter" ImageRootPath="/Theme/<%=$this->Page->getDefaultThemeName()%>/"/> -->
+								<td valign="top" width="230px" style="padding: 10px 0 10px 0;height:500px; ">
+									<%= $this->getRoundCornerHead()%>
+										fdsfdsa
+										<!--<com:Application.controls.NewsLetter.NewsLetterControl ID="newsletter" ImageRootPath="/Theme/<%=$this->Page->getDefaultThemeName()%>/"/> -->
+									<%= $this->getRoundCornerFooter()%>
 								</td>
-								<td valign="top" style="padding: 15px; height:500px; text-align:left;">
-									<com:TLabel ID="infoMsg" style="font-weight:bold;font-size:18px;color:green;"/>
-									<com:TLabel ID="errorMsg" style="font-weight:bold;font-size:18px;color:#ff0000;"/>
-									<com:TContentPlaceHolder ID="MainContent" />
+								<td valign="top" >
+									<div style="margin: 7px 0 7px 7px; padding:10px; text-align:left; border: 1px #cccccc solid;">
+										<com:TLabel ID="infoMsg" style="font-weight:bold;font-size:18px;color:green;"/>
+										<com:TLabel ID="errorMsg" style="font-weight:bold;font-size:18px;color:#ff0000;"/>
+										<com:TContentPlaceHolder ID="MainContent" />
+									</div>
 								</td>
 							</tr>
 						</table>
