@@ -13,31 +13,11 @@
 	<center>
 		<com:TForm>
 			<div>
-				<div id="logo" style="width:100%;">
-					<div class="innerWrapper">
-						<table width="100%">
-							<tr>
-								<td align="left">
-									<a href='/' style='outline:none;'><img style="border:none;" src="/Theme/<%=$this->Page->getDefaultThemeName() %>/images/Logo2.png" Title="ARG Property Logo"/></a>
-								</td>
-								<td width="20%" align="right" valgin="top">
-									<com:Application.controls.LanguageChanger.LanguageChanger ID="langChanger"/>
-									<com:Application.controls.QuickSearch.QuickSearch ID="quickSearch"/>
-								</td>
-							</tr>
-						</table>
-					</div>
-				</div>
 				<div id="topMenu" style="width:100%;">
 					<div class="innerWrapper">
 						<com:Application.controls.Module.Menu.MenuModule ID="topMenu"/>
 					</div>
 				</div>
-				<com:TPanel id="banner" style="width:100%;">
-					<div class="innerWrapper">
-						<%= $this->Page->getBanner() %>
-					</div>
-				</com:TPanel>
 				<div id="body" style="width:100%;">
 					<div class="innerWrapper">
 						<table width="100%">
@@ -110,7 +90,7 @@
 				</com:TPanel>
 				<div id="copyright" style="width:100%;">
 					<div class="innerWrapper">
-						Australian Realty Group (ARG) &copy; 2010 | <a href="/content/privacy_policy.html">Privacy Policy</a>
+						Cross Stitch Story (CSS) &copy; 2010 | <a href="/content/privacy_policy.html">Privacy Policy</a>
 					</div>
 				</div>
 			</div>

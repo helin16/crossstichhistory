@@ -1,28 +1,73 @@
-<table id="topMenu" width="100%" style="height:40px;" border='0' cellspacing="0" cellpadding="0">
+<table width="100%" border='0' cellspacing="0" cellpadding="0">
 	<tr>
-		<td class="topmenulink" width="12%" >
-			<a href="/" <%= $this->changeId('home') %>><%[Menu.home]%></a>
-		</td>
-		<td class="topmenulink" width="12%">
-			<a href="/buying.html" <%= $this->changeId('buying') %>><%[Menu.buying]%></a>
-		</td>
-		<td class="topmenulink" width="12%">
-			<a href="/selling.html" <%= $this->changeId('selling') %>><%[Menu.selling]%></a>
-		</td>
-		<td class="topmenulink" width="12%">
-			<a href="/renting.html" <%= $this->changeId('renting') %>><%[Menu.renting]%></a>
-		</td>
-		<td class="topmenulink" width="12%">
-			<a href="/projects.html" <%= $this->changeId('projects') %>><%[Menu.project]%></a>
-		</td>
-		<td class="topmenulink" width="12%">
-			<a href="/news.html" <%= $this->changeId('news') %>><%[Menu.news]%></a>
-		</td>
-		<td class="topmenulink" width="14%">
-			<a href="/aboutus.html" <%= $this->changeId('aboutus') %>><%[Menu.aboutus]%></a>
-		</td>
 		<td>
-			<a href="/contactus.html" <%= $this->changeId('contactus') %>><%[Menu.contactus]%></a>
+			<table width="100%" border='0' cellspacing="0" cellpadding="0">
+				<tr valign="bottom">
+					<td width="360px">
+						<a href='/' style='outline:none;border:none;padding:0px;margin:0px;'>
+							<img style="border:none;padding:0px;margin:0px;" src="/Theme/<%=$this->Page->getDefaultThemeName() %>/images/logo.jpg" Title="Cross Stitch Story"/>
+						</a>
+					</td>
+					<td width="360px">
+						<table id="topMenu" width="100%" border='0' cellspacing="0" cellpadding="0" style="margin-left:30px;">
+							<tr>
+								<td>
+									<a class='topMenuItem' href="/" <%= $this->changeId('home') %>><%[Menu.home]%></a>
+								</td>
+								<td>
+									<a  class='topMenuItem' href="/contentlist/category/news.html" <%= $this->changeId('news') %>><%[Menu.news]%></a>
+								</td>
+								<td>
+									<a  class='topMenuItem' href="/aboutus.html" <%= $this->changeId('aboutus') %>><%[Menu.aboutus]%></a>
+								</td>
+								<td>
+									<a  class='topMenuItem' href="/contactus.html" <%= $this->changeId('contactus') %>><%[Menu.contactus]%></a>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table width="100%" border='0' cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="10px" >
+						<img src="/Theme/default/images/left.jpg" />
+					</td>
+					<td style="background:transparent url('/Theme/default/images/mid.jpg') repeat-x left bottom;">
+						<table width="100%" height="67px" border='0' cellspacing="0" cellpadding="0">
+							<tr>
+								<td style="font-weight:bold; color:white; padding 10px 0 0px 12px; text-align:left;">
+									TopNews: fdsafsdaflasdkfjsdalfsd
+								</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold; color:white; padding 5px 0 5px 12px; text-align:left;">
+									<table width="100%" border='0' cellspacing="0" cellpadding="0">
+										<tr>
+											<td style="width:200px;">
+												<com:Application.controls.QuickSearch.QuickSearch ID="quickSearch"/>
+											</td>
+											<td>
+												&nbsp;
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="10px" >
+						<img src="/Theme/default/images/right.jpg" />
+					</td>
+				</tr>
+			</table>
 		</td>
 	</tr>
 </table>
