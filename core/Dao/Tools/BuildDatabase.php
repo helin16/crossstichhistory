@@ -19,7 +19,7 @@
 require_once(dirname(__FILE__)."/../../bootstrap.php");
 
 $errorLevel = 0;
-$defaults = array(	"Path"=>dirname(__FILE__)."/../../Entity/",
+$defaults = array(	"Path"=>dirname(__FILE__)."/../../Entities/",
 					"Server"=>"",
 					"Database"=>"",
 					"Username"=>"",
@@ -78,7 +78,7 @@ else
 		";
 //	$dbGen = new SchemaGenerator($path,$server,$database,$username,$password);
 	
-	$var = new SchemaGenerator(dirname(__FILE__)."/../../Entity/", array(".svn"));
+	$var = new SchemaGenerator(dirname(__FILE__)."/../../Entities/", array(".svn"));
 	$var->setupDatabase($sampleDataFilePath,true,true);
 	echo "	</pre>";
 	echo "</div>";

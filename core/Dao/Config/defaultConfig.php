@@ -7,7 +7,7 @@ return array(
 						'ImportNode' => 'localhost',
 						'SecondaryNode' => 'localhost',
 						'NASNode' => 'localhost',
-						'CoreDatabase' => 'kangtia1_property',
+						'CoreDatabase' => 'crosss4_shop',
 						'Username' => 'root',
 						'Password' => ''
 					),
