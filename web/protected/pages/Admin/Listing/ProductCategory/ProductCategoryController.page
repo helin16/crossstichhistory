@@ -85,8 +85,8 @@
 								<b>@:</b> <%# $this->DataItem->getUpdated() %>
 							</td>
 							<td width="10%">
-								<com:TImageButton ID="EditButton" ImageUrl="../../../image/edit.png" CommandName="edit" ToolTip="Edit Record" />
-								<a href="/admin/list/content/contentcategory/<%# $this->DataItem->getId() %>.html">Contents</a>
+								<com:TImageButton ID="EditButton" ImageUrl="/image/edit.png" CommandName="edit" ToolTip="Edit Record" />
+								<a href="/admin/list/product/ProductCategory/<%# $this->DataItem->getId() %>.html">Prducts</a>
 							</td>
 						</tr>
 					</table>

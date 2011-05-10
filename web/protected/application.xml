@@ -53,6 +53,7 @@
 			
 			<url ServiceParameter="Admin.Listing.ProductCategory.ProductCategoryController" pattern="admin/list/productcategory.html" />
 			<url ServiceParameter="Admin.Listing.ProductController.ProductController" pattern="admin/list/product.html" />
+			<url ServiceParameter="Admin.Listing.ProductController.ProductController" pattern="admin/list/product/{searchby}/{id}.html" parameters.id="\d+" parameters.searchby="\w+"/>
 			<url ServiceParameter="Admin.Editing.ProductController.ProductController" pattern="admin/add/product.html" />
 			<url ServiceParameter="Admin.Editing.ProductController.ProductController" pattern="admin/edit/product/{id}.html" parameters.id="\d+" />
 			

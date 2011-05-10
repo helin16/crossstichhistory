@@ -99,7 +99,7 @@ class Product extends HydraEntity
 	
 	public function __loadDaoMap()
 	{
-		DaoMap::begin($this, 'con');
+		DaoMap::begin($this, 'pro');
 		
 		DaoMap::setStringType('title','varchar',256);
 		DaoMap::setStringType("text",'text');
