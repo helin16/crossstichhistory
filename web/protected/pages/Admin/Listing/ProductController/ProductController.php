@@ -27,10 +27,19 @@ class ProductController extends CRUDPage
         }
     }
     
+	protected function getFocusEntity($id,$type="")
+    {
+    	$service = new BaseService($type);
+    	return $service->get($id);
+    }
+    
 	protected function searchEntity($searchString,&$focusObject = null,$pageNumber=null,$pageSize=null)
     {
-    	$service = new BaseService("Project");
-    	$result =  $service->findByCriteria("languageId=".$this->pageLanguage->getId()."(pro.title like '%$searchString%' or pro.intro like '%$searchString%' or pro.fullText like '%$searchString%')",false,$pageNumber,$pageSize);
+    	$service = new BaseService($this->entityName);
+    	$where = "languageId=".$this->pageLanguage->getId()." and (pro.title like '%$searchString%' or pro.description like '%$searchString%')";
+    	if($focusObject instanceof ProductCategory )
+	    	$where .= " and id in (select distinct x.productId from product_productcategory x where x.productCategoryId = ".$focusObject->getId().")";
+    	$result =  $service->findByCriteria($where,false,$pageNumber,$pageSize);
     	$this->totalRows = $service->totalNoOfRows;
     	return $result;
     }
@@ -38,7 +47,10 @@ class ProductController extends CRUDPage
 	protected function getAllOfEntity(&$focusObject = null,$pageNumber=null,$pageSize=null,$searchActiveOnly=true)
     {
     	$service = new BaseService($this->entityName);
-    	$result =  $service->findByCriteria("languageId=".$this->pageLanguage->getId(),false,$pageNumber,$pageSize);
+    	$where = "languageId=".$this->pageLanguage->getId();
+    	if($focusObject instanceof ProductCategory )
+	    	$where .= " and id in (select distinct x.productId from product_productcategory x where x.productCategoryId = ".$focusObject->getId().")";
+    	$result =  $service->findByCriteria($where,false,$pageNumber,$pageSize);
     	$this->totalRows = $service->totalNoOfRows;
     	return $result;
     }
