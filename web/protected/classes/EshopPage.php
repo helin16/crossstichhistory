@@ -22,7 +22,7 @@ class EshopPage extends TPage
 	public function setTitle($value)
 	{
 		$temp = $this->getApplication()->getParameters();
-		$extra =" - Australian Realty, Property and Projects, Melbourne,Brisbane,Sydney";
+		$extra =" - Comleted Products are Great Gifts and Wall Decorations. Cross Stitch Lovers.  ";
 		if($temp->contains("AppTitle"))
 		{
 			$param = $temp->toArray();
