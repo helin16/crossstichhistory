@@ -1,0 +1,319 @@
+<com:TContent ID="MainContent">
+	<iframe id="lightbox" style="display: none;position:fixed;top: 10%;left: 10%;width: 80%;height: 80%;padding: 16px;border: 10px solid black;background-color: white;z-index:1002;overflow: auto;" src="/image/ajax-loader.gif" ></iframe>
+	<div id="fade" OnClick="$('lightbox').src='/image/ajax-loader.gif';$('fade').hide();$('lightbox').hide();" style="display: none;position:fixed;top: 0%;left: 0%;width: 100%;height: 100%;background-color: black;z-index:1001;-moz-opacity: 0.8;opacity:.80;filter: alpha(opacity=80);"></div>
+	<div>
+		<com:TPanel ID="SearchAddPanel" CssClass="SearchPanel" DefaultButton="SearchButton">
+			<table width="100%">
+				<tr>
+					<td width="80%">
+						Search : 
+						<com:TTextBox ID="SearchText" AutoPostBack="false" Columns="45" />
+						<com:TButton ID="SearchButton" Text=" Search " OnClick="search" />
+						<com:THiddenField ID="focusObject" />
+						<com:THiddenField ID="focusObjectArgument" />
+						<com:THiddenField ID="SearchString" />
+					</td>
+					<td width="20%">
+						<com:TButton ID="AddButton" Text="Add New" OnClick="Page.add" />
+					</td>
+				</tr>
+			</table>
+		</com:TPanel>
+		
+		<com:TPanel ID="AddPanel" style='width:95%;' DefaultButton="addNewBtn">
+			<table style='background:#888888;width:100%;'>
+				<tr>
+					<td>
+						Title:
+						<com:TTextBox ID="title" ValidationGroup="Group1" style="width:40px;"/>
+						<com:TRequiredFieldValidator    
+							ValidationGroup="Group1"
+							ControlToValidate="firstName"
+							Display="Dynamic"
+							Text="* required" />
+											
+						First Name:
+						<com:TTextBox ID="firstName" ValidationGroup="Group1" style="width:100px;"/>
+						<com:TRequiredFieldValidator    
+							ValidationGroup="Group1"
+							ControlToValidate="firstName"
+							Display="Dynamic"
+							Text="* required" />
+							
+						Last Name:
+						<com:TTextBox ID="lastName" ValidationGroup="Group1" style="width:100px;"/>
+						<com:TRequiredFieldValidator    
+							ValidationGroup="Group1"
+							ControlToValidate="lastName"
+							Display="Dynamic"
+							Text="* required" />
+							
+						Position:
+						<com:TTextBox ID="position" ValidationGroup="Group1" style="width:100px;" />
+					</td>
+					<td rowspan="2" valign="middle" align="center">
+						Image:
+						<com:TActiveFileUpload OnFileUpload="Page.fileUploaded" /><br />
+						<com:TActiveImage Id="personImage"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Mobile:
+						<com:TTextBox ID="mobile" ValidationGroup="Group1" style="width:100px;"/>
+											
+						Phone:
+						<com:TTextBox ID="phone" ValidationGroup="Group1" style="width:100px;"/>
+							
+						Fax:
+						<com:TTextBox ID="fax" ValidationGroup="Group1" style="width:100px;"/>
+						
+						Email Address:<com:TTextBox ID="emailAddr" ValidationGroup="Group1"/>
+						<com:TRequiredFieldValidator    
+							ValidationGroup="Group1"
+							ControlToValidate="emailAddr"
+							Display="Dynamic"
+							Text="* required" />
+						<com:TEmailAddressValidator   
+							ValidationGroup="Group1"
+							ControlToValidate="emailAddr"
+							Display="Dynamic"
+							Text="<%[NewsLetter.invalidEmailAddr]%>" />
+					</td>
+				</tr>
+				<tr>
+					<td  colspan="2">
+						Description:<br />
+						<com:THtmlArea ID="description" width="100%">
+							<prop:Options>
+						        theme : "advanced",
+						        plugins : "devkit,style,layer,table,save,advhr,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras",
+						        theme_advanced_buttons1_add_before : "save,newdocument,separator,styleselect",
+						        theme_advanced_buttons1_add : "separator,insertdate,inserttime,preview,separator,advsearchreplace",
+						        theme_advanced_buttons2_add_before: "cut,copy,paste,pastetext,pasteword,separator,search,replace,separator",
+						        theme_advanced_buttons3 : "tablecontrols,separator,emotions,iespell,media,advhr,separator,print,separator,ltr,rtl,separator,fullscreen",
+						        theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,|,visualchars,nonbreaking",
+						        theme_advanced_toolbar_location : "top",
+						        theme_advanced_toolbar_align : "left",
+						        theme_advanced_path_location : "bottom",
+						        plugin_insertdate_dateFormat : "%Y-%m-%d",
+						        plugin_insertdate_timeFormat : "%H:%M:%S",
+						        theme_advanced_resize_horizontal : true,
+						        theme_advanced_resizing : true,
+						        nonbreaking_force_tab : true,
+						        apply_source_formatting : true
+						  	</prop:Options>
+						</com:THtmlArea>
+						
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<com:TButton Text="Save" ID="addNewBtn" OnClick="save" ValidationGroup="Group1"/>
+						<com:TButton Text="Cancel" OnClick="cancel" />
+					</td>
+				</tr>
+			</table>
+		</com:TPanel>
+		
+		<br />
+		<hr />
+		<br />
+		
+		<com:TPanel ID="ListingPanel" style="width:98%;">
+		<b>List of Subscriber(s):</b><br />
+			<com:TDataList
+			     ID="DataList"
+			     DataKeyField="id"
+			     OnEditCommand="edit"
+			     OnCancelCommand="cancel"
+			     OnUpdateCommand="save"
+			     HeaderStyle.BackColor="black"
+			     HeaderStyle.ForeColor="white"
+			     ItemStyle.BackColor="#ffffff"
+			     AlternatingItemStyle.BackColor="#eeeeee"
+			     EditItemStyle.BackColor="#888888"
+			     SelectedItemStyle.BackColor="lightblue"
+			      AllowPaging="true" AllowCustomPaging="true" PageSize="10" EnableViewState="true"
+			     width="100%"
+			     >
+		     
+			    <prop:HeaderTemplate>
+					<table width="100%" height="32">
+						<tr align="left">
+							<td width="110px">
+								Image
+							</td>
+							<td width="300px">Person Details</td>
+							<td>Description</td>
+							<td width="160px">Created</td>
+							<td width="160px">Updated</td>
+							<td width="32px">Active</td>
+							<td width="16px">&nbsp;</td>
+						</tr>
+					</table>
+				</prop:HeaderTemplate>
+				
+				<prop:ItemTemplate>
+					<table width="100%">
+						<tr  valign="top">
+							<td width="110px">
+								<com:TImage ImageUrl="<%# $this->Page->loadImage($this->DataItem) %>" />
+							</td>
+							<td width="300px">
+								<b><%# $this->DataItem->getFullName() %></b><br />
+								<div style="font-size:12px;margin: 0 0 0 8px;">
+									<b>Title:</b> <%# $this->DataItem->getTitle() %><br />
+									<b>Position:</b> <%# $this->DataItem->getPosition() %><br />
+									<b>Mobile:</b> <%# $this->DataItem->getMobile() %><br />
+									<b>Phone:</b> <%# $this->DataItem->getPhone() %><br />
+									<b>Fax:</b> <%# $this->DataItem->getFax() %><br />
+									<b>Email:</b> <%# $this->DataItem->getEmail() %>
+								</div>
+							</td>
+							<td><%# $this->DataItem->getDescription() %></td>
+							<td width="160px">
+								<b>By:</b> <%# $this->DataItem->getCreatedBy()->getPerson() %><br />
+								<b>@:</b> <%# $this->DataItem->getCreated() %>
+							</td>
+							<td width="160px">
+								<b>By:</b> <%# $this->DataItem->getCreatedBy()->getPerson() %><br />
+								<b>@:</b> <%# $this->DataItem->getCreated() %>
+							</td>
+							<td  width="32px">
+								&nbsp;&nbsp;&nbsp;<com:TCheckBox Id="Active" Checked="<%#$this->DataItem->getActive()%>"  AutoPostBack="true" OnCheckedChanged="Page.toggleActive"/>
+							</td>
+							<td width="16px">
+								<com:TImageButton ID="EditButton" ImageUrl="../../../image/edit.png" CommandName="edit" ToolTip="Edit Record" />
+							</td>
+						</tr>
+					</table>
+				</prop:ItemTemplate>
+					
+				<prop:EditItemTemplate>
+					<table style='background:#888888;width:100%;'>
+						<tr>
+							<td>
+								Title:
+								<com:TTextBox ID="title" ValidationGroup="Group1" style="width:40px;"/>
+								<com:TRequiredFieldValidator    
+									ValidationGroup="Group1"
+									ControlToValidate="firstName"
+									Display="Dynamic"
+									Text="* required" />
+													
+								First Name:
+								<com:TTextBox ID="firstName" ValidationGroup="Group1" style="width:100px;"/>
+								<com:TRequiredFieldValidator    
+									ValidationGroup="Group1"
+									ControlToValidate="firstName"
+									Display="Dynamic"
+									Text="* required" />
+									
+								Last Name:
+								<com:TTextBox ID="lastName" ValidationGroup="Group1" style="width:100px;"/>
+								<com:TRequiredFieldValidator    
+									ValidationGroup="Group1"
+									ControlToValidate="lastName"
+									Display="Dynamic"
+									Text="* required" />
+									
+								Position:
+								<com:TTextBox ID="position" ValidationGroup="Group1" style="width:100px;" />
+							</td>
+							<td rowspan="2" valign="middle" align="center" style="padding:2px;">
+								Image:
+								<com:TActiveFileUpload OnFileUpload="Page.fileUploaded" /><br />
+								<com:TActiveImage Id="personImage"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Mobile:
+								<com:TTextBox ID="mobile" ValidationGroup="Group1" style="width:100px;"/>
+													
+								Phone:
+								<com:TTextBox ID="phone" ValidationGroup="Group1" style="width:100px;"/>
+									
+								Fax:
+								<com:TTextBox ID="fax" ValidationGroup="Group1" style="width:100px;"/>
+								
+								Email Address:<com:TTextBox ID="emailAddr" ValidationGroup="Group1"/>
+								<com:TRequiredFieldValidator    
+									ValidationGroup="Group1"
+									ControlToValidate="emailAddr"
+									Display="Dynamic"
+									Text="* required" />
+								<com:TEmailAddressValidator   
+									ValidationGroup="Group1"
+									ControlToValidate="emailAddr"
+									Display="Dynamic"
+									Text="<%[NewsLetter.invalidEmailAddr]%>" />
+							</td>
+						</tr>
+						<tr>
+							<td  colspan="2">
+								Description:<br />
+								<com:THtmlArea ID="description" width="100%">
+									<prop:Options>
+								        theme : "advanced",
+								        plugins : "devkit,style,layer,table,save,advhr,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras",
+								        theme_advanced_buttons1_add_before : "save,newdocument,separator,styleselect",
+								        theme_advanced_buttons1_add : "separator,insertdate,inserttime,preview,separator,advsearchreplace",
+								        theme_advanced_buttons2_add_before: "cut,copy,paste,pastetext,pasteword,separator,search,replace,separator",
+								        theme_advanced_buttons3 : "tablecontrols,separator,emotions,iespell,media,advhr,separator,print,separator,ltr,rtl,separator,fullscreen",
+								        theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,|,visualchars,nonbreaking",
+								        theme_advanced_toolbar_location : "top",
+								        theme_advanced_toolbar_align : "left",
+								        theme_advanced_path_location : "bottom",
+								        plugin_insertdate_dateFormat : "%Y-%m-%d",
+								        plugin_insertdate_timeFormat : "%H:%M:%S",
+								        theme_advanced_resize_horizontal : true,
+								        theme_advanced_resizing : true,
+								        nonbreaking_force_tab : true,
+								        apply_source_formatting : true
+								  	</prop:Options>
+								</com:THtmlArea>
+								
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<com:TButton ID="updateBtn" Text="Save" CommandName="Update" ValidationGroup="Group2"/>
+								<com:TButton Text="Cancel" CommandName="Cancel" />
+							</td>
+						</tr>
+					</table>
+				</prop:EditItemTemplate>
+				
+			    <prop:FooterTemplate>
+				    <table width="100%" height="25">
+						<tr>
+							<th colspan=5>
+								<div style="font-weight: bold; text-align: center;">
+									Total <%# $this->Page->totalRows %> Contact(s)
+								</div>
+							</th>
+						</tr>
+					</table>
+				</prop:FooterTemplate>				
+			</com:TDataList>
+		</com:TPanel>		
+
+		<com:TPanel ID="PaginationPanel">		
+		    <table width="100%" height="25">
+				<tr>
+					<th colspan="2" align="left">
+						Select Page :
+						<com:TPager ID="PagerList" ControlToPaginate="DataList" PageButtonCount="5" Mode="Numeric" OnPageIndexChanged="pageChanged" />
+					</th>
+					<th colspan="3" align="right">
+						Go To Page :
+						<com:TPager ID="PagerGoTo" ControlToPaginate="DataList" Mode="DropDownList" OnPageIndexChanged="pageChanged" />
+					</th>
+				</tr>
+			</table>
+		</com:TPanel>		
+	</div>
+	
+</com:TContent>

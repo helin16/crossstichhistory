@@ -1,0 +1,14 @@
+<com:TContent ID="MainContent">
+	<table id="contentTable" border='0' cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+			<td id="contentTable_title">
+				<com:TLabel ID="title" />
+			</td>
+		</tr>
+		<tr>
+			<td id="contentTable_content">
+				<com:TLabel ID="text" />
+			</td>
+		</tr>
+	</table>
+</com:TContent>

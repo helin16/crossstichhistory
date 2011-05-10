@@ -1,0 +1,125 @@
+<com:TContent ID="MainContent">
+	<iframe id="lightbox" style="display: none;position:fixed;top: 10%;left: 10%;width: 80%;height: 80%;padding: 16px;border: 10px solid black;background-color: white;z-index:1002;overflow: auto;" src="/image/ajax-loader.gif" ></iframe>
+	<div id="fade" OnClick="$('lightbox').src='/image/ajax-loader.gif';$('fade').hide();$('lightbox').hide();" style="display: none;position:fixed;top: 0%;left: 0%;width: 100%;height: 100%;background-color: black;z-index:1001;-moz-opacity: 0.8;opacity:.80;filter: alpha(opacity=80);"></div>
+	<div>
+		<com:TPanel ID="SearchAddPanel" CssClass="SearchPanel" DefaultButton="SearchButton">
+			<table width="100%">
+				<tr>
+					<td width="80%">
+						Search : 
+						<com:TTextBox ID="SearchText" AutoPostBack="false" Columns="45" />
+						<com:TButton ID="SearchButton" Text=" Search " OnClick="search" />
+						<com:THiddenField ID="focusObject" />
+						<com:THiddenField ID="focusObjectArgument" />
+						<com:THiddenField ID="SearchString" />
+					</td>
+					<td width="20%">
+						<com:TButton ID="AddButton" Text="Add New" Attributes.OnClick="$('lightbox').src='/admin/add/project.html';$('fade').show();$('lightbox').show();return false;" />
+					</td>
+				</tr>
+			</table>
+			<br />
+			<hr />
+			<br />
+		</com:TPanel>
+		<com:TPanel ID="ListingPanel" style="width:98%;">
+		<b>List of Project(s):</b><br />
+			<com:TDataList
+			     ID="DataList"
+			     DataKeyField="id"
+			     OnEditCommand="edit"
+			     OnCancelCommand="cancel"
+			     OnUpdateCommand="update"
+			     OnDeleteCommand="delete"
+			     OnSelectedIndexChanged="select"
+			     HeaderStyle.BackColor="black"
+			     HeaderStyle.ForeColor="white"
+			     ItemStyle.BackColor="#ffffff"
+			     AlternatingItemStyle.BackColor="#eeeeee"
+			     EditItemStyle.BackColor="#888888"
+			     SelectedItemStyle.BackColor="lightblue"
+			      AllowPaging="true" AllowCustomPaging="true" PageSize="30" EnableViewState="true"
+			      width="100%"
+			     >
+		     
+			    <prop:HeaderTemplate>
+					<table width="100%" height="32">
+						<tr align="left">
+							<td width="20%">Title</td>
+							<td>Project</th>
+							<td width="20%">Created</td>
+							<td width="5%">Active</td>
+							<td width="5%">&nbsp;</td>
+						</tr>
+					</table>
+				</prop:HeaderTemplate>
+				
+				<prop:ItemTemplate>
+					<table width="100%">
+						<tr>
+							<td width="20%" style="font-size:10px;">
+								<b  style="font-size:12px;"><%#$this->DataItem->getTitle()%></b><br />
+								<i><%#$this->DataItem->getAddress()%></i><br /><br />
+								Price: <%#$this->DataItem->getPrice()%><br />
+								Type: <%#$this->DataItem->getPropertyType()%><br />
+								Building: <i><%#$this->DataItem->getBuildingType()%><br />
+								Status: <i><%#$this->DataItem->getPropertyStatus()%><br />
+								<%# $this->Page->listImages($this->DataItem) %>
+							</td>
+							<td>
+								<%# $this->Page->shortenText($this->DataItem->getDescription(),200)%>
+							</td>
+							<td width="20%">
+								<b>Created</b><br />
+								By <%#$this->DataItem->getCreatedBy()->getPerson()%><br />
+								@ <%#$this->DataItem->getCreated()%><br />
+								
+								<br /><b>Updated</b><br />
+								By <%#$this->DataItem->getUpdatedBy()->getPerson()%><br />
+								@ <%#$this->DataItem->getUpdated()%>
+							</td>
+							<td width="5%">
+								<com:TCheckBox Id="Active" Checked="<%#$this->DataItem->getActive()%>"  AutoPostBack="true" OnCheckedChanged="Page.toggleActive"/>
+							</td>
+							<td width="5%">
+								<com:TImageButton ID="EditButton" ImageUrl="../../../image/edit.png" Text="Edit" 
+										Attributes.OnClick="$('lightbox').src='/admin/edit/project/<%# $this->DataItem->getId() %>.html';$('fade').show();$('lightbox').show();return false;" 
+												ToolTip="Edit Record" />
+							</td>
+						</tr>
+					</table>
+				</prop:ItemTemplate>
+				
+				<prop:EditItemTemplate />
+				
+			    <prop:FooterTemplate>
+				    <table width="100%" height="25">
+						<tr>
+							<th colspan=5>
+								<div style="font-weight: bold; text-align: center;">
+									Total <%# $this->Page->totalRows %> Project(s)
+								</div>
+							</th>
+						</tr>
+					</table>
+				</prop:FooterTemplate>				
+			</com:TDataList>
+		</com:TPanel>		
+
+		<com:TPanel ID="PaginationPanel">		
+		    <table width="100%" height="25">
+				<tr>
+					<th colspan="2" align="left">
+						Select Page :
+						<com:TPager ID="PagerList" ControlToPaginate="DataList" PageButtonCount="5" Mode="Numeric" OnPageIndexChanged="pageChanged" />
+					</th>
+					<th colspan="3" align="right">
+						Go To Page :
+						<com:TPager ID="PagerGoTo" ControlToPaginate="DataList" Mode="DropDownList" OnPageIndexChanged="pageChanged" />
+					</th>
+				</tr>
+			</table>
+		</com:TPanel>		
+	</div>
+	
+</com:TContent>

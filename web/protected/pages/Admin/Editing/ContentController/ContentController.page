@@ -1,0 +1,78 @@
+<com:TContent ID="MainContent">
+	<table id="contentTable" border='0' cellspacing="0" cellpadding="0" width="90%" style="text-align:left;">
+		<tr>
+			<td width="10%">
+				<b>Title</b>
+			</td>
+			<td>
+				<com:TTextBox ID="title" ValidationGroup="Group1"/>
+				<com:TRequiredFieldValidator    
+					ValidationGroup="Group1"
+					ControlToValidate="title"
+					Display="Dynamic"
+					Text="* required" />
+			</td>
+		</tr>
+		<tr>
+			<td width="10%">
+				<b>SubTitle</b>
+			</td>
+			<td>
+				<com:TTextBox ID="subTitle" ValidationGroup="Group1"/>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top">
+				<b>Categories</b>
+			</td>
+			<td>
+				<com:TListBox ID="categoryList" 
+					DataValueField="id"
+					DataTextField="name"	
+					ValidationGroup="Group1"	
+					Rows="4"
+					SelectionMode="Multiple"		
+				/>
+				<com:TRequiredFieldValidator    
+					ValidationGroup="Group1"
+					ControlToValidate="categoryList"
+					Display="Dynamic"
+					Text="* required" />
+				<br /><br />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<b>Text: </b><br />
+				<com:THtmlArea ID="description" width="100%">
+					<prop:Options>
+				        theme : "advanced",
+				        plugins : "devkit,style,layer,table,save,advhr,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras",
+				        theme_advanced_buttons1_add_before : "save,newdocument,separator,styleselect",
+				        theme_advanced_buttons1_add : "separator,insertdate,inserttime,preview,separator,advsearchreplace",
+				        theme_advanced_buttons2_add_before: "cut,copy,paste,pastetext,pasteword,separator,search,replace,separator",
+				        theme_advanced_buttons3 : "tablecontrols,separator,emotions,iespell,media,advhr,separator,print,separator,ltr,rtl,separator,fullscreen",
+				        theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,|,visualchars,nonbreaking",
+				        theme_advanced_toolbar_location : "top",
+				        theme_advanced_toolbar_align : "left",
+				        theme_advanced_path_location : "bottom",
+				        plugin_insertdate_dateFormat : "%Y-%m-%d",
+				        plugin_insertdate_timeFormat : "%H:%M:%S",
+				        theme_advanced_resize_horizontal : true,
+				        theme_advanced_resizing : true,
+				        nonbreaking_force_tab : true,
+				        apply_source_formatting : true
+				  	</prop:Options>
+				</com:THtmlArea><br /><br />
+			</td>
+		</tr>
+		<tr>
+			<td width="10%">
+				&nbsp;
+			</td>
+			<td>
+				<com:TButton Id="saveBtn" Text="Save" OnClick="Page.save"  ValidationGroup="Group1"/>
+			</td>
+		</tr>
+	</table>	
+</com:TContent>

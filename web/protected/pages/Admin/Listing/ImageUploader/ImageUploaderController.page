@@ -1,0 +1,25 @@
+<com:TContent ID="MainContent">
+	<div>
+		<script type="text/javascript">
+			function showDetails(fileName,rootPath)
+			{
+				var html="<b>" + fileName +"</b><br />"; 
+				html +="<b>URL: <input type='text' value='" + rootPath + fileName + "' style='width:90%'/><br />";
+				html +="<img src='" + rootPath + fileName + "' />";
+				$('detailsPanel').innerHTML= html;
+			}
+		</script>
+		<com:TFileUpload ID="fileUploader" OnFileUpload="Page.fileUploaded" />
+		<com:TButton Text="Upload" />
+		<table width="98%" style="border:1px #cccccc solid;">
+			<tr valign="top">
+				<td width="300px" style="border:2px #cccccc solid;">
+					<com:TActiveTextBox ID="Path" ReadOnly="true" width="100%" style="display:none;"/>
+					<com:TPanel ID="dirPanel" />
+				</td>
+				<td style="padding:10px;border:2px #cccccc solid;" ID="detailsPanel">
+				</td>
+			</tr>
+		</table>
+	</div>
+</com:TContent>

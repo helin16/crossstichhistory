@@ -1,0 +1,152 @@
+<com:TContent ID="MainContent">
+	<iframe id="lightbox" style="display: none;position:fixed;top: 10%;left: 10%;width: 80%;height: 80%;padding: 16px;border: 10px solid black;background-color: white;z-index:1002;overflow: auto;" src="/image/ajax-loader.gif" ></iframe>
+	<div id="fade" OnClick="$('lightbox').src='/image/ajax-loader.gif';$('fade').hide();$('lightbox').hide();" style="display: none;position:fixed;top: 0%;left: 0%;width: 100%;height: 100%;background-color: black;z-index:1001;-moz-opacity: 0.8;opacity:.80;filter: alpha(opacity=80);"></div>
+	<div>
+		<com:TPanel ID="SearchAddPanel" CssClass="SearchPanel" DefaultButton="SearchButton">
+			<table width="100%">
+				<tr>
+					<td width="80%">
+						Search : 
+						<com:TTextBox ID="SearchText" AutoPostBack="false" Columns="45" />
+						<com:TButton ID="SearchButton" Text=" Search " OnClick="search" />
+						<com:THiddenField ID="focusObject" />
+						<com:THiddenField ID="focusObjectArgument" />
+						<com:THiddenField ID="SearchString" />
+					</td>
+					<td width="20%">
+						<com:TButton ID="AddButton" Text="Add New" OnClick="Page.add" />
+					</td>
+				</tr>
+			</table>
+		</com:TPanel>
+		
+		<com:TPanel ID="AddPanel" style='width:95%;' DefaultButton="addNewBtn">
+			<table style='background:#888888;width:100%;'>
+				<tr>
+					<td>
+						Email Address:	<com:TTextBox ID="emailAddr" ValidationGroup="Group1"/>
+						<com:TRequiredFieldValidator    
+							ValidationGroup="Group1"
+							ControlToValidate="emailAddr"
+							Display="Dynamic"
+							Text="<%[NewsLetter.emailAddrRequired]%>" />
+						<com:TEmailAddressValidator   
+							ValidationGroup="Group1"
+							ControlToValidate="emailAddr"
+							Display="Dynamic"
+							Text="<%[NewsLetter.invalidEmailAddr]%>" />
+					</td>
+					<td width="25%">
+						<com:TButton Text="Save" ID="addNewBtn" OnClick="save" ValidationGroup="Group1"/>
+						<com:TButton Text="Cancel" OnClick="cancel" />
+					</td>
+				</tr>
+			</table>
+		</com:TPanel>
+		
+		<br />
+		<hr />
+		<br />
+		
+		<com:TPanel ID="ListingPanel" style="width:98%;">
+		<b>List of Subscriber(s):</b><br />
+			<com:TDataList
+			     ID="DataList"
+			     DataKeyField="id"
+			     OnEditCommand="edit"
+			     OnCancelCommand="cancel"
+			     OnUpdateCommand="save"
+			     HeaderStyle.BackColor="black"
+			     HeaderStyle.ForeColor="white"
+			     ItemStyle.BackColor="#ffffff"
+			     AlternatingItemStyle.BackColor="#eeeeee"
+			     EditItemStyle.BackColor="#888888"
+			     SelectedItemStyle.BackColor="lightblue"
+			      AllowPaging="true" AllowCustomPaging="true" PageSize="30" EnableViewState="true"
+			     width="100%"
+			     >
+		     
+			    <prop:HeaderTemplate>
+					<table width="100%" height="32">
+						<tr align="left">
+							<td>Email</td>
+							<td width="20%">Created</td>
+							<td width="25%">&nbsp;</td>
+						</tr>
+					</table>
+				</prop:HeaderTemplate>
+				
+				<prop:ItemTemplate>
+					<table width="100%">
+						<tr>
+							<td><%# $this->DataItem->getEmail() %></td>
+							<td width="20%">
+								<b>By:</b> <%# $this->DataItem->getCreatedBy()->getPerson() %><br />
+								<b>@:</b> <%# $this->DataItem->getCreated() %>
+							</td>
+							<td width="25%">
+								<com:TImageButton ID="EditButton" ImageUrl="../../../image/edit.png" CommandName="edit" ToolTip="Edit Record" />
+							</td>
+						</tr>
+					</table>
+				</prop:ItemTemplate>
+					
+				<prop:EditItemTemplate>
+					<table width="100%" >
+						<tr>
+							<td>
+								<com:TTextBox ID="emailAddr" ValidationGroup="Group2"/>
+								<com:TRequiredFieldValidator    
+									ValidationGroup="Group2"
+									ControlToValidate="emailAddr"
+									Display="Dynamic"
+									Text="<%[NewsLetter.emailAddrRequired]%>" />
+								<com:TEmailAddressValidator   
+									ValidationGroup="Group2"
+									ControlToValidate="emailAddr"
+									Display="Dynamic"
+									Text="<%[NewsLetter.invalidEmailAddr]%>" />
+							</td>
+							<td width="20%">
+								<b>By:</b> <%# $this->DataItem->getCreatedBy()->getPerson() %><br />
+								<b>@:</b> <%# $this->DataItem->getCreated() %>
+							</td>
+							<td width="25%">
+								<com:TButton ID="updateBtn" Text="Save" CommandName="Update" ValidationGroup="Group2"/>
+								<com:TButton Text="Cancel" CommandName="Cancel" />
+							</td>
+						</tr>
+					</table>
+				</prop:EditItemTemplate>
+				
+			    <prop:FooterTemplate>
+				    <table width="100%" height="25">
+						<tr>
+							<th colspan=5>
+								<div style="font-weight: bold; text-align: center;">
+									Total <%# $this->Page->totalRows %> Subscriber(s)
+								</div>
+							</th>
+						</tr>
+					</table>
+				</prop:FooterTemplate>				
+			</com:TDataList>
+		</com:TPanel>		
+
+		<com:TPanel ID="PaginationPanel">		
+		    <table width="100%" height="25">
+				<tr>
+					<th colspan="2" align="left">
+						Select Page :
+						<com:TPager ID="PagerList" ControlToPaginate="DataList" PageButtonCount="5" Mode="Numeric" OnPageIndexChanged="pageChanged" />
+					</th>
+					<th colspan="3" align="right">
+						Go To Page :
+						<com:TPager ID="PagerGoTo" ControlToPaginate="DataList" Mode="DropDownList" OnPageIndexChanged="pageChanged" />
+					</th>
+				</tr>
+			</table>
+		</com:TPanel>		
+	</div>
+	
+</com:TContent>
