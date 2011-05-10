@@ -40,7 +40,7 @@
 					<table width="100%" border='0' cellspacing="0" cellpadding="0" >
 						<tr>
 							<td align="left">
-								<img src="/Theme/<%=$this->getDefaultThemeName() %>/images/Logo2.png"/>
+								<img src="/Theme/<%=$this->getDefaultThemeName() %>/images/logo.jpg"/>
 							</td>
 							<td align="right" width="10%">
 								<br />
@@ -72,7 +72,7 @@
 											<a href="/admin/list/contentcategory.html" <%= $this->changeId('contentcategory') %>>Content Categories</a>
 										</li>
 										<li>
-											<a href="/admin/list/project.html" <%= $this->changeId('projects') %>>Projects</a>
+											<a href="/admin/list/products.html" <%= $this->changeId('products') %>>Products</a>
 										</li>
 										<li>
 											<a href="/admin/list/subscriber.html" <%= $this->changeId('subscribers') %>>Subscribers</a>
@@ -87,7 +87,7 @@
 								</div>
 							</td>
 							<td width="24%">
-								<com:Application.controls.LanguageChanger.LanguageChanger ID="langChanger" RedirectPath="/admin"/>
+								&nbsp;
 							</td>
 						</tr>
 					</table>
