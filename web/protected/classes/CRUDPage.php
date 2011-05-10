@@ -32,9 +32,9 @@ class CRUDPage extends AdminPage
     {
     	$msg="";
     	if($object->getId()==null)
-    		$msg="New Subscriber Created Successfully!";
+    		$msg="New ".$this->entityName." Created Successfully!";
     	else
-    		$msg="Selected Subscriber Updated Successfully!";
+    		$msg="Selected ".$this->entityName." Updated Successfully!";
     		
     	$service = new BaseService($this->entityName);
     	$service->save($object);

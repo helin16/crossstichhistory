@@ -72,7 +72,10 @@
 											<a href="/admin/list/contentcategory.html" <%= $this->changeId('contentcategory') %>>Content Categories</a>
 										</li>
 										<li>
-											<a href="/admin/list/products.html" <%= $this->changeId('products') %>>Products</a>
+											<a href="/admin/list/product.html" <%= $this->changeId('products') %>>Products</a>
+										</li>
+										<li>
+											<a href="/admin/list/productcategory.html" <%= $this->changeId('productcategory') %>>Product Categories</a>
 										</li>
 										<li>
 											<a href="/admin/list/subscriber.html" <%= $this->changeId('subscribers') %>>Subscribers</a>

@@ -31,6 +31,9 @@
 			<url ServiceParameter="ContentLoader.ContentLoaderController" pattern="content/{title}.html" parameters.title=".+" />
 			<url ServiceParameter="ContentList.ContentListController" pattern="contentlist/category/{categorytitle}.html" parameters.categorytitle=".+" />
 			
+			<url ServiceParameter="ProductLoader.ProductLoaderController" pattern="product/{title}.html" parameters.title=".+" />
+			<url ServiceParameter="ProductList.ProductListController" pattern="productlist/category/{categorytitle}.html" parameters.categorytitle=".+" />
+			
 			<url ServiceParameter="NewsLetter.NewsLetterController" pattern="newsletter/{action}.html" parameters.action="\w+" />
 			<url ServiceParameter="NewsLetter.NewsLetterController" pattern="newsletter/{action}/{key}.html" parameters.action="\w+" parameters.key="\w+" />
 			
@@ -48,9 +51,10 @@
 			<url ServiceParameter="Admin.Editing.ContentController.ContentController" pattern="admin/add/content.html" />
 			<url ServiceParameter="Admin.Editing.ContentController.ContentController" pattern="admin/edit/content/{id}.html" parameters.id="\d+" />
 			
-			<url ServiceParameter="Admin.Listing.ProjectController.ProjectController" pattern="admin/list/project.html" />
-			<url ServiceParameter="Admin.Editing.ProjectController.ProjectController" pattern="admin/add/project.html" />
-			<url ServiceParameter="Admin.Editing.ProjectController.ProjectController" pattern="admin/edit/project/{id}.html" parameters.id="\d+" />
+			<url ServiceParameter="Admin.Listing.ProductCategory.ProductCategoryController" pattern="admin/list/productcategory.html" />
+			<url ServiceParameter="Admin.Listing.ProductController.ProductController" pattern="admin/list/product.html" />
+			<url ServiceParameter="Admin.Editing.ProductController.ProductController" pattern="admin/add/product.html" />
+			<url ServiceParameter="Admin.Editing.ProductController.ProductController" pattern="admin/edit/product/{id}.html" parameters.id="\d+" />
 			
 			<url ServiceParameter="Admin.Listing.SubscriberController.SubscriberController" pattern="admin/list/subscriber.html" />
 			
