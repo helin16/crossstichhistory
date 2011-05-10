@@ -8,8 +8,11 @@
 	</script>
 	<table width="100%"">
 		<tr>
+			<td width="80px">
+				Quick Search: 
+			</td>
 			<td>
-				<input type="text" ID="searchText" style='border:none;height:20px;width:100%;margin:0px;padding:3px 0 2px 5px;background:transparent url(/image/searchTextBg.jpg) no-repeat left top;' />
+				<input type="text" ID="searchText" style='border:1px #732f01 solid;height:15px;width:95%;margin:0px 5px 0 0;padding:3px 0 2px 5px;' />
 			</td>
 			<td>
 				<com:TImageButton ID="quickSearchBtn" ImageUrl="/image/searchBtn.jpg" Text="search" Attributes.OnClick="quickSearch();return false;"/>

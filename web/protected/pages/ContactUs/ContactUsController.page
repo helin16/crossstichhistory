@@ -1,0 +1,8 @@
+<com:TContent ID="MainContent">
+	<com:TPanel CssClass="bodyWrapper">
+		<com:TPanel ID="aboutus" />
+		<div style="text-align:left;">
+			<com:Application.controls.Contactus.ContactusControl/>
+		</div>
+	</com:TPanel>
+</com:TContent>

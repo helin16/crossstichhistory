@@ -12,7 +12,7 @@
 <body>
 	<center>
 		<com:TForm>
-			<div>
+			<div style="width:910px;text-align: center;">
 				<div id="topMenu" style="width:100%;">
 					<div class="innerWrapper">
 						<com:Application.controls.Module.Menu.MenuModule ID="topMenu"/>
@@ -31,64 +31,51 @@
 						</table>
 					</div>
 				</div>
-				<com:TPanel ID="addsPanel" CssClass="adds"  style="width:100%;">
+				<com:TPanel ID="footerPanel" style="width:100%;">
 					<div class="innerWrapper">
-						<com:TPanel ID="addsContainer">
-							<table border='0' cellspacing="0" cellpadding="0" width="100%">
-								<tr valign='top'>
-									<td width='31%'>
-										<com:Application.classes.Content.ContentSnapshotControl ID="left" />
-									</td>
-									<td width='3%'>&nbsp;</td>
-									<td width='31%'>
-										<com:Application.classes.Content.ContentSnapshotControl ID="right"/>
-									</td>
-									<td width='3%'>&nbsp;</td>
-									<td>
-										<table border='0' cellspacing="0" cellpadding="0" width="100%">
-											<tr valign='top'>
-												<td>
-													<com:Application.classes.Content.ContentListControl ID="headline" NoOfItems="3" CategoryName="<%[content.newsHeadlines]%>" SubTitle="<%[content.whatsnew]%>"/>
-												</td>
-											</tr>
-											<tr valign='top'>
-												<td>
-													<com:Application.controls.NewsLetter.NewsLetterControl ID="newsletter" ImageRootPath="/Theme/<%=$this->Page->getDefaultThemeName()%>/"/>
-												</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-							</table>
-						</com:TPanel>
+						<table border='0' cellspacing="0" cellpadding="0" width="100%">
+							<tr style="vertical-align:bottom;">
+								<td style="width:6px; height:6px; background: #ffffff url('/Theme/default/images/roundCorner_leftTop.png') no-repeat right top;"></td>
+								<td style="border-top:1px #0098e6 solid; ">
+								</td>
+								<td style="width:6px;background: #ffffff url('/Theme/default/images/roundCorner_rightTop.png') no-repeat left top;"></td>
+							</tr>
+							<tr valign='top'>
+								<td style="width:6px; border-left:1px #0098e6 solid;">
+								</td>
+								<td>
+									<table border='0' cellspacing="0" cellpadding="0" width="100%">
+										<tr valign='top'>
+											<td width='23%'>
+												<com:Application.classes.Content.ContentListControl ID="activityList" CategoryName="<%[content.activities]%>" />
+											</td>
+											<td width='1%'>&nbsp;</td>
+											<td width='23%'>
+												<com:Application.classes.Content.ContentListControl ID="serviceList" CategoryName="<%[content.popularServices]%>" />
+											</td>
+											<td width='1%'>&nbsp;</td>
+											<td width='23%'>
+												<com:Application.classes.Content.ContentListControl ID="projectList" CategoryName="<%[content.projects]%>" />
+											</td>
+											<td width='1%'>&nbsp;</td>
+											<td>
+												<com:Application.classes.Content.ContentListControl ID="linksList" CategoryName="<%[content.usefullinks]%>" />
+											</td>
+										</tr>
+									</table>
+								</td>
+								<td style="width:6px; border-right:1px #0098e6 solid;">
+								</td>
+							</tr>
+							<tr style="height:6px;" valign="top">
+								<td style="width:6px; background: #ffffff url('/Theme/default/images/roundCorner_leftBottom.png') no-repeat right bottom;"></td>
+								<td style="border-bottom:1px #0098e6 solid;"></td>
+								<td style="width:6px;background: #ffffff url('/Theme/default/images/roundCorner_rightBottom.png') no-repeat left bottom;"></td>
+							</tr>
+						</table>
 					</div>
 				</com:TPanel>
-				<com:TPanel ID="footerPanel" CssClass="footer"  style="width:100%;">
-					<div class="innerWrapper">
-						<com:TPanel ID="footerContainer">
-							<table border='0' cellspacing="0" cellpadding="0" width="100%">
-								<tr valign='top'>
-									<td width='23%'>
-										<com:Application.classes.Content.ContentListControl ID="activityList" CategoryName="<%[content.activities]%>" />
-									</td>
-									<td width='1%'>&nbsp;</td>
-									<td width='23%'>
-										<com:Application.classes.Content.ContentListControl ID="serviceList" CategoryName="<%[content.popularServices]%>" />
-									</td>
-									<td width='1%'>&nbsp;</td>
-									<td width='23%'>
-										<com:Application.classes.Content.ContentListControl ID="projectList" CategoryName="<%[content.projects]%>" />
-									</td>
-									<td width='1%'>&nbsp;</td>
-									<td>
-										<com:Application.classes.Content.ContentListControl ID="linksList" CategoryName="<%[content.usefullinks]%>" />
-									</td>
-								</tr>
-							</table>
-						</com:TPanel>
-					</div>
-				</com:TPanel>
-				<div id="copyright" style="width:100%;">
+				<div id="copyright" style="width:100%;margin-top: 15px;">
 					<div class="innerWrapper">
 						Cross Stitch Story (CSS) &copy; 2010 | <a href="/content/privacy_policy.html">Privacy Policy</a>
 					</div>

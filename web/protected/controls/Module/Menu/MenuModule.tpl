@@ -11,14 +11,11 @@
 					<td width="360px">
 						<table id="topMenu" width="100%" border='0' cellspacing="0" cellpadding="0" style="margin-left:30px;">
 							<tr>
-								<td>
+								<td width="102px">
 									<a class='topMenuItem' href="/" <%= $this->changeId('home') %>><%[Menu.home]%></a>
 								</td>
-								<td>
-									<a  class='topMenuItem' href="/contentlist/category/news.html" <%= $this->changeId('news') %>><%[Menu.news]%></a>
-								</td>
-								<td>
-									<a  class='topMenuItem' href="/aboutus.html" <%= $this->changeId('aboutus') %>><%[Menu.aboutus]%></a>
+								<td width="102px">
+									<a  class='topMenuItem' href="/contentlist/category/News Headlines.html" <%= $this->changeId('news') %>><%[Menu.news]%></a>
 								</td>
 								<td>
 									<a  class='topMenuItem' href="/contactus.html" <%= $this->changeId('contactus') %>><%[Menu.contactus]%></a>
@@ -36,14 +33,14 @@
 	<tr>
 		<td>
 			<table width="100%" border='0' cellspacing="0" cellpadding="0">
-				<tr>
+				<tr valign="bottom">
 					<td width="10px" >
 						<img src="/Theme/default/images/left.jpg" />
 					</td>
 					<td style="background:transparent url('/Theme/default/images/mid.jpg') repeat-x left bottom;">
 						<table width="100%" height="67px" border='0' cellspacing="0" cellpadding="0">
 							<tr>
-								<td style="font-weight:bold; color:white; padding 10px 0 0px 12px; text-align:left;">
+								<td style="font-weight:bold; color:white; padding: 5px 0 5px 3px; text-align:left;">
 									TopNews: fdsafsdaflasdkfjsdalfsd
 								</td>
 							</tr>
@@ -51,10 +48,10 @@
 								<td style="font-weight:bold; color:white; padding 5px 0 5px 12px; text-align:left;">
 									<table width="100%" border='0' cellspacing="0" cellpadding="0">
 										<tr>
-											<td style="width:200px;">
+											<td>
 												<com:Application.controls.QuickSearch.QuickSearch ID="quickSearch"/>
 											</td>
-											<td>
+											<td style="width:312px; height:26px; background: #ffffff url('/Theme/default/images/topMenu_bottomMenu_bg.gif') no-repeat left top;">
 												&nbsp;
 											</td>
 										</tr>

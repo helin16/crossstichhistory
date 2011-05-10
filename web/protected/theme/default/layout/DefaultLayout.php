@@ -7,11 +7,6 @@ class DefaultLayout extends TTemplateControl
 {
 	public function onInit($param)
 	{
-		$left = Prado::localize("home.left");
-		$this->getCategory($left,$this->left);
-		
-		$right = Prado::localize("home.right");
-		$this->getCategory($right,$this->right);
 	}
 	
 	public function onLoad()
