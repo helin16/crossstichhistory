@@ -1,0 +1,11 @@
+<com:TContent ID="MainContent">
+	<table width="100%"  cellspacing="0" cellpadding="0">
+		<tr>
+			<td>
+				<com:Application.controls.Banner.BannerRoller.BannerRollerControl ID="bannerRoller"/>
+			</td>
+			<td width="190px">
+			</td>
+		</tr>
+	</table>
+</com:TContent>
