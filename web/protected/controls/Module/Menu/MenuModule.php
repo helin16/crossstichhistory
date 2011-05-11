@@ -13,6 +13,11 @@ class MenuModule extends TTemplateControl
 			$selectedItemName=trim(strtolower(str_replace(" ","",$this->Page->menuItemName)));
 		return trim(strtolower(str_replace(" ","",$name)))==$selectedItemName ? " ID='active'" : "";
 	}
+	
+	public function topSearches($keyWord)
+	{
+		return "&nbsp;&nbsp;<a style='color:white;text-decoration:none;outline:none;' href='/search/$keyWord'>$keyWord</a>";
+	}
 }
 
 ?>

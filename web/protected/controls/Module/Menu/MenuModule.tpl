@@ -15,10 +15,13 @@
 									<a class='topMenuItem' href="/" <%= $this->changeId('home') %>><%[Menu.home]%></a>
 								</td>
 								<td width="102px">
-									<a  class='topMenuItem' href="/contentlist/category/News Headlines.html" <%= $this->changeId('news') %>><%[Menu.news]%></a>
+									<a  class='topMenuItem' href="/productlist/category/Just Arrived.html" <%= $this->changeId('Just Arrived') %>>Just Arrived</a>
+								</td>
+								<td width="102px">
+									<a  class='topMenuItem' href="/productlist/category/Top Seller.html" <%= $this->changeId('Top Seller') %>>Top Sellers</a>
 								</td>
 								<td>
-									<a  class='topMenuItem' href="/contactus.html" <%= $this->changeId('contactus') %>><%[Menu.contactus]%></a>
+									<a  class='topMenuItem' href="/productlist/category/Completed Product.html" <%= $this->changeId('Completed Product') %>>Ready To Use</a>
 								</td>
 							</tr>
 						</table>
@@ -41,7 +44,9 @@
 						<table width="100%" height="67px" border='0' cellspacing="0" cellpadding="0">
 							<tr>
 								<td style="font-weight:bold; color:white; padding: 5px 0 5px 3px; text-align:left;">
-									TopNews: fdsafsdaflasdkfjsdalfsd
+									Top Searches:  <%= $this->topSearches("Cross Stitch"); %>
+											 <%= $this->topSearches("Cross Stitch Wholesale"); %>
+											 <%= $this->topSearches("Complete Cross Stitch Product"); %>
 								</td>
 							</tr>
 							<tr>
@@ -54,6 +59,8 @@
 											<td style="width:312px;">
 												<div style="float:right;padding: 0 20px 0 0; font-weight:bold; color:#ffffff; ">
 													<a style="color:#ffffff; text-decoration:none;" href="/contentlist/category/News Headlines.html" ><%[Menu.news]%></a>
+													&nbsp;&nbsp; | &nbsp;&nbsp;
+													<a style="color:#ffffff; text-decoration:none;" href="/aboutus.html" ><%[Menu.aboutus]%></a>
 													&nbsp;&nbsp; | &nbsp;&nbsp;
 													<a style="color:#ffffff; text-decoration:none;" href="/contactus.html" ><%[Menu.contactus]%></a>
 												</div>
