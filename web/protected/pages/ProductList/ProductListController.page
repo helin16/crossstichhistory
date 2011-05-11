@@ -1,0 +1,5 @@
+<com:TContent ID="MainContent">
+	<div class="bodyWrapper">
+		<com:Application.controls.ProductListControl.ProductListControl id="productId" />
+	</div>
+</com:TContent>

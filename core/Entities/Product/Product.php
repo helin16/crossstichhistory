@@ -207,13 +207,6 @@ class Product extends HydraEntity
 							if(count($assetIds)>0)
 								$html.="<img src='/asset/{$assetIds[0]}/".serialize(array("height"=>150,"width"=>150))."' style='margin: 5px;' />";
 						$html.="</div> ";
-						$html.="<div class='Product_snaphost_ImageList'> ";
-							$assetIds = explode(",",$this->getFeature());
-							foreach($assetIds as $assetId)
-							{
-								$html.="<img src='/asset/$assetId/".serialize(array("height"=>50,"width"=>50))."' style='margin: 5px;' />";
-							}
-						$html.="</div> ";
 					$html.="</td>"; 
 					$html.="<td>"; 
 						$html.="<div class='Product_snaphost_title'> ";
@@ -223,6 +216,7 @@ class Product extends HydraEntity
 				$html.="</tr>"; 
 			$html.="</table>";
 		$html.="</div >";
+		return $html;
 	}
 	
 	public function __toString()

@@ -83,6 +83,9 @@ class ProductCategory extends HydraEntity
 		DaoMap::setStringType('name');
 		DaoMap::setManyToMany("products","Product",DaoMap::LEFT_SIDE,"pro");
 		DaoMap::setManyToOne("language","PageLanguage","pl");
+		
+		DaoMap::createUniqueIndex('name');
+		
 		DaoMap::commit();
 	}
 }

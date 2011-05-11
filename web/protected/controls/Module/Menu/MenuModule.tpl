@@ -21,7 +21,7 @@
 									<a  class='topMenuItem' href="/productlist/category/Top Seller.html" <%= $this->changeId('Top Seller') %>>Top Sellers</a>
 								</td>
 								<td>
-									<a  class='topMenuItem' href="/productlist/category/Completed Product.html" <%= $this->changeId('Completed Product') %>>Ready To Use</a>
+									<a  class='topMenuItem' href="/productlist/category/Ready To Use.html" <%= $this->changeId('Ready To Use') %>>Ready To Use</a>
 								</td>
 							</tr>
 						</table>
