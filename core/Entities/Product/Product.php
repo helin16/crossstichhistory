@@ -91,17 +91,28 @@ class Product extends HydraEntity
 		$this->language = $language;
 	}
 	
+	public function getSnapshot()
+	{
+		$html="<div class='Product_snaphost'>";
+			$html.="<div class='Product_snaphost_title'> ";
+				$html.=$this->getTitle();
+			$html.="</div> ";
+			$html.="<div class='Product_snaphost_title'> ";
+				$html.=$this->getTitle();
+			$html.="</div> ";
+		$html.="</div >";
+	}
 	
 	public function __toString()
 	{
-		return "<div class='content'><h3>{$this->getTitle()}</h3>{$this->getText()}</div>";
+		return "<div class='Product'><h3>{$this->getTitle()}</h3>{$this->getDescription()}</div>";
 	}
 	
 	public function __loadDaoMap()
 	{
 		DaoMap::begin($this, 'pro');
 		
-		DaoMap::setStringType('title','varchar',256);
+		DaoMap::setStringType('title','varchar',100);
 		DaoMap::setStringType("text",'text');
 		DaoMap::setStringType('description','varchar',256);
 		
