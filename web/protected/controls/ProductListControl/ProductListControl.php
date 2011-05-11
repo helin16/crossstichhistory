@@ -1,7 +1,6 @@
 <?php
 
-class ProductList
-Control extends TTemplateControl  
+class ProductListControl extends TTemplateControl  
 {
 	public $productId;
 	
