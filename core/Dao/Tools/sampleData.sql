@@ -341,3 +341,32 @@ INSERT INTO `subscriber` (`id`, `email`, `key`, `isConfirmed`, `languageId`, `ac
 
 INSERT INTO `useraccount` (`id`, `userName`, `password`, `personId`, `active`, `created`, `createdById`, `updated`, `updatedById`) VALUES(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
 
+--
+-- Dumping data for table `productcategory`
+--
+
+INSERT INTO `productcategory` (`id`, `name`, `active`,`languageId`, `created`, `createdById`, `updated`, `updatedById`) VALUES(1, 'Just Arrived', 1,1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
+INSERT INTO `productcategory` (`id`, `name`, `active`,`languageId`, `created`, `createdById`, `updated`, `updatedById`) VALUES(2, 'Top Seller', 1,1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
+INSERT INTO `productcategory` (`id`, `name`, `active`,`languageId`, `created`, `createdById`, `updated`, `updatedById`) VALUES(3, 'Ready To Use', 1,1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
+
+--
+-- Dumping data for table `product`
+--
+INSERT INTO `product` (`id`, `title`, `sku`,`noOfVisits`,`languageId`,`active`, `created`, `createdById`, `updated`, `updatedById`) VALUES(1, 'Just Arrived','sku 1',1,1, 1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
+INSERT INTO `product` (`id`, `title`, `sku`,`noOfVisits`,`languageId`,`active`, `created`, `createdById`, `updated`, `updatedById`) VALUES(2, 'Top Seller', 'sku 2',1,1,1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
+INSERT INTO `product` (`id`, `title`, `sku`,`noOfVisits`,`languageId`,`active`, `created`, `createdById`, `updated`, `updatedById`) VALUES(3, 'Ready To Use','sku 3',1,1, 1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
+
+--
+-- Dumping data for table `product_productcategory`
+--
+
+INSERT INTO `product_productcategory` (`productId`,`productcategoryId`,`created`, `createdById`) VALUES(1, 1, '2010-04-16 03:13:18', 1);
+INSERT INTO `product_productcategory` (`productId`,`productcategoryId`,`created`, `createdById`) VALUES(1, 2, '2010-04-16 03:13:18', 1);
+INSERT INTO `product_productcategory` (`productId`,`productcategoryId`,`created`, `createdById`) VALUES(1, 3, '2010-04-16 03:13:18', 1);
+INSERT INTO `product_productcategory` (`productId`,`productcategoryId`,`created`, `createdById`) VALUES(2, 1, '2010-04-16 03:13:18', 1);
+INSERT INTO `product_productcategory` (`productId`,`productcategoryId`,`created`, `createdById`) VALUES(2, 2, '2010-04-16 03:13:18', 1);
+INSERT INTO `product_productcategory` (`productId`,`productcategoryId`,`created`, `createdById`) VALUES(2, 3, '2010-04-16 03:13:18', 1);
+INSERT INTO `product_productcategory` (`productId`,`productcategoryId`,`created`, `createdById`) VALUES(3, 1, '2010-04-16 03:13:18', 1);
+INSERT INTO `product_productcategory` (`productId`,`productcategoryId`,`created`, `createdById`) VALUES(3, 2, '2010-04-16 03:13:18', 1);
+INSERT INTO `product_productcategory` (`productId`,`productcategoryId`,`created`, `createdById`) VALUES(3, 3, '2010-04-16 03:13:18', 1);
+

@@ -29,6 +29,8 @@ class ProductController extends CRUDPage
     
 	protected function getFocusEntity($id,$type="")
     {
+    	if(trim($type)=="")
+    		return null;
     	$service = new BaseService($type);
     	return $service->get($id);
     }
@@ -37,7 +39,7 @@ class ProductController extends CRUDPage
     {
     	$service = new BaseService($this->entityName);
     	$where = "languageId=".$this->pageLanguage->getId()." and (pro.title like '%$searchString%' or pro.description like '%$searchString%')";
-    	if($focusObject instanceof ProductCategory )
+    	if($focusObject instanceof ProductCategory)
 	    	$where .= " and id in (select distinct x.productId from product_productcategory x where x.productCategoryId = ".$focusObject->getId().")";
     	$result =  $service->findByCriteria($where,false,$pageNumber,$pageSize);
     	$this->totalRows = $service->totalNoOfRows;
@@ -62,22 +64,24 @@ class ProductController extends CRUDPage
     	return $text;
     }
     
-    public function listImages(Project $project)
+    public function listImages(Product $product)
     {
-    	$service = new BaseService("Asset");
-    	$images = $service->findByCriteria("id in (select distinct pi.assetId from projectimage pi where pi.active = 1 and pi.projectId=".$project->getId().")");
+    	$assetIds = trim($product->getFeature());
+    	if($assetIds=="")
+    		return;
     	
-    	$newDimension = array(
-    						"height"=>50,
-    						"width"=>50
-    					);
     	$html="";
-    	foreach($images as $image)
+    	foreach($assetIds as $assetId)
     	{
-    		$assetId = $image->getAssetId();
-    		$html .="<img src='/asset/$assetId/".serialize($newDimension)."'style='border: 1px #cccccc solid;padding:5px;margin: 5px;' />";
+    		$html .="<img src='/asset/$assetId/".serialize(array("height"=>30,"width"=>30))."'style='border: 1px #cccccc solid;padding:5px;margin: 5px;' />";
     	}
     	return $html;
+    }
+    
+    public function loadProduct($sender,$param)
+    {
+    	$productId = trim($param->CommandParameter);
+    	$this->productEditPane->loadProduct($productId);
     }
 }
 

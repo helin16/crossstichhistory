@@ -1,5 +1,7 @@
 <com:TContent ID="MainContent">
-	<iframe id="lightbox" style="display: none;position:fixed;top: 10%;left: 10%;width: 80%;height: 80%;padding: 16px;border: 10px solid black;background-color: white;z-index:1002;overflow: auto;" src="/image/ajax-loader.gif" ></iframe>
+	<div id="lightbox" style="display: none;position:fixed;top: 10%;left: 10%;width: 80%;height: 80%;padding: 16px;border: 10px solid black;background-color: white;z-index:1002;overflow: auto;" src="/image/ajax-loader.gif" >
+		<com:Application.controls.ProductEditControl.ProductEditControl ID="productEditPane" />
+	</div>
 	<div id="fade" OnClick="$('lightbox').src='/image/ajax-loader.gif';$('fade').hide();$('lightbox').hide();" style="display: none;position:fixed;top: 0%;left: 0%;width: 100%;height: 100%;background-color: black;z-index:1001;-moz-opacity: 0.8;opacity:.80;filter: alpha(opacity=80);"></div>
 	<div>
 		<com:TPanel ID="SearchAddPanel" CssClass="SearchPanel" DefaultButton="SearchButton">
@@ -14,7 +16,9 @@
 						<com:THiddenField ID="SearchString" />
 					</td>
 					<td width="20%">
-						<com:TButton ID="AddButton" Text="Add New" Attributes.OnClick="$('lightbox').src='/admin/add/product.html';$('fade').show();$('lightbox').show();return false;" />
+						<com:TActiveButton ID="AddButton" Text="Add New" >
+							<prop:ClientSide OnLoading="$('fade').show();$('lightbox').show();"  />
+						</com:TActiveButton>
 					</td>
 				</tr>
 			</table>
@@ -46,7 +50,7 @@
 					<table width="100%" height="32">
 						<tr align="left">
 							<td width="20%">Title</td>
-							<td>Project</th>
+							<td>Description</th>
 							<td width="20%">Created</td>
 							<td width="5%">Active</td>
 							<td width="5%">&nbsp;</td>
@@ -58,12 +62,7 @@
 					<table width="100%">
 						<tr>
 							<td width="20%" style="font-size:10px;">
-								<b  style="font-size:12px;"><%#$this->DataItem->getTitle()%></b><br />
-								<i><%#$this->DataItem->getAddress()%></i><br /><br />
-								Price: <%#$this->DataItem->getPrice()%><br />
-								Type: <%#$this->DataItem->getPropertyType()%><br />
-								Building: <i><%#$this->DataItem->getBuildingType()%><br />
-								Status: <i><%#$this->DataItem->getPropertyStatus()%><br />
+								<b  style="font-size:12px;"><%#$this->DataItem->getTitle()%></b>
 								<%# $this->Page->listImages($this->DataItem) %>
 							</td>
 							<td>
@@ -82,9 +81,9 @@
 								<com:TCheckBox Id="Active" Checked="<%#$this->DataItem->getActive()%>"  AutoPostBack="true" OnCheckedChanged="Page.toggleActive"/>
 							</td>
 							<td width="5%">
-								<com:TImageButton ID="EditButton" ImageUrl="../../../image/edit.png" Text="Edit" 
-										Attributes.OnClick="$('lightbox').src='/admin/edit/project/<%# $this->DataItem->getId() %>.html';$('fade').show();$('lightbox').show();return false;" 
-												ToolTip="Edit Record" />
+								<com:TActiveImageButton ID="EditButton" OnCommand="Page.loadProduct" CommandParameter="<%#$this->DataItem->getId()%>" ImageUrl="/image/edit.png" Text="Edit"	ToolTip="Edit Record" >
+									<prop:ClientSide OnComplete="$('fade').show();$('lightbox').show();" />
+								</com:TActiveImageButton>
 							</td>
 						</tr>
 					</table>

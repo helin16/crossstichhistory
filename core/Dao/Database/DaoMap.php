@@ -145,7 +145,7 @@ class DaoMap
 		
 		self::$tempMap[self::$activeClass][$field] = array(
 			'type' => 'int',
-			'size' => 4,
+			'size' => 10,
 			'unsigned' => true,
 			'nullable' => ($isOwner) ? $nullable : false,
 			'default' => 0,
@@ -178,7 +178,7 @@ class DaoMap
 		
 		self::$tempMap[self::$activeClass][$field] = array(
 			'type' => 'int',
-			'size' => 4,
+			'size' => 10,
 			'unsigned' => true,
 			'nullable' => $nullable,
 			'default' => 0,
@@ -205,7 +205,7 @@ class DaoMap
 		
 		self::$tempMap[self::$activeClass][$field] = array(
 			'type' => 'int',
-			'size' => 4,
+			'size' => 10,
 			'unsigned' => true,
 			'nullable' => $nullable,
 			'default' => 0,
