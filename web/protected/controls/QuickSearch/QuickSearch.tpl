@@ -15,7 +15,7 @@
 				<input type="text" ID="searchText" style='border:1px #732f01 solid;height:15px;width:95%;margin:0px 5px 0 0;padding:3px 0 2px 5px;' />
 			</td>
 			<td>
-				<com:TImageButton ID="quickSearchBtn" ImageUrl="/image/searchBtn.jpg" Text="search" Attributes.OnClick="quickSearch();return false;"/>
+				<com:TImageButton ID="quickSearchBtn" style="display:block; width:105px; height:19px; padding: 3px 0 0 28px; font-weight:bold; color: #008dd6;background:transparent url(/Theme/default/images/search_bg.png) no-repeat left top;" Text="search" Attributes.OnClick="quickSearch();return false;"/>
 			</td>
 		</tr>
 	</table>	
