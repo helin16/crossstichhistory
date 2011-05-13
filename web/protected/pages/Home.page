@@ -1,10 +1,13 @@
 <com:TContent ID="MainContent">
-	<table width="100%"  cellspacing="0" cellpadding="0">
-		<tr>
-			<td>
-			</td>
-			<td width="190px">
-			</td>
-		</tr>
-	</table>
+	<%= $this->getRoundCornerHead()%>
+		<com:Application.controls.ProductListControl.ProductListControl id="topSellersPanel" maxOfItems='4'/>
+	<%= $this->getRoundCornerFooter()%>
+	<br />
+	<%= $this->getRoundCornerHead()%>
+		<com:Application.controls.ProductListControl.ProductListControl id="justArrivedPanel" maxOfItems='4'/>
+	<%= $this->getRoundCornerFooter()%>
+	<br />
+	<%= $this->getRoundCornerHead()%>
+		<com:Application.controls.ProductListControl.ProductListControl id="readyToUsePanel" maxOfItems='4'/>
+	<%= $this->getRoundCornerFooter()%>
 </com:TContent>

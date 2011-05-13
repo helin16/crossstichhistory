@@ -24,17 +24,14 @@
 						<table width="100%">
 							<tr>
 								<td valign="top" width="230px" style="padding: 10px 0 10px 0;height:500px; ">
-									<%= $this->getRoundCornerHead()%>
-										fdsfdsa
-										<!--<com:Application.controls.NewsLetter.NewsLetterControl ID="newsletter" ImageRootPath="/Theme/<%=$this->Page->getDefaultThemeName()%>/"/> -->
-									<%= $this->getRoundCornerFooter()%>
+									<com:Application.controls.ProductCategoryList.ProductCategoryListControl ID="categoryList" />
 								</td>
 								<td valign="top" >
-									<div style="margin: 7px 0 7px 7px; padding:10px; text-align:left; border: 1px #cccccc solid;">
+									<com:TPanel ID="cotentSpace" style="margin: 7px 0 7px 7px; padding:10px; text-align:left; border: 1px #cccccc solid;">
 										<com:TLabel ID="infoMsg" style="font-weight:bold;font-size:18px;color:green;"/>
 										<com:TLabel ID="errorMsg" style="font-weight:bold;font-size:18px;color:#ff0000;"/>
 										<com:TContentPlaceHolder ID="MainContent" />
-									</div>
+									</com:TPanel>
 								</td>
 							</tr>
 						</table>

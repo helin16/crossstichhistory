@@ -1,6 +1,6 @@
 <?php
 define('PRADO_CHMOD',0755);
-set_include_path('F:/mySandBox/crossstichhistory/web' . PATH_SEPARATOR . 'F:/mySandBox/crossstichhistory/web');
+set_include_path('F:/mySandBox/crossstichstory/web' . PATH_SEPARATOR . 'F:/mySandBox/crossstichstory/web');
 $basePath=dirname(__FILE__);
 $assetsPath=$basePath.'/assets';
 $runtimePath=$basePath.'/protected/runtime';
