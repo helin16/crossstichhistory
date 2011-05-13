@@ -196,8 +196,9 @@ class Product extends HydraEntity
 	}
 	
 	
-	public function getSnapshot()
+	public function getSnapshot($viewUrl="/product/")
 	{
+		$detailsUrl = $viewUrl .$this->getTitle().".html";
 		$html="<div class='Product_snaphost'>";
 			$html.="<table class='Product_snaphost_table'> ";
 				$html.="<tr>"; 
@@ -205,12 +206,18 @@ class Product extends HydraEntity
 						$html.="<div class='Product_snaphost_Image'> ";
 							$assetIds = explode(",",$this->getFeature());
 							if(count($assetIds)>0)
-								$html.="<img src='/asset/{$assetIds[0]}/".serialize(array("height"=>150,"width"=>150))."' style='margin: 5px;' />";
+							{
+								$html.="<a href='$detailsUrl' style='outline:none;'>";
+									$html.="<img src='/asset/{$assetIds[0]}/".serialize(array("height"=>150,"width"=>150))."' style='margin: 5px;border:none;' />";
+								$html.="</a>";
+							}
 						$html.="</div> ";
 					$html.="</td>"; 
 					$html.="<td>"; 
-						$html.="<div class='Product_snaphost_title'> ";
-							$html.=$this->getTitle();
+						$html.="<div class='Product_snaphost_title' style='text-align:justify;'> ";
+							$html.="<a href='$detailsUrl' style='outline:none;text-decoration:none;color:#000000;'>";
+								$html.=$this->getTitle();
+							$html.="</a>";
 						$html.="</div>";
 					$html.="</td>"; 
 				$html.="</tr>"; 

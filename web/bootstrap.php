@@ -36,6 +36,6 @@ class Web
 spl_autoload_register(array('Web','autoload'));
 
 // Bootstrap the Hydra core for its autoloader settings
-require(dirname(__FILE__) . '/../Core/bootstrap.php');
+require(dirname(__FILE__) . '/../core/bootstrap.php');
 
 ?>

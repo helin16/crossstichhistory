@@ -19,8 +19,14 @@ class ProductListControl extends TTemplateControl
 		if(count($result)==0)
 			return;
 			
+		$cateService = new BaseService("ProductCategory");
 		$colWidth = (100 /  $this->noOfRows)."%";
 		$html="<table style='width:100%;padding:0px;' border='0' cellspacing='0' cellpadding='0'>";
+			$html.="<tr>";
+				$html.="<td style='font-size: 13px;font-weight:bold; color: #810e11; border-bottom:1px #cccccc solid; padding: 0 0 3px 7px;' colspan='{$this->itemsPerRow}'>";
+					$html.=$cateService->get($categoryId);
+				$html.="</td>";
+			$html.="</tr>";
 			$html.="<tr>";
 			$colNo=0;
 			foreach($result as $product)
