@@ -33,7 +33,7 @@ class ProductListControl extends TTemplateControl
 			{
 				if($colNo == $this->itemsPerRow)
 				{
-					$html.="</tr><tr>";	
+					$html.="</tr><tr><td height='15px'></td></tr><tr>";	
 					$colNo=0;
 				}
 				

@@ -183,12 +183,20 @@ class StreamController extends TService
 		$height = 24;
 		if(isset($_REQUEST["height"]) && trim($_REQUEST["height"])!="")
 			$height = $_REQUEST["height"];
+			
+		$noise = 100;
+		if(isset($_REQUEST["noise"]) && trim($_REQUEST["noise"])!="")
+			$noise = $_REQUEST["noise"];
+			
+		$displayString = rand(1000,9999);
+		if(isset($_REQUEST["displayString"]) && trim($_REQUEST["displayString"])!="")
+			$displayString = $_REQUEST["displayString"];
 		
 		$my_image = imagecreatetruecolor($width, $height);
 		imagefill($my_image, 0, 0, 0xFFFFFF);
 
 		// add noise
-		for ($c = 0; $c < 100; $c++)
+		for ($c = 0; $c < $noise; $c++)
 		{
 			$x = rand(0,$width-1);
 			$y = rand(0,$height-1);
@@ -198,8 +206,7 @@ class StreamController extends TService
 		$x = rand(1,10);
 		$y = rand(1,10);
 		
-		$rand_string = rand(1000,9999);
-		imagestring($my_image, 5, $x, $y, $rand_string, 0x000000);
+		imagestring($my_image, 5, $x, $y, $displayString, 0x000000);
 		
 		setcookie('tntcon',(md5($rand_string).'a4xn'));
 		
