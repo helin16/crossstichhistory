@@ -1,4 +1,12 @@
 <com:TPanel ID="productEditPanel">
+	<com:TClientScript>
+		function loadPreview_<%= $this->getId() %>(assetId)
+		{
+			var currentTime = new Date();
+			var  dimensionArray= '<%= $this->getPreviewDimensionArray() %>';
+			$('previewImage_<%= $this->getId() %>').src='/asset/' + assetId + '/' + dimensionArray + '&' + currentTime.getTime();
+		}
+	</com:TClientScript>
 	<com:TActiveLabel id="errorMsg" style="font-weigth:bold;color:red;"/>
 	<com:TActiveHiddenField id="product_Id" />
 	<table style='width:100%;padding:0px;'  border='0' cellspacing="0" cellpadding="0">	

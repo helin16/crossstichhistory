@@ -3,6 +3,8 @@
 class ProductDetailsControl extends TTemplateControl  
 {
 	public $productId;
+	private $preview_image_w = 390;
+	private $preview_image_h = 300;
 	
 	public function onLoad($param)
 	{
@@ -28,37 +30,46 @@ class ProductDetailsControl extends TTemplateControl
 		
 		//get images
 		$assetIds = trim($product->getFeature(ProductFeatureCategory::ID_IMAGE));
-		if($assetIds=="")
-			return;
-		$assetIds = explode(",",$assetIds);
 		$this->assetIds->Value = $assetIds;
 		$this->loadImages();
 	}
 	
  	public function loadImages()
     {
+    	$noImage = "<img id='previewImage_".$this->getId()."' src='/stream?method=getCaptcha&width={$this->preview_image_w}&height={$this->preview_image_h}&noise=3000&displayString=NoImage' style='padding:7px;'/>";
     	$this->imageList->Text = "";
     	$assetIds = unserialize(trim($this->assetIds->Value));
     	if(!is_array($assetIds) || count($assetIds)==0)
+    	{
+    		$this->imageList->Text = $noImage;
     		return;
+    	}
+    	
     	$service = new BaseService("Asset");
     	$assets = $service->findByCriteria("assetId in ('".implode("','",$assetIds)."')");
     	if(count($assets)==0)
+    	{
+    		$this->imageList->Text = $noImage;
     		return;
+    	}
     	
-    	$html="
-    		<img id='previewImage' src='/asset/{$assetIds[0]}/".serialize(array("height"=>150,"width"=>150))."' style='border: 1px #cccccc solid;padding:15px;'/>
-    		<br /><hr />";
+    	$html=$noImage;
+    	$html .="<div>";
     	foreach($assetIds as $assetId)
     	{
-			$html .="<a href='javascript:void(0);' 
-						onMouseOver=\"this.style.border='1px #ff0000 solid';\" 
-						onMouseOut=\"this.style.border='none';\" OnClick=\"loadPreview('$assetId');\" 
-						>
-						<img src='/asset/$assetId/".serialize(array("height"=>50,"width"=>50))."' style='margin: 5px;' />
-					</a>";
+				$html .="<img src='/asset/$assetId/".serialize(array("height"=>50,"width"=>50))."' style='padding:7px;margin:1px;'
+							onMouseOver=\"this.style.border='1px #ff0000 solid';\"
+							onMouseOut=\"this.style.border='none';\"
+							OnClick=\"loadPreview_".$this->getId()."('$i');\"
+							/>";
     	}
+    	$html .="</div>";
     	$this->imageList->Text = $html;
+    }
+    
+    public function getPreviewDimensionArray()
+    {
+    	return serialize(array("height"=>$this->preview_image_h,"width"=>$this->preview_image_w));
     }
 }
 

@@ -16,7 +16,7 @@ class EshopPage extends TPage
 	{
 		parent::onPreInit($param);
 		$layout = $this->getDefaultThemeName();
-		$this->getPage()->setMasterClass("Application.Theme.$layout.layout.DefaultLayout");
+		$this->getPage()->setMasterClass("Application.theme.$layout.layout.DefaultLayout");
 	}
 	
 	public function setTitle($value)
