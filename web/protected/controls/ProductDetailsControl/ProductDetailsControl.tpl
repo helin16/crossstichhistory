@@ -54,9 +54,11 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2">
+			<td colspan="2" style="padding-top: 10px;height:300px;vertical-align:top;">
 				<b>Description: </b><br />
-				<com:TActiveLabel id="description" style="width:90%; padding: 10px;"/>
+				<div style="width:90%; padding: 10px;">
+					<com:TActiveLabel id="description" />
+				</div>
 			</td>
 		</tr>
 	</table>
