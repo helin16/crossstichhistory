@@ -345,9 +345,15 @@ INSERT INTO `useraccount` (`id`, `userName`, `password`, `personId`, `active`, `
 -- Dumping data for table `productcategory`
 --
 
-INSERT INTO `productcategory` (`id`, `name`, `active`,`languageId`, `created`, `createdById`, `updated`, `updatedById`) VALUES(1, 'Just Arrived', 1,1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
-INSERT INTO `productcategory` (`id`, `name`, `active`,`languageId`, `created`, `createdById`, `updated`, `updatedById`) VALUES(2, 'Top Seller', 1,1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
-INSERT INTO `productcategory` (`id`, `name`, `active`,`languageId`, `created`, `createdById`, `updated`, `updatedById`) VALUES(3, 'Ready To Use', 1,1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
+INSERT INTO `productcategory` (`id`, `name`, `position`,`parentId`,`rootId`,`active`,`languageId`, `created`, `createdById`, `updated`, `updatedById`) VALUES(1, 'Just Arrived','1',0,1, 1,1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
+INSERT INTO `productcategory` (`id`, `name`, `position`,`parentId`,`rootId`,`active`,`languageId`, `created`, `createdById`, `updated`, `updatedById`) VALUES(2, 'Top Seller', '1',0,2,1,1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
+INSERT INTO `productcategory` (`id`, `name`, `position`,`parentId`,`rootId`,`active`,`languageId`, `created`, `createdById`, `updated`, `updatedById`) VALUES(3, 'Ready To Use','1',0,3, 1,1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
+INSERT INTO `productcategory` (`id`, `name`, `position`,`parentId`,`rootId`,`active`,`languageId`, `created`, `createdById`, `updated`, `updatedById`) VALUES(4, 'Just Arrived 1','1000',1,1, 1,1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
+INSERT INTO `productcategory` (`id`, `name`, `position`,`parentId`,`rootId`,`active`,`languageId`, `created`, `createdById`, `updated`, `updatedById`) VALUES(5, 'Just Arrived 2', '1001',1,1,1,1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
+INSERT INTO `productcategory` (`id`, `name`, `position`,`parentId`,`rootId`,`active`,`languageId`, `created`, `createdById`, `updated`, `updatedById`) VALUES(6, 'Just Arrived 3','1002',1,1, 1,1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
+INSERT INTO `productcategory` (`id`, `name`, `position`,`parentId`,`rootId`,`active`,`languageId`, `created`, `createdById`, `updated`, `updatedById`) VALUES(7, 'Top Seller1','1000',2,2, 1,1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
+INSERT INTO `productcategory` (`id`, `name`, `position`,`parentId`,`rootId`,`active`,`languageId`, `created`, `createdById`, `updated`, `updatedById`) VALUES(8, 'Top Seller 2', '1001',2,2,1,1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
+INSERT INTO `productcategory` (`id`, `name`, `position`,`parentId`,`rootId`,`active`,`languageId`, `created`, `createdById`, `updated`, `updatedById`) VALUES(9, 'Top Seller 3','1002',2,2, 1,1, '2010-04-16 03:13:18', 1, '2010-04-16 03:13:18', 1);
 
 --
 -- Dumping data for table `product`

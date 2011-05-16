@@ -38,8 +38,9 @@ class ProductDetailsControl extends TTemplateControl
     {
     	$noImage = "<img id='previewImage_".$this->getId()."' src='/stream?method=getCaptcha&width={$this->preview_image_w}&height={$this->preview_image_h}&noise=3000&displayString=NoImage' style='padding:7px;'/>";
     	$this->imageList->Text = "";
-    	$assetIds = unserialize(trim($this->assetIds->Value));
-    	if(!is_array($assetIds) || count($assetIds)==0)
+    	$ids =trim($this->assetIds->Value);
+    	$assetIds = explode(",",$ids);
+    	if($ids=="" || count($assetIds)==0)
     	{
     		$this->imageList->Text = $noImage;
     		return;
@@ -53,14 +54,14 @@ class ProductDetailsControl extends TTemplateControl
     		return;
     	}
     	
-    	$html=$noImage;
+    	$html = "<img id='previewImage_".$this->getId()."' src='/asset/{$assetIds[0]}/".$this->getPreviewDimensionArray()."' style='padding:7px;'/>";
     	$html .="<div>";
     	foreach($assetIds as $assetId)
     	{
 				$html .="<img src='/asset/$assetId/".serialize(array("height"=>50,"width"=>50))."' style='padding:7px;margin:1px;'
 							onMouseOver=\"this.style.border='1px #ff0000 solid';\"
 							onMouseOut=\"this.style.border='none';\"
-							OnClick=\"loadPreview_".$this->getId()."('$i');\"
+							OnClick=\"loadPreview_".$this->getId()."('$assetId');\"
 							/>";
     	}
     	$html .="</div>";
@@ -69,7 +70,7 @@ class ProductDetailsControl extends TTemplateControl
     
     public function getPreviewDimensionArray()
     {
-    	return serialize(array("height"=>$this->preview_image_h,"width"=>$this->preview_image_w));
+    	return serialize(array('height'=>$this->preview_image_h,'width'=>$this->preview_image_w));
     }
 }
 
