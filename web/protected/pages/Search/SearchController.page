@@ -1,0 +1,51 @@
+<com:TContent ID="MainContent">
+	<div class="bodyWrapper">
+		<com:THiddenField ID="focusObjectArgument" />
+		<com:THiddenField ID="focusObject" />
+		<com:THiddenField ID="SearchString" />
+		
+		<div style="font-weight: bold; color: #810e11; font-size: 14px; border-bottom:1px #cccccc solid;">Result(s) for '<%= $this->SearchString->getValue()%>':</div>
+ 		<com:TPanel ID="ListingPanel" style="width:98%;">
+			<com:TDataList
+			     ID="DataList"
+			     DataKeyField="id"
+			      AllowPaging="true" AllowCustomPaging="true" PageSize="30" EnableViewState="true"
+			     width="100%"
+			     >
+		     
+			    <prop:HeaderTemplate >
+					<table width="100%" height="32" style="font-weight:normal;">
+				</prop:HeaderTemplate>
+				
+				<prop:ItemTemplate>
+						<tr>
+							<td>
+								<com:Application.controls.ProductListItem.ProductListItemControl ID="activityList" ProductId="<%# $this->DataItem->getId() %>" style="margin:0 0 15px 0;border:1px #cccccc solid;"/>					
+							</td>
+						</tr>
+				</prop:ItemTemplate>
+					
+				<prop:EditItemTemplate />
+				
+			    <prop:FooterTemplate>
+					</table>
+				</prop:FooterTemplate>				
+			</com:TDataList>
+		</com:TPanel>		
+
+		<com:TPanel ID="PaginationPanel">		
+		    <table width="100%" height="25">
+				<tr>
+					<th colspan="2" align="left">
+						<%[pagination.selectPage]%> :
+						<com:TPager ID="PagerList" ControlToPaginate="DataList" PageButtonCount="5" Mode="Numeric" OnPageIndexChanged="pageChanged" />
+					</th>
+					<th colspan="3" align="right">
+						<%[pagination.goToPage]%> :
+						<com:TPager ID="PagerGoTo" ControlToPaginate="DataList" Mode="DropDownList" OnPageIndexChanged="pageChanged" />
+					</th>
+				</tr>
+			</table>
+		</com:TPanel>		
+	</div>
+</com:TContent>
