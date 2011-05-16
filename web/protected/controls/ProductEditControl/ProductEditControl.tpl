@@ -4,6 +4,8 @@
 		{
 			var ids = $('<%= $this->assetIds->getClientId()%>').value.split(',');
 			var deletingId = $('<%= $this->showingAssetId->getClientId()%>').value.replace(' ','');
+			alert('ids: ' + ids);
+			alert('deletingId: ' + deletingId);
 			var newAssetIds = '';
 			for(var i=0;i < ids.length;i++)
 			{
@@ -15,12 +17,8 @@
 					else
 						newAssetIds = ',' + id;
 				}
-				
-				if(i==0 && deletingId==ids[i])
-				{
-					$('<%= $this->showingAssetId->getClientId()%>').value='';
-				}
 			}
+			alert('newAssetIds: ' + newAssetIds);
 			$('<%= $this->assetIds->getClientId()%>').value=newAssetIds;
 			$('<%= $this->loadImageBtn->getClientId()%>').click();
 		}

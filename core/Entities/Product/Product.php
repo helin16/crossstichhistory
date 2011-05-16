@@ -35,9 +35,12 @@ class Product extends HydraEntity
 	 */
 	public function addCategory($categoryId)
 	{
+		if(trim($this->getId())=="")
+			return;
+		
 		$userAccountId = Core::getUser()->getId();
-		$sql="insert into product_productcategory(`productcategoryId`,`productid`,`created`,`createdById`)
-				value('$categoryId','".$this->getId()."','$value',NOW(),$userAccountId,NOW(),$userAccountId)";
+		$sql="insert into product_productcategory(`productcategoryId`,`productId`,`created`,`createdById`)
+				value('$categoryId','".$this->getId()."',NOW(),$userAccountId)";
 		Dao::execSql($sql);
 		return Dao::$lastInsertId;
 	}
@@ -189,7 +192,7 @@ class Product extends HydraEntity
 	
 	public function clearFeature($featureCategoryId)
 	{
-		$sql="delete from productfeature  where value='".trim($value)."' and categoryId=$featureCategoryId and productId=".$this->getId();
+		$sql="delete from productfeature where categoryId=$featureCategoryId and productId=".$this->getId();
 		Dao::execSql($sql);
 	}
 	

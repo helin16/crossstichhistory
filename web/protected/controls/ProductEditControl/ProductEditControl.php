@@ -177,10 +177,12 @@ class ProductEditControl extends TTemplateControl
 			{
 				$product->addCategory($categoryId);
 			}
+			
+			$this->errorMsg->Text="Proudct saved successfully!";
 		}
 		catch(Exception $x)
 		{
-			$this->errorMsg->Text=$x->getTraceAsString();
+			$this->errorMsg->Text=$x->getMessage()."<br />".$x->getTraceAsString();
 		}
 	}
 }
