@@ -19,7 +19,7 @@ class ContactUsController extends EshopPage
 	public function getConent()
 	{
 		$service = new BaseService("Content");
-		$content= $service->findByCriteria("title ='".Prado::localize("AboutUs.aboutUs")."'");
+		$content= $service->findByCriteria("title ='Contact Us'");
 		if(count($content)==0)
 			return;
 			
