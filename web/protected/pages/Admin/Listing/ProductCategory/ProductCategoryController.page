@@ -75,7 +75,10 @@
 				<prop:ItemTemplate>
 					<table width="100%">
 						<tr>
-							<td><%# $this->DataItem->getName() %></td>
+							<td>
+								<%# str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;",$this->Page->getLevel($this->DataItem)) %>
+								<%# $this->DataItem->getName() %>
+							</td>
 							<td width="20%">
 								<b>By:</b> <%# $this->DataItem->getCreatedBy()->getPerson() %><br />
 								<b>@:</b> <%# $this->DataItem->getCreated() %>
@@ -96,7 +99,7 @@
 					<table width="100%" >
 						<tr>
 							<td>
-								<com:TTextBox ID="name" ValidationGroup="Group2"/>
+								<com:TTextBox ID="name" ValidationGroup="Group2" style="width:90%"/>
 								<com:TRequiredFieldValidator    
 									ValidationGroup="Group2"
 									ControlToValidate="name"
@@ -110,6 +113,14 @@
 							<td width="25%">
 								<com:TButton ID="updateBtn" Text="Save" CommandName="Update" ValidationGroup="Group2"/>
 								<com:TButton Text="Cancel" CommandName="Cancel" />
+							</td>
+						</tr>
+						<tr>
+							<td colspan='3'>
+								<com:TPanel GroupingText="Moving Category">
+									Move this category to: <com:TDropDownList ID="parentCategoryList" DataValueField="id" DataTextField="name"/>
+									<com:TButton OnCommand="Page.moveCategory" CommandParameter="<%# $this->DataItem->getId() %>" Text="Move"/>
+								</com:TPanel>
 							</td>
 						</tr>
 					</table>

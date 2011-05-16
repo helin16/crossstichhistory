@@ -29,7 +29,7 @@ class ProductCategory extends HydraEntity
 	 */
 	public function getParent() 
 	{
-		$this->loadManyToOne("parent");
+		try{$this->loadManyToOne("parent");}catch(Exception $x){}
 	  	return $this->parent;
 	}
 	
@@ -50,7 +50,7 @@ class ProductCategory extends HydraEntity
 	 */
 	public function getRoot() 
 	{
-		$this->loadManyToOne("root");
+		try{$this->loadManyToOne("root");}catch(Exception $x){}
 	  	return $this->root;
 	}
 	
@@ -143,30 +143,69 @@ class ProductCategory extends HydraEntity
 	
 	public function preSave()
 	{
-		if(trim($this->getId())!="")
-			$this->setRoot($this);
+		if(trim($this->getposition())=="")
+			$this->setposition("1");
+	}
+	public function postSave()
+	{
+		if(!$this->getRoot() instanceof ProductCategory || !$this->getParent() instanceof ProductCategory)
+		{
+			$sql="update productcategory set parentId='0', rootId='".$this->getId()."' where id=".$this->getId();
+			Dao::execSql($sql);
+		}
 	}
 	
 	public function getChildren($depth=1)
 	{
+		$depth = $depth * ProductCategory::POSITION_LEVEL_DIGITS +1;
 		$service = new BaseService("ProductCategory");
-		return $service->findByCriteria("position like '".$this->getposition()."%' and length(position)=(1+$depth)");
+		return $service->findByCriteria("position like '".$this->getposition()."%' and length(position)=$depth");
 	}
 	
-	public function getParents($depth=1)
+	public function getNextPosInChildren()
 	{
-		$service = new BaseService("ProductCategory");
-		return $service->findByCriteria("position like '".$this->getposition()."%' and length(position)=(1+$depth)");
+		$position = $this->getPosition();
+		$sql="select id, position from productcategory where parentId='".$this->getId()."' and active=1 order by position asc";
+		$result = Dao::getResultsNative($sql,array(),PDO::FETCH_ASSOC);
+		if(count($result) == 0)															
+			return $position . "000";										//no nodes yet so start from start
+
+		$taken = array();
+		foreach ($result as $r)														//put all into array
+			$taken[] = (int)$r["position"];
+
+		$range = range((int)($position.str_repeat("0",ProductCategory::POSITION_LEVEL_DIGITS)), (int)($position.str_repeat("9",ProductCategory::POSITION_LEVEL_DIGITS)));		//create array of all valid options
+		$avail = array_diff($range, $taken);										//get difference of two arrays, available positions
+		
+		if (count($avail) == 0)
+			throw new Exception(" You have reached the maximum (" . ((int)(str_repeat("9",ProductCategory::POSITION_LEVEL_DIGITS)))+1 . ") number of children under this location, aborted...");
+			
+		foreach($avail as $id)
+		{return $id;}
 	}
 	
+	public function moveToSubCategory(ProductCategory $parent)
+	{
+		$nextPos = $parent->getNextPosInChildren();
+		$currentPos = $this->getposition();
+		$sql="update productcategory set rootId='".$parent->getRoot()->getId()."', position=concat('$nextPos',substr(position,length('$currentPos'))) where rootId='".$this->getRoot()->getId()."' and active=1 and position like '".$currentPos."%'";
+		Dao::execSql($sql);
+		
+		$sql="update productcategory set parentId='".$parent->getId()."' where id=".$this->getId();
+		Dao::execSql($sql);
+		
+		//re-populate the object
+		$service = new BaseService("ProductCategory");
+		return $service->get($this->getId());
+	}
 	
 	public function __loadDaoMap()
 	{
 		DaoMap::begin($this, 'procat');
 		
 		DaoMap::setStringType('name');
-		DaoMap::setManyToOne("parent","ProductCategory","pp");
-		DaoMap::setManyToOne("root","ProductCategory","pr");
+		DaoMap::setManyToOne("parent","ProductCategory","pp",true);
+		DaoMap::setManyToOne("root","ProductCategory","pr",true);
 		DaoMap::setStringType("position","varchar",256,false,"1");
 		DaoMap::setManyToMany("products","Product",DaoMap::LEFT_SIDE,"pro");
 		DaoMap::setManyToOne("language","PageLanguage","pl");
