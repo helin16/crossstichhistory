@@ -1,4 +1,36 @@
 <com:TPanel ID="productEditPanel">
+	<com:TClientScript>
+		function deleteImage_<%= $this->getId()%>()
+		{
+			var ids = $('<%= $this->assetIds->getClientId()%>').value.split(',');
+			var deletingId = $('<%= $this->showingAssetId->getClientId()%>').value.replace(' ','');
+			var newAssetIds = '';
+			for(var i=0;i < ids.length;i++)
+			{
+				id = ids[i].replace(' ','');
+				if(id != deletingId)
+				{
+					if(newAssetIds=='')
+						newAssetIds = id;
+					else
+						newAssetIds = ',' + id;
+				}
+				
+				if(i==0 && deletingId==ids[i])
+				{
+					$('<%= $this->showingAssetId->getClientId()%>').value='';
+				}
+			}
+			$('<%= $this->assetIds->getClientId()%>').value=newAssetIds;
+			$('<%= $this->loadImageBtn->getClientId()%>').click();
+		}
+		
+		function loadPreview_<%= $this->getId()%>(assetId)
+		{
+			$('<%= $this->showingAssetId->getClientId()%>').value = assetId;
+			$('<%= $this->loadImageBtn->getClientId()%>').click();
+		}
+	</com:TClientScript>
 	<com:TActiveLabel id="errorMsg" style="font-weigth:bold;color:red;"/>
 	<com:TActiveHiddenField id="product_Id" />
 	<table style='width:100%;padding:0px;'  border='0' cellspacing="0" cellpadding="0">	
@@ -11,7 +43,9 @@
 								<table border='0' cellspacing="0" cellpadding="0">
 									<tr>
 										<td>
+											<com:TActiveButton ID="loadImageBtn" OnClick="loadImages" style="display:none;"/>
 											<com:TActiveHiddenField ID="assetIds"/>
+											<com:TActiveHiddenField ID="showingAssetId"/>
 											<com:TActiveLabel ID="imageList"/>
 										</td>
 									</tr>

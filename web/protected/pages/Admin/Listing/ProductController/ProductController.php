@@ -69,11 +69,12 @@ class ProductController extends CRUDPage
     	$assetIds = trim($product->getFeature());
     	if($assetIds=="")
     		return;
-    	
+    		
     	$html="";
-    	foreach($assetIds as $assetId)
+    	foreach(explode(",",$assetIds) as $assetId)
     	{
-    		$html .="<img src='/asset/$assetId/".serialize(array("height"=>30,"width"=>30))."'style='border: 1px #cccccc solid;padding:5px;margin: 5px;' />";
+    		if(trim($assetId)!="")
+    			$html .="<img src='/asset/$assetId/".serialize(array("height"=>50,"width"=>50))."'style='border: 1px #cccccc solid;padding:5px;margin: 5px;' />";
     	}
     	return $html;
     }

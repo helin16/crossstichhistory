@@ -45,7 +45,6 @@ class Product extends HydraEntity
 	public function clearCategory()
 	{
 		$sql="delete from product_productcategory where productId=".$this->getId();
-		$result = Dao::getResultsNative($sql);
 		Dao::execSql($sql);
 	}
 	
@@ -191,7 +190,6 @@ class Product extends HydraEntity
 	public function clearFeature($featureCategoryId)
 	{
 		$sql="delete from productfeature  where value='".trim($value)."' and categoryId=$featureCategoryId and productId=".$this->getId();
-		$result = Dao::getResultsNative($sql);
 		Dao::execSql($sql);
 	}
 	

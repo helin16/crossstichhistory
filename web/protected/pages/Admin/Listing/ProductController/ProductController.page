@@ -62,18 +62,18 @@
 					<table width="100%">
 						<tr>
 							<td width="20%" style="font-size:10px;">
-								<b  style="font-size:12px;"><%#$this->DataItem->getTitle()%></b>
+								<div  style="font-size:12px;font-weight:bold;"><%#$this->DataItem->getTitle()%></div>
 								<%# $this->Page->listImages($this->DataItem) %>
 							</td>
 							<td>
 								<%# $this->Page->shortenText($this->DataItem->getDescription(),200)%>
 							</td>
-							<td width="20%">
-								<b>Created</b><br />
+							<td width="20%" style="font-size:12px;">
+								<b>Created</b>
 								By <%#$this->DataItem->getCreatedBy()->getPerson()%><br />
 								@ <%#$this->DataItem->getCreated()%><br />
 								
-								<br /><b>Updated</b><br />
+								<br /><b>Updated</b>
 								By <%#$this->DataItem->getUpdatedBy()->getPerson()%><br />
 								@ <%#$this->DataItem->getUpdated()%>
 							</td>
