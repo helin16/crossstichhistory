@@ -5,6 +5,7 @@ class ProductFeatureCategory extends HydraEntity
 	const ID_DIMENSION_L = 2;
 	const ID_DIMENSION_W = 3;
 	const ID_DIMENSION_H = 4;
+	const ID_IMAGE_DISPLAY = 5;
 	
 	private $name;
 	/**
