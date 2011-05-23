@@ -19,20 +19,14 @@ class ProductController extends CRUDPage
 	 */
     public function onLoad($param)
     {
-        parent::onLoad($param);
+     	parent::onLoad($param);
         
-        if(!$this->IsPostBack || $param == "reload")
-        {
-	        $this->dataLoad();
+       	if(!$this->IsPostBack || $param == "reload")
+        {        
+			$this->AddPanel->Visible = false;
+			$this->DataList->EditItemIndex = -1;
+			$this->dataLoad();
         }
-    }
-    
-	protected function getFocusEntity($id,$type="")
-    {
-    	if(trim($type)=="")
-    		return null;
-    	$service = new BaseService($type);
-    	return $service->get($id);
     }
     
 	protected function searchEntity($searchString,&$focusObject = null,$pageNumber=null,$pageSize=null)
@@ -57,8 +51,72 @@ class ProductController extends CRUDPage
     	return $result;
     }
     
+	protected function resetFields()
+    {
+    	$this->productEditPane->clearFields();
+    }
+    
+	protected function populateEdit($editItem)
+    {
+    	$product = $editItem->getData();
+    	$editItem->productEditPane->loadProduct($product->getId());
+    	$editItem->productEditPane->title->focus();
+    }
+    
+	protected function setEntity(&$product,$params,&$focusObject = null)
+    {
+    	$service = new BaseService("Product");
+		$title = trim($params->productEditPane->title->Text);
+		$description = trim($params->productEditPane->description->Text);
+		$sku = trim($params->productEditPane->sku->Text);
+		$visits = trim($params->productEditPane->visits->Text);
+		
+		$width = trim($params->productEditPane->width->Text);
+		$length = trim($params->productEditPane->length->Text);
+		$height = trim($params->productEditPane->height->Text);
+		
+		$assetIds = explode(",",trim($params->productEditPane->assetIds->Value));
+		$categoryIds = $params->productEditPane->categories->getSelectedValues();
+		
+		
+		$product->setTitle($title);
+		$product->setDescription($description);
+		$product->setSku($sku);
+		$product->setNoOfVisits($visits);
+		$product->setLanguage(Core::getPageLanguage());
+		
+		$service->save($product);
+		
+		$product->clearFeature(ProductFeatureCategory::ID_IMAGE);
+		foreach($assetIds as $assetId)
+		{
+			$product->addFeature(ProductFeatureCategory::ID_IMAGE,$assetId);
+		}
+		
+		$product->clearFeature(ProductFeatureCategory::ID_DIMENSION_L);
+		$product->addFeature(ProductFeatureCategory::ID_DIMENSION_L,$length);
+		
+		$product->clearFeature(ProductFeatureCategory::ID_DIMENSION_W);
+		$product->addFeature(ProductFeatureCategory::ID_DIMENSION_W,$width);
+		
+		$product->clearFeature(ProductFeatureCategory::ID_DIMENSION_H);
+		$product->addFeature(ProductFeatureCategory::ID_DIMENSION_H,$height);
+		
+		$product->clearCategory();
+		foreach($categoryIds as $categoryId)
+		{
+			$product->addCategory($categoryId);
+		}
+		
+		$this->setInfoMessage("Proudct saved successfully!");
+    }
+    
+    
+    
+    
     public function shortenText($text,$maxLength=150)
     {
+    	$text = strip_tags($text);
     	if(strlen($text)>$maxLength)
     		return substr($text,0,$maxLength)." ... ";
     	return $text;
@@ -69,12 +127,19 @@ class ProductController extends CRUDPage
     	$assetIds = trim($product->getFeature());
     	if($assetIds=="")
     		return;
-    		
+    	
+    	$assetServer = new AssetServer();
+    	$imageFolder = Config::get("imageResizer","imageURL");
+    	$title = $product->getTitle();
     	$html="";
     	foreach(explode(",",$assetIds) as $assetId)
     	{
     		if(trim($assetId)!="")
-    			$html .="<img src='/asset/$assetId/".serialize(array("height"=>50,"width"=>50))."'style='border: 1px #cccccc solid;padding:5px;margin: 5px;' />";
+    		{
+    			$html .="<a href=\"{$imageFolder}h900-w900/".$assetServer->getFilePath($assetId)."\" rel=\"lightbox[".$title."]\" style='padding:2px;margin: 5px;' title=\"pic for $title\">";
+    			$html .="<img src='{$imageFolder}h40-w40/".$assetServer->getFilePath($assetId)."' style='border:none;' />";
+    			$html .="</a>";
+    		}
     	}
     	return $html;
     }

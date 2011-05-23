@@ -1,8 +1,6 @@
 <com:TContent ID="MainContent">
-	<div id="lightbox" style="display: none;position:fixed;top: 10%;left: 10%;width: 80%;height: 80%;padding: 16px;border: 10px solid black;background-color: white;z-index:1002;overflow: auto;" src="/image/ajax-loader.gif" >
-		<com:Application.controls.ProductEditControl.ProductEditControl ID="productEditPane" />
-	</div>
-	<div id="fade" OnClick="$('lightbox').src='/image/ajax-loader.gif';$('fade').hide();$('lightbox').hide();" style="display: none;position:fixed;top: 0%;left: 0%;width: 100%;height: 100%;background-color: black;z-index:1001;-moz-opacity: 0.8;opacity:.80;filter: alpha(opacity=80);"></div>
+	<script type="text/javascript" src="/3rdPartyScript/LightBox/lightbox.js"></script>
+	<link rel="stylesheet" href="/3rdPartyScript/LightBox/lightbox.css" type="text/css" media="screen" />
 	<div>
 		<com:TPanel ID="SearchAddPanel" CssClass="SearchPanel" DefaultButton="SearchButton">
 			<table width="100%">
@@ -16,9 +14,7 @@
 						<com:THiddenField ID="SearchString" />
 					</td>
 					<td width="20%">
-						<com:TActiveButton ID="AddButton" Text="Add New" >
-							<prop:ClientSide OnLoading="$('fade').show();$('lightbox').show();"  />
-						</com:TActiveButton>
+						<com:TButton ID="AddButton" Text="Add New" OnClick="Page.Add" />
 					</td>
 				</tr>
 			</table>
@@ -26,31 +22,29 @@
 			<hr />
 			<br />
 		</com:TPanel>
+		<com:TPanel ID="AddPanel" style='padding: 20px;'>
+			<com:Application.controls.ProductEditControl.ProductEditControl ID="productEditPane" PageFunc_saving="save"  PageFunc_cancel="cancel"/>
+		</com:TPanel>
 		<com:TPanel ID="ListingPanel" style="width:98%;">
-		<b>List of Project(s):</b><br />
-			<com:TDataList
-			     ID="DataList"
-			     DataKeyField="id"
-			     OnEditCommand="edit"
-			     OnCancelCommand="cancel"
-			     OnUpdateCommand="update"
-			     OnDeleteCommand="delete"
-			     OnSelectedIndexChanged="select"
-			     HeaderStyle.BackColor="black"
-			     HeaderStyle.ForeColor="white"
-			     ItemStyle.BackColor="#ffffff"
-			     AlternatingItemStyle.BackColor="#eeeeee"
-			     EditItemStyle.BackColor="#888888"
-			     SelectedItemStyle.BackColor="lightblue"
-			      AllowPaging="true" AllowCustomPaging="true" PageSize="30" EnableViewState="true"
-			      width="100%"
-			     >
-		     
+		<b>List of product(s):</b><br />
+			<com:TDataList ID="DataList" DataKeyField="id" OnSelectedIndexChanged="selectItem" 
+					     OnEditCommand="edit"
+					     OnUpdateCommand="save" OnCancelCommand="cancel"
+					     CssClass="DataList" 
+					     HeaderStyle.BackColor="black"
+					     HeaderStyle.ForeColor="white"
+					     ItemStyle.BackColor="#ffffff"
+					     AlternatingItemStyle.BackColor="#eeeeee"
+					     EditItemStyle.BackColor="#888888"
+					     SelectedItemStyle.BackColor="lightblue"
+						 width="98%"
+						 AllowPaging="true" AllowCustomPaging="true" PageSize="30" EnableViewState="true">
+						 
 			    <prop:HeaderTemplate>
 					<table width="100%" height="32">
 						<tr align="left">
-							<td width="20%">Title</td>
-							<td>Description</th>
+							<td >Title</td>
+							<td width="40%">Images</th>
 							<td width="20%">Created</td>
 							<td width="5%">Active</td>
 							<td width="5%">&nbsp;</td>
@@ -61,12 +55,12 @@
 				<prop:ItemTemplate>
 					<table width="100%">
 						<tr>
-							<td width="20%" style="font-size:10px;">
+							<td style="font-size:10px;">
 								<div  style="font-size:12px;font-weight:bold;"><%#$this->DataItem->getTitle()%></div>
-								<%# $this->Page->listImages($this->DataItem) %>
-							</td>
-							<td>
 								<%# $this->Page->shortenText($this->DataItem->getDescription(),200)%>
+							</td>
+							<td width="40%">
+								<%# $this->Page->listImages($this->DataItem) %>
 							</td>
 							<td width="20%" style="font-size:12px;">
 								<b>Created</b>
@@ -81,22 +75,22 @@
 								<com:TCheckBox Id="Active" Checked="<%#$this->DataItem->getActive()%>"  AutoPostBack="true" OnCheckedChanged="Page.toggleActive"/>
 							</td>
 							<td width="5%">
-								<com:TActiveImageButton ID="EditButton" OnCommand="Page.loadProduct" CommandParameter="<%#$this->DataItem->getId()%>" ImageUrl="/image/edit.png" Text="Edit"	ToolTip="Edit Record" >
-									<prop:ClientSide OnComplete="$('fade').show();$('lightbox').show();" />
-								</com:TActiveImageButton>
+								<com:TImageButton ID="EditButton" ImageUrl="/image/edit.png" Text="Edit"	ToolTip="Edit Record" CommandName="edit"/>
 							</td>
 						</tr>
 					</table>
 				</prop:ItemTemplate>
 				
-				<prop:EditItemTemplate />
+				<prop:EditItemTemplate >
+					<com:Application.controls.ProductEditControl.ProductEditControl ID="productEditPane"  PageFunc_saving="save"  PageFunc_cancel="cancel" />
+				</prop:EditItemTemplate>
 				
 			    <prop:FooterTemplate>
 				    <table width="100%" height="25">
 						<tr>
 							<th colspan=5>
 								<div style="font-weight: bold; text-align: center;">
-									Total <%# $this->Page->totalRows %> Project(s)
+									Total <%# $this->Page->totalRows %> product(s)
 								</div>
 							</th>
 						</tr>
