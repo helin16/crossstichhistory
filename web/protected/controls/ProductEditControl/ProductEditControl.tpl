@@ -65,9 +65,9 @@
 					<tr valign="top">
 						<td>Dimension (cm):</td>
 						<td>
-							<com:TTextBox ID="length" style="width:20px;" /> L x
-							<com:TTextBox ID="width" style="width:20px;" /> W x
-							<com:TTextBox ID="height" style="width:20px;" /> H
+							<com:TTextBox ID="length" style="width:40px;" /> L x
+							<com:TTextBox ID="width" style="width:40px;" /> W x
+							<com:TTextBox ID="height" style="width:40px;" /> H
 						</td>
 					</tr>
 					<tr valign="top">
