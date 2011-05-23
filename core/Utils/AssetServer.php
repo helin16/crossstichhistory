@@ -17,17 +17,17 @@ class AssetServer
 	 * @var GenericDAO
 	 * @var GenericDAO
 	 */
-	private $contentDAO;
+	private $assetDAO;
 	
 	/**
 	 * @var GenericDAO
 	 */
-	private $contentTypeDAO;
+	private $assetTypeDAO;
 	
 	public function __construct()
 	{
-		$this->contentDAO = new GenericDao('Asset');
-		$this->contentTypeDAO = new GenericDao('AssetType');
+		$this->assetDAO = new GenericDao('Asset');
+		$this->assetTypeDAO = new GenericDao('AssetType');
 	}
 	
 	/**
@@ -40,7 +40,7 @@ class AssetServer
 	 */
 	public function registerAsset($type, $filename, $data)
 	{
-		$contentType = $this->contentTypeDAO->findById($type);
+		$contentType = $this->assetTypeDAO->findById($type);
 		
 		$content = new Asset();
 		$content->setAssetType($contentType);
@@ -56,10 +56,10 @@ class AssetServer
 		$content->setMimeType($this->getMimeType($filename));
 		preg_match("|\.([a-z0-9]{2,4})$|i", $filename, $fileSuffix);
 		
-		$this->contentDAO->save($content);
+		$this->assetDAO->save($content);
 		
 		// Write data to NAS, create directory
-		mkdir($contentType->getPath() . $path, 0777, true);
+		mkdir(Config::get("asset","assetRoot").$contentType->getPath() . $path, 0777, true);
 		$this->replaceAsset($assetId, $data,strtolower($fileSuffix[1]));
 		
 		return $assetId;
@@ -73,11 +73,11 @@ class AssetServer
 	 */
 	public function replaceAsset($assetId, $data,$type="")
 	{
-		$content = $this->contentDAO->findByCriteria('assetId=?', array($assetId));
+		$content = $this->assetDAO->findByCriteria('assetId=?', array($assetId));
 		$content = $content[0];
 		$contentType = $content->getAssetType();
 		
-		file_put_contents($contentType->getPath() . $content->getPath() . '/' . $assetId.".$type", $data);
+		file_put_contents(Config::get("asset","assetRoot").$contentType->getPath() . $content->getPath() . '/' . $assetId.".$type", $data);
 	}
 
 	/**
@@ -87,17 +87,17 @@ class AssetServer
 	 */
 	public function streamAsset($assetId)
 	{
-		$content = $this->contentDAO->findByCriteria('assetId=?', array($assetId));
+		$content = $this->assetDAO->findByCriteria('assetId=?', array($assetId));
 		$content = $content[0];
 		$contentType = $content->getAssetType();
 		
 		header('Content-Type: ' . $content->getMimeType());
-		readfile($contentType->getPath() . $content->getPath() . '/' . $assetId);
+		readfile(Config::get("asset","assetRoot").$contentType->getPath() . $content->getPath() . '/' . $assetId);
 	}
 	
 	public function getAsset($assetId)
 	{
-		$content = $this->contentDAO->findByCriteria('assetId=?', array($assetId));
+		$content = $this->assetDAO->findByCriteria('assetId=?', array($assetId));
 		if (!empty($content))
 			$content = $content[0];
 		return $content;		
@@ -113,6 +113,30 @@ class AssetServer
 	{
 		return "/asset/$assetId/$param";
 	}
+	
+	/**
+	 * Get the file path to the asset
+	 *
+	 * @param string $assetId
+	 * @return string
+	 */
+	public function getFilePath($assetId,$absoluteFilePath=false)
+	{
+		$assets = $this->assetDAO->findByCriteria('assetId=?', array($assetId));
+		if(count($assets)==0)
+			return;
+		$asset = $assets[0];
+		if(!$asset instanceof Asset)
+			return;
+		
+		$assetType = $asset->getAssetType();
+		
+		preg_match("|\.([a-z0-9]{2,4})$|i", $asset->getFileName(), $fileSuffix);
+		$src = Config::get("asset","assetHttpRoot").$assetType->getPath() . $asset->getPath() . '/' . "$assetId.".strtolower($fileSuffix[1]);
+		if($absoluteFilePath)
+			$src = Config::get("asset","assetRoot").$src;
+		return $src;
+	}
 
 	/**
 	 * Remove an asset from the content server
@@ -122,7 +146,7 @@ class AssetServer
 	 */
 	public function removeAsset($assetId)
 	{
-		$content = $this->contentDAO->findByCriteria('assetId=?', array($assetId));
+		$content = $this->assetDAO->findByCriteria('assetId=?', array($assetId));
 		$content = $content[0];
 		$contentType = $content->getAssetType();
 		
@@ -130,7 +154,7 @@ class AssetServer
 		Dao::execSql('delete from asset where assetId=?', array($assetId));
 		
 		// Remove the file from the NAS server
-		unlink($contentType->getPath() . $content->getPath() . '/' . $assetId);
+		unlink(Config::get("asset","assetRoot").$contentType->getPath() . $content->getPath() . '/' . $assetId);
 	}
 	
 	/**
