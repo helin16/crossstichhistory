@@ -77,7 +77,7 @@ class ContentListItemControl extends TPanel
 			$html.="</tr>";
 			$html.="<tr>";
 				$html.="<td colspan='2' style='padding:5px;text-align:justify;'>";
-					$text = $content->getText();
+					$text = strip_tags($content->getText());
 					$html .=(strlen($text)>$maxIntroLength ? substr($text,0,$maxIntroLength)." ... " : $text);
 				$html.="</td>";
 			$html.="</tr>";
