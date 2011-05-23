@@ -20,7 +20,10 @@ class CRUDPage extends AdminPage
     
     protected function getFocusEntity($id,$type="")
     {
-    	return null;
+    	if(trim($type)=="")
+    		return null;
+    	$service = new BaseService($type);
+    	return $service->get($id);
     }
     
     protected function setEntity(&$object,$params,&$focusObject = null)
@@ -208,11 +211,10 @@ class CRUDPage extends AdminPage
     	}
     	else
     	{
-    		$params = $param->Item;
+    		$params = $this->DataList->getEditItem();
 			$entity = $this->lookupEntity($this->DataList->DataKeys[$params->ItemIndex]);
     	}
 
-    	
        	$focusObject = $this->focusObject->Value;
        	$focusObjectArgument = $this->focusObjectArgument->Value;
      	if($focusObject == "")

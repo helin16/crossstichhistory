@@ -132,9 +132,12 @@ class AssetServer
 		$assetType = $asset->getAssetType();
 		
 		preg_match("|\.([a-z0-9]{2,4})$|i", $asset->getFileName(), $fileSuffix);
-		$src = Config::get("asset","assetHttpRoot").$assetType->getPath() . $asset->getPath() . '/' . "$assetId.".strtolower($fileSuffix[1]);
+		$src = $assetType->getPath() . $asset->getPath() . '/' . "$assetId.".strtolower($fileSuffix[1]);
 		if($absoluteFilePath)
 			$src = Config::get("asset","assetRoot").$src;
+		else
+			$src = Config::get("asset","assetHttpRoot").$src;
+			
 		return $src;
 	}
 

@@ -1,32 +1,14 @@
 <com:TPanel ID="productEditPanel">
 	<com:TClientScript>
-		function deleteImage_<%= $this->getId()%>()
+		function deleteImage_<%= $this->getId()%>(assetId)
 		{
 			var ids = $('<%= $this->assetIds->getClientId()%>').value.split(',');
-			var deletingId = $('<%= $this->showingAssetId->getClientId()%>').value.replace(' ','');
-			alert('ids: ' + ids);
-			alert('deletingId: ' + deletingId);
-			var newAssetIds = '';
-			for(var i=0;i < ids.length;i++)
-			{
-				id = ids[i].replace(' ','');
-				if(id != deletingId)
-				{
-					if(newAssetIds=='')
-						newAssetIds = id;
-					else
-						newAssetIds = ',' + id;
-				}
-			}
-			alert('newAssetIds: ' + newAssetIds);
-			$('<%= $this->assetIds->getClientId()%>').value=newAssetIds;
-			$('<%= $this->loadImageBtn->getClientId()%>').click();
-		}
-		
-		function loadPreview_<%= $this->getId()%>(assetId)
-		{
-			$('<%= $this->showingAssetId->getClientId()%>').value = assetId;
-			$('<%= $this->loadImageBtn->getClientId()%>').click();
+			var idx = ids.indexOf(assetId);
+			
+			if(idx!=-1) ids.splice(idx, 1);
+			
+			$('<%= $this->assetIds->getClientId()%>').value=ids.join(',');
+			$('imageShow_' + assetId).hide();
 		}
 	</com:TClientScript>
 	<com:TActiveLabel id="errorMsg" style="font-weigth:bold;color:red;"/>
@@ -43,7 +25,7 @@
 										<td>
 											<com:TActiveButton ID="loadImageBtn" OnClick="loadImages" style="display:none;"/>
 											<com:TActiveHiddenField ID="assetIds"/>
-											<com:TActiveHiddenField ID="showingAssetId"/>
+											<com:TActiveHiddenField ID="deletingAssetId"/>
 											<com:TActiveLabel ID="imageList"/>
 										</td>
 									</tr>
@@ -61,38 +43,55 @@
 				</table>
 			</td>
 			<td width="35%" style="padding:0 0 0 12px;">
-				<table style='width:100%;padding:0px;border:1px #cccccc solid;'   cellspacing="0" cellpadding="0">	
+				<table style='width:100%;padding:0px;'   cellspacing="0" cellpadding="0">	
 					<tr>
 						<td width="25%">Title:</td>
 						<td>
-							<com:TActiveTextBox ID="title" style="width:90%;"  ValidationGroup="group1"/>
+							<com:TTextBox ID="title" style="width:90%;" ValidationGroup="<%= $this->validationGroup %>"/>
+							<com:TRequiredFieldValidator ControlToValidate="title"
+									ErrorMessage="title Required" ValidationGroup="<%= $this->validationGroup %>" EnableClientScript="true" 
+									Display="Dynamic"/>
 						</td>
 					</tr>
 					<tr valign="top">
 						<td>SKU:</td>
 						<td>
-							<com:TActiveTextBox ID="sku" style="width:90%;"  ValidationGroup="group1"/>
+							<com:TTextBox ID="sku" style="width:90%;"  ValidationGroup="<%= $this->validationGroup %>"/>
+							<com:TRequiredFieldValidator ControlToValidate="title"
+									ErrorMessage="sku Required" ValidationGroup="<%= $this->validationGroup %>" EnableClientScript="true" 
+									Display="Dynamic"/>
 						</td>
 					</tr>
 					<tr valign="top">
-						<td>Dimension (m):</td>
+						<td>Dimension (cm):</td>
 						<td>
-							<com:TActiveTextBox ID="length" style="width:10px;" ValidationGroup="group1"/> L x
-							<com:TActiveTextBox ID="width" style="width:10px;" ValidationGroup="group1"/> W x
-							<com:TActiveTextBox ID="height" style="width:10px;" ValidationGroup="group1"/> H
+							<com:TTextBox ID="length" style="width:20px;" /> L x
+							<com:TTextBox ID="width" style="width:20px;" /> W x
+							<com:TTextBox ID="height" style="width:20px;" /> H
 						</td>
 					</tr>
 					<tr valign="top">
 						<td>Initial Visits:</td>
 						<td>
-							<com:TActiveTextBox ID="visits" style="width:90%;" ValidationGroup="group1"/>
+							<com:TTextBox ID="visits" style="width:90%;" ValidationGroup="<%= $this->validationGroup %>"/>
+							<com:TRequiredFieldValidator ControlToValidate="title"
+									ErrorMessage="visits Required" ValidationGroup="<%= $this->validationGroup %>" EnableClientScript="true" 
+									Display="Dynamic"/>
 						</td>
 					</tr>
 					<tr valign="top">
 						<td>Categories:</td>
 						<td>
-							<com:TActiveListBox ID="categories" DataValueField="id" DataTextField="name"  style="width:90%;" AutoPostBack="false" SelectionMode="Multiple"/>
+							<com:TListBox ID="categories" DataValueField="id" DataTextField="name"  style="width:90%;" AutoPostBack="false" SelectionMode="Multiple"/>
 							<div style="font-size:9px;">Ctrl + click to select multiple itesm</div>
+							<com:TListControlValidator
+									ControlToValidate="categories"
+									ErrorMessage="You must select a Category" 
+									MinSelection="1"
+									EnableClientScript="true" 
+									ValidationGroup="<%= $this->validationGroup %>"
+									Display="Dynamic"
+									/>
 						</td>
 					</tr>
 				</table>
@@ -100,7 +99,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<b>Description: </b><br />
+				<div style='font-weight:bold;'>Description: </div>
 				<com:THtmlArea ID="description" width="100%">
 					<prop:Options>
 				        theme : "advanced",
@@ -120,13 +119,13 @@
 				        nonbreaking_force_tab : true,
 				        apply_source_formatting : true
 				  	</prop:Options>
-				</com:THtmlArea><br /><br />
+				</com:THtmlArea>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<br /><br />
-				<com:TActiveButton Id="saveBtn" Text="Save" OnClick="save" style="width:120px;" ValidationGroup="group1"/>
+				<com:TButton Id="saveBtn" Text="Save" OnClick="save" ValidationGroup="<%= $this->validationGroup %>"/>
+				<com:TButton Id="cancelBtn" Text="Cancel" OnClick="cancel" />
 			</td>
 		</tr>
 	</table>
