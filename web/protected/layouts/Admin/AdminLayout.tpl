@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <com:THead ID="titleHeader" Title="<%$ AppTitle %>">
 	<meta http-equiv="Pragma" content="no-cache"/>
 	<meta http-equiv="Cache-Control" content="no-cache"/>
@@ -35,16 +35,15 @@
 	</style>
 	<center>
 		<com:TForm>
-			<div style="width:1160px;border: 15px #2D3444 solid;">
+			<div style="width:910px;border: 15px #2D3444 solid;">
 				<div style="background:#2D3444;width:100%">
 					<table width="100%" border='0' cellspacing="0" cellpadding="0" >
 						<tr>
 							<td align="left">
 								<img src="/Theme/<%=$this->getDefaultThemeName() %>/images/logo.jpg"/>
 							</td>
-							<td align="right" width="10%">
-								<br />
-								<a href="/" target="_blank" style="text-align:right;color:#ffffff;">Preview Website</a>
+							<td align="right" width="20%" valign="bottom">
+								<a href="/" target="_blank" style="text-align:right;color:#ffffff; font-size:12px;">Preview Website</a>
 							</td>
 							<td width="30%" valign="bottom" style="text-align:right;color:#ffffff;">
 								<br />
@@ -88,9 +87,6 @@
 										</li>
 									</ul>
 								</div>
-							</td>
-							<td width="24%">
-								&nbsp;
 							</td>
 						</tr>
 					</table>
