@@ -199,6 +199,21 @@ class ProductCategory extends HydraEntity
 		return $service->get($this->getId());
 	}
 	
+	public function moveToRoot()
+	{
+		$nextPos = 1;
+		$currentPos = $this->getposition();
+		$sql="update productcategory set rootId='".$this->getId()."', position=concat('$nextPos',substr(position,length('$currentPos'))) where rootId='".$this->getRoot()->getId()."' and active=1 and position like '".$currentPos."%'";
+		Dao::execSql($sql);
+		
+		$sql="update productcategory set parentId=null where id=".$this->getId();
+		Dao::execSql($sql);
+		
+		//re-populate the object
+		$service = new BaseService("ProductCategory");
+		return $service->get($this->getId());
+	}
+	
 	public function __loadDaoMap()
 	{
 		DaoMap::begin($this, 'procat');

@@ -120,6 +120,7 @@
 								<com:TPanel GroupingText="Moving Category">
 									Move this category to: <com:TDropDownList ID="parentCategoryList" DataValueField="id" DataTextField="name"/>
 									<com:TButton OnCommand="Page.moveCategory" CommandParameter="<%# $this->DataItem->getId() %>" Text="Move"/>
+									<com:TButton OnCommand="Page.moveToRoot" CommandParameter="<%# $this->DataItem->getId() %>" Text="Move To Root"/>
 								</com:TPanel>
 							</td>
 						</tr>

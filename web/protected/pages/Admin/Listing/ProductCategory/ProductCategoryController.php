@@ -93,6 +93,22 @@ class ProductCategoryController extends CRUDPage
 		$this->DataList->EditItemIndex = -1;
     	$this->dataLoad();
     }
+    
+	public function moveToRoot($sender,$param)
+    {
+    	$id = trim($param->CommandParameter);
+    	$service = new BaseService("ProductCategory");
+    	$category = $service->get($id);
+    	if(!$category instanceof ProductCategory)
+    		return;
+    		
+    	$category->moveToRoot();
+    	$this->setInfoMessage("Successfully moved to ROOT");
+    	
+    	$this->AddPanel->Visible = false;
+		$this->DataList->EditItemIndex = -1;
+    	$this->dataLoad();
+    }
 }
 
 ?>
