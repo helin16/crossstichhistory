@@ -54,15 +54,20 @@ class ProductDetailsControl extends TTemplateControl
     		return;
     	}
     	
-    	$html = "<img id='previewImage_".$this->getId()."' src='/asset/{$assetIds[0]}/".$this->getPreviewDimensionArray()."' style='padding:7px;'/>";
+    	$assetServer = new AssetServer();
+    	$imageFolder = Config::get("imageResizer","imageURL");
+    	$html ="<script type='text/javascript' src='/3rdPartyScript/LightBox/lightbox.js'></script>";
+    	$html .="<link rel='stylesheet' href='/3rdPartyScript/LightBox/lightbox.css' type='text/css' media='screen' />";
+    	$html .= "<img id='previewImage_".$this->getId()."' src='{$imageFolder}h{$this->preview_image_h}-w{$this->preview_image_w}/".$assetServer->getFilePath($assetIds[0])."' style='padding:7px;'/>";
     	$html .="<div>";
     	foreach($assetIds as $assetId)
     	{
+	    	$html .="<a href=\"{$imageFolder}h400-w400/".$assetServer->getFilePath($assetId)."\" rel=\"lightbox[details]\" style='padding:2px;margin: 5px;' title=\"pic for viewing product\">";
 				$html .="<img src='/asset/$assetId/".serialize(array("height"=>50,"width"=>50))."' style='padding:7px;margin:1px;'
 							onMouseOver=\"this.style.border='1px #ff0000 solid';\"
 							onMouseOut=\"this.style.border='none';\"
-							OnClick=\"loadPreview_".$this->getId()."('$assetId');\"
 							/>";
+    		$html .="</a>";
     	}
     	$html .="</div>";
     	$this->imageList->Text = $html;
