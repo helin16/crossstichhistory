@@ -21,8 +21,7 @@ class FileLoaderController extends EshopPage
 		$assetServer = new AssetServer();
 		$asset = $assetServer->getAsset($assetId);
 
-		preg_match("|\.([a-z0-9]{2,4})$|i", $asset->getFileName(), $fileSuffix);
-		$src = $asset->getAssetType()->getPath() . $asset->getPath() . '/' . "$assetId.".strtolower($fileSuffix[1]);
+		$src = $assetServer->getFilePath($assetId,true);
 
 		if($asset->getAssetType()->getId()==AssetServer::TYPE_GRAPH)
 		{

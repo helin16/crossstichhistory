@@ -10,6 +10,19 @@
 			$('<%= $this->assetIds->getClientId()%>').value=ids.join(',');
 			$('imageShow_' + assetId).hide();
 		}
+		
+		function makeDefault_<%= $this->getId()%>(assetId)
+		{
+			var ids = $('<%= $this->assetIds->getClientId()%>').value.split(',');
+			var newArray = new Array();
+			newArray[0]=assetId;
+			
+			var idx = ids.indexOf(assetId);
+			if(idx!=-1) ids.splice(idx, 1);
+			
+			$('<%= $this->assetIds->getClientId()%>').value=newArray.concat(ids).join(',');
+			$('<%= $this->loadImageBtn->getClientId()%>').click();
+		}
 	</com:TClientScript>
 	<com:TActiveLabel id="errorMsg" style="font-weigth:bold;color:red;"/>
 	<com:TActiveHiddenField id="product_Id" />
@@ -25,7 +38,6 @@
 										<td>
 											<com:TActiveButton ID="loadImageBtn" OnClick="loadImages" style="display:none;"/>
 											<com:TActiveHiddenField ID="assetIds"/>
-											<com:TActiveHiddenField ID="deletingAssetId"/>
 											<com:TActiveLabel ID="imageList"/>
 										</td>
 									</tr>

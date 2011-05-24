@@ -181,22 +181,31 @@ class ProductEditControl extends TTemplateControl
     	$imageFolder = Config::get("imageResizer","imageURL");
     	$thumb_H = $thumb_W = 150;
     	$padding= 5;
-    	$html="";
+    	$imageNo = 0;
+    	$html="<div id='imageShowCanvas_".$this->getId()."'>";
     	foreach($assetIds as $assetId)
     	{
-			$html .="<table id='imageShow_$assetId' border=0 style='margin:4px;border: 1px #cccccc solid;float:left;display:block;width:".($thumb_W+$padding+2)."px;' onMouseOver=\"this.style.border='1px #ff0000 solid';\" onMouseOut=\"this.style.border='1px #cccccc solid';\">";
+			$html .="<table id='imageShow_$assetId' style='margin:3px;border: 1px ".($imageNo==0 ? "#ff0000" : "#cccccc")." solid;display:inline-block;width:".($thumb_W+$padding)."px;' onMouseOver=\"this.style.border='1px #0000ff solid';\" onMouseOut=\"this.style.border='1px ".($imageNo==0 ? "#ff0000" : "#cccccc")." solid';\">";
 				$html .="<tr>";
-					$html .="<td valign='middle' align='center'>";
-						$html .="<img OnClick=\"\"  src='{$imageFolder}/h$thumb_H-w$thumb_W/".$assetServer->getFilePath($assetId)."' />";
+					$html .="<td height='".($thumb_H+$padding-20)."px'>";
+						$html .="<a href=\"{$imageFolder}h900-w900/".$assetServer->getFilePath($assetId)."\" target='_blank' title=\"pic for editing product\" >";
+							$html .="<img src='{$imageFolder}/h$thumb_H-w$thumb_W/".$assetServer->getFilePath($assetId)."' style='border:none;'/>";
+						$html .="</a>";
 					$html .="</td>";
 				$html .="</tr>";
 				$html .="<tr>";
-					$html .="<td style='background:#cccccc;'>";
-						$html .="<div><input type='image' src='/image/delete.gif' onclick=\"deleteImage_".$this->getId()."('$assetId');return false;\" style='float:right;' value='delete'/></div>";
+					$html .="<td>";
+						$html .="<div style='text-align:right;background:#cccccc;'>";
+							$html .="<input type='button' value='make it default' onclick=\"makeDefault_".$this->getId()."('$assetId');return false;\" style='font-size:10px;'/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+							$html .="<input type='image' src='/image/delete.gif' onclick=\"deleteImage_".$this->getId()."('$assetId');return false;\" style='vertical-align: bottom;' value='delete' onMouseOver=\"this.style.cursor='pointer';\"/>";
+						$html .="</div>";
 					$html .="</td>";
 				$html .="</tr>";
 			$html .="</table>";
+			$imageNo++;
     	}
+    	$html.="</div>";
+    	
     	$this->imageList->Text = $html;
     }
     
