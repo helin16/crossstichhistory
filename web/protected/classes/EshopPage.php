@@ -64,14 +64,13 @@ class EshopPage extends TPage
 	public static function getRoundCornerHead()
 	{
 		return "<table border='0' cellspacing=\"0\" cellpadding=\"0\" width=\"100%\">
-				<tr style=\"vertical-align:bottom;\">
-					<td style=\"width:6px; height:6px; background: #ffffff url('/Theme/default/images/roundCorner_leftTop.png') no-repeat right top;\"></td>
-					<td style=\"border-top:1px #0098e6 solid; \">
-					</td>
+				<tr style=\"height:6px;\" style=\"vertical-align:bottom;\">
+					<td style=\"width:6px; background: #ffffff url('/Theme/default/images/roundCorner_leftTop.png') no-repeat right top;\"></td>
+					<td style=\"background: #ffffff url('/Theme/default/images/roundCorner_topMid.png') repeat-x left top;\"></td>
 					<td style=\"width:6px;background: #ffffff url('/Theme/default/images/roundCorner_rightTop.png') no-repeat left top;\"></td>
 				</tr>
 				<tr valign='top'>
-					<td style=\"width:6px; border-left:1px #0098e6 solid;\">
+					<td style=\"background: #ffffff url('/Theme/default/images/roundCorner_leftMid.png') repeat-y left top;\">
 					</td>
 					<td>";	
 	}
@@ -79,12 +78,12 @@ class EshopPage extends TPage
 	public static function getRoundCornerFooter()
 	{
 		return "</td>
-				<td style=\"width:6px; border-right:1px #0098e6 solid;\">
+				<td style=\"background: #ffffff url('/Theme/default/images/roundCorner_rightMid.png') repeat-y right top;\">
 				</td>
 			</tr>
 			<tr style=\"height:6px;\" valign=\"top\">
 				<td style=\"width:6px; background: #ffffff url('/Theme/default/images/roundCorner_leftBottom.png') no-repeat right bottom;\"></td>
-				<td style=\"border-bottom:1px #0098e6 solid;\"></td>
+				<td style=\"background: #ffffff url('/Theme/default/images/roundCorner_bottomMid.png') repeat-x left bottom;\"></td>
 				<td style=\"width:6px;background: #ffffff url('/Theme/default/images/roundCorner_rightBottom.png') no-repeat left bottom;\"></td>
 			</tr>
 			</table>";	
