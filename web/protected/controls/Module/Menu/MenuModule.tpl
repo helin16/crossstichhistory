@@ -40,7 +40,7 @@
 					<td width="10px" >
 						<img src="/Theme/default/images/left.jpg" />
 					</td>
-					<td style="background:transparent url('/Theme/default/images/mid.jpg') repeat-x left bottom;">
+					<td style="background:transparent url('/Theme/default/images/mid.jpg') repeat-x left top;">
 						<table width="100%" height="67px" border='0' cellspacing="0" cellpadding="0">
 							<tr>
 								<td style="font-weight:bold; color:white; padding: 5px 0 5px 3px; text-align:left;">

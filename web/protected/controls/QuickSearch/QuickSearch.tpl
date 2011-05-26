@@ -14,7 +14,7 @@
 			<td width="80px">
 				Quick Search: 
 			</td>
-			<td>
+			<td width="300px">
 				<input type="text" ID="searchText" style='border:1px #732f01 solid;height:15px;width:95%;margin:0px 5px 0 0;padding:3px 0 2px 5px;' />
 			</td>
 			<td>
