@@ -74,35 +74,54 @@ class ProductEditControl extends TTemplateControl
 	public function loadProduct($productId="")
 	{
 		$this->clearFields();
-		$this->product_Id->Value = trim($productId);
 		$service = new BaseService("Product");
-		$product = $service->get( trim($productId));
+		$product = $service->get(trim($productId));
 		if(!$product instanceof Product)
 			return ;
-		$this->title->Text = $product->getTitle();
-		$this->description->Text = $product->getDescription();
-		$this->sku->Text = $product->getSku();
-		$this->visits->Text = $product->getNoOfVisits();
+			
+		$title= trim($product->getTitle());
+		$description= trim($product->getDescription());
+		$sku= trim($product->getSku());
+		$visits= trim($product->getNoOfVisits());
 		
 		//get categories
 		$ids = array();
 		foreach($product->getProductCategories() as $category)
-		{
-			$ids[] = $category->getId();
-		}
-		if(count($ids)>0)
-			 $this->categories->setSelectedValues($ids);
+		{$ids[] = $category->getId();}
 		
 		//get features
-		$this->length->Text = trim($product->getFeature(ProductFeatureCategory::ID_DIMENSION_L));
-		$this->width->Text = trim($product->getFeature(ProductFeatureCategory::ID_DIMENSION_W));
-		$this->height->Text = trim($product->getFeature(ProductFeatureCategory::ID_DIMENSION_H));
+		$length = trim($product->getFeature(ProductFeatureCategory::ID_DIMENSION_L));
+		$width = trim($product->getFeature(ProductFeatureCategory::ID_DIMENSION_W));
+		$height = trim($product->getFeature(ProductFeatureCategory::ID_DIMENSION_H));
 		
 		//get images
 		$assetIds = trim($product->getFeature(ProductFeatureCategory::ID_IMAGE));
 		if($assetIds=="")
-			return;
-		$this->assetIds->Value = $assetIds;
+			$assetIds = array();
+		else 
+			$assetIds = explode(",",$assetIds);
+		
+		$this->loadProductDetails(trim($productId),$title,$description,$sku,$visits,$ids,$length,$width,$height,$assetIds);
+	}
+	
+	public function loadProductDetails($productId,$title,$description,$sku,$noOfVisits,array $categoryIds,$length,$width,$height,array $imageAssetIds=array())
+	{
+		$this->clearFields();
+		$this->product_Id->Value = $productId;
+		$this->title->Text = $title;
+		$this->description->Text =$description;
+		$this->sku->Text = $sku;
+		$this->visits->Text = $noOfVisits;
+		
+//		try{$this->categoryList->setSelectedValues($categoryIds);}catch(Exception $ex){}
+		$this->categoryList->setSelectedValues($categoryIds);
+		
+		//get features
+		$this->length->Text = $length;
+		$this->width->Text = $width;
+		$this->height->Text = $height;
+		
+		$this->assetIds->Value = implode(",",$imageAssetIds);
 		$this->loadImages(null,null);
 	}
 	
@@ -121,19 +140,19 @@ class ProductEditControl extends TTemplateControl
 		$this->imageList->Text = "";
 		$this->assetIds->Value = "";
 		
-		$this->getCategories();
-		$this->categories->setSelectedIndex(-1);
+//		$this->getCategories();
+//		$this->categoryList->setSelectedIndex(-1);
 	}
 	
-	private function getCategories(array $selectedIds=array())
+	public function getCategories(array $selectedIds=array())
 	{
 		$service =new BaseService("ProductCategory");
 		$result =  $service->findByCriteria("languageId=".Core::getPageLanguage()->getId());
-		$this->categories->DataSource =$result;
-		$this->categories->DataBind();
+		$this->categoryList->DataSource =$result;
+		$this->categoryList->DataBind();
 		
 		if(count($selectedIds)!=0)
-			$this->categories->setSelectedValues($selectedIds);
+			$this->categoryList->setSelectedValues($selectedIds);
 	}
 	
 	public function fileUploaded($sender,$param)

@@ -94,10 +94,10 @@
 					<tr valign="top">
 						<td>Categories:</td>
 						<td>
-							<com:TListBox ID="categories" DataValueField="id" DataTextField="name"  style="width:90%;" AutoPostBack="false" SelectionMode="Multiple"/>
+							<com:TListBox ID="categoryList" DataValueField="id" DataTextField="name"  style="width:90%;" AutoPostBack="false" SelectionMode="Multiple"/>
 							<div style="font-size:9px;">Ctrl + click to select multiple itesm</div>
 							<com:TListControlValidator
-									ControlToValidate="categories"
+									ControlToValidate="categoryList"
 									ErrorMessage="You must select a Category" 
 									MinSelection="1"
 									EnableClientScript="true" 

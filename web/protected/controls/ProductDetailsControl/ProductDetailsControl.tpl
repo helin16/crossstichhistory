@@ -32,9 +32,9 @@
 						<td>Dimension (m):</td>
 						<td>
 							<ul style="marign:0px;padding:0px;">
-								<li>Length: <com:TActiveLabel ID="length" /> (meter)</li>
-								<li>Width: <com:TActiveLabel ID="width"/> (meter)</li>
-								<li>Height: <com:TActiveLabel ID="height" /> (meter)</li>
+								<li>Length: <com:TActiveLabel ID="length" /> (cm)</li>
+								<li>Width: <com:TActiveLabel ID="width"/> (cm)</li>
+								<li>Height: <com:TActiveLabel ID="height" /> (cm)</li>
 							</ul>
 						</td>
 					</tr>

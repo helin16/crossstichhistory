@@ -45,7 +45,7 @@
 						<tr align="left">
 							<td >Title</td>
 							<td width="40%">Images</th>
-							<td width="20%">Created</td>
+							<td width="20%">Categories</td>
 							<td width="5%">Active</td>
 							<td width="5%">&nbsp;</td>
 						</tr>
@@ -63,19 +63,14 @@
 								<%# $this->Page->listImages($this->DataItem) %>
 							</td>
 							<td width="20%" style="font-size:12px;">
-								<b>Created</b>
-								By <%#$this->DataItem->getCreatedBy()->getPerson()%><br />
-								@ <%#$this->DataItem->getCreated()%><br />
-								
-								<br /><b>Updated</b>
-								By <%#$this->DataItem->getUpdatedBy()->getPerson()%><br />
-								@ <%#$this->DataItem->getUpdated()%>
+								<%# $this->Page->getCategories($this->DataItem)%>
 							</td>
 							<td width="5%">
 								<com:TCheckBox Id="Active" Checked="<%#$this->DataItem->getActive()%>"  AutoPostBack="true" OnCheckedChanged="Page.toggleActive"/>
 							</td>
 							<td width="5%">
-								<com:TImageButton ID="EditButton" ImageUrl="/image/edit.png" Text="Edit"	ToolTip="Edit Record" CommandName="edit"/>
+								<com:TImageButton ID="EditButton" ImageUrl="/image/edit.png" Text="Edit" ToolTip="Edit Record" CommandName="edit"/>
+								<com:TImageButton ID="CloneButton" ImageUrl="/image/copy.gif" Text="Clone" ToolTip="Clone Record" OnCommand="Page.cloneProduct" CommandParameter="<%# $this->DataItem->getId() %>"/>
 							</td>
 						</tr>
 					</table>

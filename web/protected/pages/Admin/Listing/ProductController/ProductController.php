@@ -76,7 +76,8 @@ class ProductController extends CRUDPage
 		$height = trim($params->productEditPane->height->Text);
 		
 		$assetIds = explode(",",trim($params->productEditPane->assetIds->Value));
-		$categoryIds = $params->productEditPane->categories->getSelectedValues();
+		$categoryIds = $params->productEditPane->categoryList->getSelectedValues();
+		Debug::inspect($categoryIds);
 		
 		
 		$product->setTitle($title);
@@ -144,10 +145,58 @@ class ProductController extends CRUDPage
     	return $html;
     }
     
+    public function getCategories(Product $product)
+    {
+    	$html="<ul style='margin:0px;padding:0px;'>";
+    		foreach($product->getProductCategories() as $category)
+    		{
+		    	$html .="<li><a href='/admin/list/product/ProductCategory/".$category->getId().".html'>";
+			    	$html .=$category->getName();
+		    	$html .="</a></li>";
+    		}
+    	$html .="</ul>";
+    	return $html;
+    }
+    
     public function loadProduct($sender,$param)
     {
     	$productId = trim($param->CommandParameter);
     	$this->productEditPane->loadProduct($productId);
+    }
+    
+    public function cloneProduct($sender,$param)
+    {
+    	$this->AddPanel->Visible = true;
+    	$this->DataList->EditItemIndex = -1;
+    	$this->dataLoad();
+    	
+    	$productId = trim($param->CommandParameter);
+    	$service = new BaseService("Product");
+    	$product = $service->get($productId);
+    	if(!$product instanceof Product)
+    	{
+    		$this->AddPanel->Visible = false;
+    		$this->setErrorMessage("Invalid product to clone from(ID='$productId')!");
+    		return;
+    	}
+    		
+    	$title= "Copy of ".trim($product->getTitle());
+		$description= trim($product->getDescription());
+		$sku= "Copy of ".trim($product->getSku());
+		$visits= trim($product->getNoOfVisits());
+		
+		//get categories
+		$ids = array();
+		foreach($product->getProductCategories() as $category)
+		{$ids[] = $category->getId();}
+		
+		//get features
+		$length = trim($product->getFeature(ProductFeatureCategory::ID_DIMENSION_L));
+		$width = trim($product->getFeature(ProductFeatureCategory::ID_DIMENSION_W));
+		$height = trim($product->getFeature(ProductFeatureCategory::ID_DIMENSION_H));
+		
+    	$this->productEditPane->loadProductDetails("",$title,$description,$sku,$visits,$ids,$length,$width,$height);
+    	$this->productEditPane->title->focus();
     }
 }
 
