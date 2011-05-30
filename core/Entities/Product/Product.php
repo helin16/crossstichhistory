@@ -224,6 +224,26 @@ class Product extends HydraEntity
 		return $html;
 	}
 	
+	public function cloneMe()
+	{
+		 if($this->getId()=="")
+		 	return null;
+		 $newObject = clone $this;
+		 $newObject->setId(null);
+		 $service = new BaseService(get_class($this));
+		 $service->save($newObject);
+		 
+		 $pfService = new BaseService("ProductFeature");
+		 foreach($pfService->findByCriteria("productId=".$this->getId()) as $feature)
+		 {
+		 	$newFeature = clone $feature;
+		 	$newFeature->setId(null);
+		 	$newFeature->setProduct($newObject);
+		 	$pfService->save($newFeature);
+		 }
+		 return $newObject;
+	}
+	
 	public function __toString()
 	{
 		return "<div class='Product'><h3>{$this->getTitle()}</h3>{$this->getDescription()}</div>";
