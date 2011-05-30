@@ -6,6 +6,8 @@ class ProductListControl extends TTemplateControl
 	public $noOfRows=4;
 	public $maxOfItems=PHP_INT_MAX;
 	
+	public $showMore=false;
+	
 	public function loadProducts($categoryId)
 	{
 		if(trim($this->currentPageNo->Value)=="")
@@ -15,7 +17,7 @@ class ProductListControl extends TTemplateControl
 		
 		$service = new BaseService("Product");
 		$where = "languageId=".Core::getPageLanguage()->getId()." and id in (select distinct x.productId from product_productcategory x where x.productcategoryId = $categoryId)";
-		$result =  $service->findByCriteria($where,true,$pageNumber,$pageSize);
+		$result =  $service->findByCriteria($where,true,$pageNumber,$pageSize,array("Product.id"=>"desc"));
 		$pages =Dao::getTotalPages();
 		if(count($result)==0)
 			return;
@@ -29,7 +31,7 @@ class ProductListControl extends TTemplateControl
 			$html.="<tr>";
 				$html.="<td style='font-size: 13px;font-weight:bold; color: #810e11; border-bottom:1px #cccccc solid; padding: 0 0 3px 7px;' colspan='{$this->itemsPerRow}'>";
 					$html.=$category;
-					if($this->maxOfItems < count($result))
+					if($this->showMore)
 						$html.="<a href='/productlist/category/{$category->getName()}.html' style='font-size: 13px;color: #810e11; float:right; text-decoration:none; outline:none; padding: 0 15px 0 0;'>more</a>";
 				$html.="</td>";
 			$html.="</tr>";
@@ -137,6 +139,25 @@ class ProductListControl extends TTemplateControl
 		$this->itemsPerRow = $itemsPerRow;
 	}
 	
+	/**
+	 *  Getter for showMore
+	 *
+	 * @return bool showMore
+	 */
+	public function getShowMore() 
+	{
+	  return $this->showMore;
+	}
+	
+	/**
+	 * Setter for showMore
+	 *
+	 * @param bool $Value
+	 */
+	public function setShowMore($Value) 
+	{
+	  $this->showMore = $Value;
+	}
 	
 }
 

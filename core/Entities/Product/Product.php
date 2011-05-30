@@ -199,15 +199,17 @@ class Product extends HydraEntity
 	
 	public function getSnapshot($viewUrl="/product/",$image_W=150,$image_H=200)
 	{
+		$assetServer = new AssetServer();
+    	$imageFolder = Config::get("imageResizer","imageURL");
 		$detailsUrl = $viewUrl .$this->getTitle().".html";
 			$html="<table class='Product_snaphost_table' > ";
 				$html.="<tr>"; 
-					$html.="<td class='Product_snaphost_Image' style='padding: 2px;'>"; 
+					$html.="<td class='Product_snaphost_Image' style='padding: 2px; width: {$image_W}px; height: {$image_H}px;' valign='middle' align='center'>"; 
 						$images_assetIds =$this->getFeature();
 						$assetIds = explode(",",$images_assetIds);
-							$html.="<a href='$detailsUrl' style='outline:none;display:block; width: {$image_W}px; height: {$image_H}px;'>";
+							$html.="<a href='$detailsUrl' style='outline:none;'>";
 							if($images_assetIds!="" && count($assetIds)>0)
-								$html.="<img src='/asset/{$assetIds[0]}/".serialize(array("height"=>$image_H,"width"=>$image_W))."' style='border:none;' />";
+								$html.="<img src='{$imageFolder}h$image_H-w$image_W/".$assetServer->getFilePath($assetIds[0])."' style='border:none;' />";
 							else
 								$html.="<img src='/stream?method=getCaptcha&width=$image_W&height=$image_H&noise=3000&displayString=NoImage' style='border:none;' />";
 							$html.="</a>";

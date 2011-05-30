@@ -1,13 +1,13 @@
 <com:TContent ID="MainContent">
 	<%= $this->getRoundCornerHead()%>
-		<com:Application.controls.ProductListControl.ProductListControl id="topSellersPanel" maxOfItems='4'/>
+		<com:Application.controls.ProductListControl.ProductListControl id="topSellersPanel" maxOfItems='4' ShowMore="true"/>
 	<%= $this->getRoundCornerFooter()%>
 	<br />
 	<%= $this->getRoundCornerHead()%>
-		<com:Application.controls.ProductListControl.ProductListControl id="justArrivedPanel" maxOfItems='4'/>
+		<com:Application.controls.ProductListControl.ProductListControl id="justArrivedPanel" maxOfItems='4' ShowMore="true"/>
 	<%= $this->getRoundCornerFooter()%>
 	<br />
 	<%= $this->getRoundCornerHead()%>
-		<com:Application.controls.ProductListControl.ProductListControl id="readyToUsePanel" maxOfItems='4'/>
+		<com:Application.controls.ProductListControl.ProductListControl id="readyToUsePanel" maxOfItems='4' ShowMore="true"/>
 	<%= $this->getRoundCornerFooter()%>
 </com:TContent>
