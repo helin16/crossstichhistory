@@ -27,7 +27,7 @@ return array(
 				'email'=> array
 				(
 					'contactUsReciever'=>'Administrator',
-					'contactUsRecieverEmail'=>'helin16@gmail.com'
+					'contactUsRecieverEmail'=>'cststory@gmail.com'
 				),
 				
 				'time'=>array
