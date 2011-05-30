@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<application id="CrossStitchStory" mode="Debug">
+<application id="CrossStitchStory" mode="Performance">
   <!-- alias definitions and namespace usings
   <paths>
     <alias id="myalias" path="./lib" />
