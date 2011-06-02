@@ -20,12 +20,12 @@ require_once(dirname(__FILE__)."/../../bootstrap.php");
 
 $errorLevel = 0;
 $defaults = array(	"Path"=>dirname(__FILE__)."/../../Entities/",
-					"Server"=>"",
-					"Database"=>"",
-					"Username"=>"",
-					"Password"=>"",
+					"Server"=>Config::get("Database","LoadBalancer"),
+					"Database"=>Config::get("Database","CoreDatabase"),
+					"Username"=>Config::get("Database","Username"),
+					"Password"=>Config::get("Database","Password"),
 					"SampleDataFilePath"=>dirname(__FILE__)."/sampleData.sql",
-					"NeedToImportData"=>""
+					"NeedToImportData"=>"Y"
 				);
 
 
