@@ -8,7 +8,10 @@ class ProductEditControl extends TTemplateControl
 	
 	public function onLoad($param)
 	{
-		$this->getCategories();
+		if(!$this->Page->IsPostBack)
+		{
+			$this->getCategories();
+		}
 	}
 	
 	/**
@@ -83,6 +86,7 @@ class ProductEditControl extends TTemplateControl
 		$description= trim($product->getDescription());
 		$sku= trim($product->getSku());
 		$visits= trim($product->getNoOfVisits());
+		$unitPrice= trim($product->getUnitPrice());
 		
 		//get categories
 		$ids = array();
@@ -101,10 +105,10 @@ class ProductEditControl extends TTemplateControl
 		else 
 			$assetIds = explode(",",$assetIds);
 		
-		$this->loadProductDetails(trim($productId),$title,$description,$sku,$visits,$ids,$length,$width,$height,$assetIds);
+		$this->loadProductDetails(trim($productId),$title,$description,$sku,$visits,$unitPrice,$ids,$length,$width,$height,$assetIds);
 	}
 	
-	public function loadProductDetails($productId,$title,$description,$sku,$noOfVisits,array $categoryIds,$length,$width,$height,array $imageAssetIds=array())
+	public function loadProductDetails($productId,$title,$description,$sku,$noOfVisits,$unitPrice,array $categoryIds,$length,$width,$height,array $imageAssetIds=array())
 	{
 		$this->clearFields();
 		$this->product_Id->Value = $productId;
@@ -112,8 +116,9 @@ class ProductEditControl extends TTemplateControl
 		$this->description->Text =$description;
 		$this->sku->Text = $sku;
 		$this->visits->Text = $noOfVisits;
+		$this->unitPrice->Text = $unitPrice;
 		
-//		try{$this->categoryList->setSelectedValues($categoryIds);}catch(Exception $ex){}
+		try{$this->categoryList->setSelectedValues($categoryIds);}catch(Exception $ex){}
 		$this->categoryList->setSelectedValues($categoryIds);
 		
 		//get features
@@ -132,6 +137,7 @@ class ProductEditControl extends TTemplateControl
 		$this->description->Text = "";
 		$this->sku->Text = "";
 		$this->visits->Text = "";
+		$this->unitPrice->Text = "";
 		
 		$this->length->Text = "";
 		$this->width->Text = "";
@@ -140,15 +146,27 @@ class ProductEditControl extends TTemplateControl
 		$this->imageList->Text = "";
 		$this->assetIds->Value = "";
 		
-//		$this->getCategories();
-//		$this->categoryList->setSelectedIndex(-1);
+		$this->getCategories();
+		$this->categoryList->setSelectedIndex(-1);
 	}
 	
 	public function getCategories(array $selectedIds=array())
 	{
 		$service =new BaseService("ProductCategory");
-		$result =  $service->findByCriteria("languageId=".Core::getPageLanguage()->getId());
-		$this->categoryList->DataSource =$result;
+		$result =  $service->findByCriteria("languageId=".Core::getPageLanguage()->getId(),true,null,null,array("ProductCategory.position"=>"asc"));
+		$array = Array();
+		foreach($result as $productCategory)
+		{
+			$position = trim($productCategory->getPosition());
+			$level =floor(((strlen($position)-1) / ProductCategory::POSITION_LEVEL_DIGITS));
+			if($level==0)
+				$name = trim($productCategory->getName());
+			else
+				$name = str_repeat(" - - ",$level).trim($productCategory->getName());
+			$array[$position] = array("id"=>$productCategory->getId(),"name"=>$name);
+		}
+		ksort($array,SORT_ASC);
+		$this->categoryList->DataSource =$array;
 		$this->categoryList->DataBind();
 		
 		if(count($selectedIds)!=0)

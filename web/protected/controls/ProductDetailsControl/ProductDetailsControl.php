@@ -22,6 +22,8 @@ class ProductDetailsControl extends TTemplateControl
 		$this->title->Text = $product->getTitle();
 		$this->description->Text = $product->getDescription();
 		$this->sku->Text = $product->getSku();
+		$unitPrice = ((trim($product->getUnitPrice())=="0.00" || trim($product->getUnitPrice())=="0" ) ? "" : trim($product->getUnitPrice()));
+		$this->unitPrice->Text = ($unitPrice=="" ? "<b style='color: orange;'>Call to find out</b>" : "<b style='color: #810e11;'>$ $unitPrice</b>");
 		
 		//get features
 		$this->length->Text = $product->getFeature(ProductFeatureCategory::ID_DIMENSION_L);

@@ -83,6 +83,15 @@
 						</td>
 					</tr>
 					<tr valign="top">
+						<td>Unit:</td>
+						<td>
+							$<com:TTextBox ID="unitPrice" style="width:40%;" ValidationGroup="<%= $this->validationGroup %>"/>
+							<com:TRequiredFieldValidator ControlToValidate="unitPrice"
+									ErrorMessage="unitPrice Required" ValidationGroup="<%= $this->validationGroup %>" EnableClientScript="true" 
+									Display="Dynamic"/>
+						</td>
+					</tr>
+					<tr valign="top">
 						<td>Initial Visits:</td>
 						<td>
 							<com:TTextBox ID="visits" style="width:90%;" ValidationGroup="<%= $this->validationGroup %>"/>

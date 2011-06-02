@@ -65,54 +65,59 @@ class ProductController extends CRUDPage
     
 	protected function setEntity(&$product,$params,&$focusObject = null)
     {
-    	$service = new BaseService("Product");
-		$title = trim($params->productEditPane->title->Text);
-		$description = trim($params->productEditPane->description->Text);
-		$sku = trim($params->productEditPane->sku->Text);
-		$visits = trim($params->productEditPane->visits->Text);
-		
-		$width = trim($params->productEditPane->width->Text);
-		$length = trim($params->productEditPane->length->Text);
-		$height = trim($params->productEditPane->height->Text);
-		
-		$assetIds = explode(",",trim($params->productEditPane->assetIds->Value));
-		$categoryIds = $params->productEditPane->categoryList->getSelectedValues();
-		Debug::inspect($categoryIds);
-		
-		
-		$product->setTitle($title);
-		$product->setDescription($description);
-		$product->setSku($sku);
-		$product->setNoOfVisits($visits);
-		$product->setLanguage(Core::getPageLanguage());
-		
-		$service->save($product);
-		
-		$product->clearFeature(ProductFeatureCategory::ID_IMAGE);
-		foreach($assetIds as $assetId)
-		{
-			$product->addFeature(ProductFeatureCategory::ID_IMAGE,$assetId);
-		}
-		
-		$product->clearFeature(ProductFeatureCategory::ID_DIMENSION_L);
-		$product->addFeature(ProductFeatureCategory::ID_DIMENSION_L,$length);
-		
-		$product->clearFeature(ProductFeatureCategory::ID_DIMENSION_W);
-		$product->addFeature(ProductFeatureCategory::ID_DIMENSION_W,$width);
-		
-		$product->clearFeature(ProductFeatureCategory::ID_DIMENSION_H);
-		$product->addFeature(ProductFeatureCategory::ID_DIMENSION_H,$height);
-		
-		$product->clearCategory();
-		foreach($categoryIds as $categoryId)
-		{
-			$product->addCategory($categoryId);
-		}
-		
-		$this->setInfoMessage("Proudct saved successfully!");
+    	try
+    	{
+	    	$service = new BaseService("Product");
+			$title = trim($params->productEditPane->title->Text);
+			$description = trim($params->productEditPane->description->Text);
+			$sku = trim($params->productEditPane->sku->Text);
+			$visits = trim($params->productEditPane->visits->Text);
+			$unitPrice = trim($params->productEditPane->unitPrice->Text);
+			
+			$width = trim($params->productEditPane->width->Text);
+			$length = trim($params->productEditPane->length->Text);
+			$height = trim($params->productEditPane->height->Text);
+			
+			$assetIds = explode(",",trim($params->productEditPane->assetIds->Value));
+			$categoryIds = $params->productEditPane->categoryList->getSelectedValues();
+			
+			$product->setTitle($title);
+			$product->setDescription($description);
+			$product->setSku($sku);
+			$product->setNoOfVisits($visits);
+			$product->setUnitPrice($unitPrice);
+			$product->setLanguage(Core::getPageLanguage());
+			
+			$service->save($product);
+			
+			$product->clearFeature(ProductFeatureCategory::ID_IMAGE);
+			foreach($assetIds as $assetId)
+			{
+				$product->addFeature(ProductFeatureCategory::ID_IMAGE,$assetId);
+			}
+			
+			$product->clearFeature(ProductFeatureCategory::ID_DIMENSION_L);
+			$product->addFeature(ProductFeatureCategory::ID_DIMENSION_L,$length);
+			
+			$product->clearFeature(ProductFeatureCategory::ID_DIMENSION_W);
+			$product->addFeature(ProductFeatureCategory::ID_DIMENSION_W,$width);
+			
+			$product->clearFeature(ProductFeatureCategory::ID_DIMENSION_H);
+			$product->addFeature(ProductFeatureCategory::ID_DIMENSION_H,$height);
+			
+			$product->clearCategory();
+			foreach($categoryIds as $categoryId)
+			{
+				$product->addCategory($categoryId);
+			}
+			
+			$this->setInfoMessage("Proudct saved successfully!");
+    	}
+    	catch(Exception $ex)
+    	{
+    		$this->setErrorMessage($ex->getMessage());
+    	}
     }
-    
-    
     
     
     public function shortenText($text,$maxLength=150)
@@ -184,6 +189,7 @@ class ProductController extends CRUDPage
 		$description= trim($product->getDescription());
 		$sku= "Copy of ".trim($product->getSku());
 		$visits= trim($product->getNoOfVisits());
+		$unitPrice= trim($product->getUnitPrice());
 		
 		//get categories
 		$ids = array();
@@ -195,7 +201,7 @@ class ProductController extends CRUDPage
 		$width = trim($product->getFeature(ProductFeatureCategory::ID_DIMENSION_W));
 		$height = trim($product->getFeature(ProductFeatureCategory::ID_DIMENSION_H));
 		
-    	$this->productEditPane->loadProductDetails("",$title,$description,$sku,$visits,$ids,$length,$width,$height);
+    	$this->productEditPane->loadProductDetails("",$title,$description,$sku,$visits,$unitPrice,$ids,$length,$width,$height);
     	$this->productEditPane->title->focus();
     }
 }

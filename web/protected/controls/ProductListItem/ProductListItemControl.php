@@ -64,6 +64,8 @@ class ProductListItemControl extends TPanel
 		if(!$product instanceof Product)
 			return;
 			
+		$assetServer = new AssetServer();
+    	$imageFolder = Config::get("imageResizer","imageURL");
 		$maxIntroLength = $this->maxIntroLength;
 		$table="<table width='100%'>";
 			$table.="<tr>";
@@ -77,14 +79,14 @@ class ProductListItemControl extends TPanel
 			$table.="</tr>";
 			$table.="<tr>";
 				$table.="<td colspan='2' style='padding:5px;text-align:justify;'>";
-					$text = $product->getDescription();
+					$text = strip_tags($product->getDescription());
 					$table .=(strlen($text)>$maxIntroLength ? substr($text,0,$maxIntroLength)." ... " : $text);
 				$table.="</td>";
 			$table.="</tr>";
 			$table.="<tr>";
 				$table.="<td>&nbsp;</td>";
 				$table.="<td align='right'>";
-					$table .= "<a href='/product/".$title.".html' style='background:#BF3A17;color:#ffffff;font-size:10px;padding:2px;text-decoration:none;'>".Prado::localize("content.readmore")."</a>";
+					$table .= "<a href='/product/".$title.".html' style='background:#BF3A17;color:#ffffff;font-size:10px;padding:2px;text-decoration:none;'>details</a>";
 				$table.="</td>";
 			$table.="</tr>";
 		$table.="</table>";
@@ -99,7 +101,7 @@ class ProductListItemControl extends TPanel
 						if($assetIds=="" || count($imagesIds)==0)
 							$html .="<img src='/stream?method=getCaptcha&width={$image_W}&height={$image_H}&noise=2000&displayString=NoImage' style='border:none;'/>";
 						else
-							$html .="<img src='/asset/".$imagesIds[0]."/".serialize(array("height"=>$image_H,"width"=>$image_W))."' style='border:none;'/>";
+							$html .="<img src='{$imageFolder}/h$image_H-w$image_W/".$assetServer->getFilePath($imagesIds[0])."' style='border:none;'/>";
 					$html .="</a>";
 				$html.="</td>";
 				$html.="<td>";

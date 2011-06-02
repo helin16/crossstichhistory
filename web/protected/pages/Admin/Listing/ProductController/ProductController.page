@@ -22,7 +22,7 @@
 			<hr />
 			<br />
 		</com:TPanel>
-		<com:TPanel ID="AddPanel" style='padding: 20px;'>
+		<com:TPanel ID="AddPanel" style='padding:20px;background:#888888;width:92%;'>
 			<com:Application.controls.ProductEditControl.ProductEditControl ID="productEditPane" PageFunc_saving="save"  PageFunc_cancel="cancel"/>
 		</com:TPanel>
 		<com:TPanel ID="ListingPanel" style="width:98%;">
