@@ -6,6 +6,7 @@ class Product extends HydraEntity
 	private $noOfVisits;
 	private $sku;
 	protected $productCategories;
+	private $unitPrice;
 	
 	/**
 	 * getter productCategories
@@ -196,6 +197,26 @@ class Product extends HydraEntity
 		Dao::execSql($sql);
 	}
 	
+	/**
+	 *  Getter for unitPrice
+	 *
+	 * @return string unitPrice
+	 */
+	public function getUnitPrice() 
+	{
+	  return $this->unitPrice;
+	}
+	
+	/**
+	 * Setter for unitPrice
+	 *
+	 * @param string $Value
+	 */
+	public function setUnitPrice($Value) 
+	{
+	  $this->unitPrice = $Value;
+	}
+	
 	
 	public function getSnapshot($viewUrl="/product/",$image_W=150,$image_H=200)
 	{
@@ -259,6 +280,7 @@ class Product extends HydraEntity
 		DaoMap::setStringType('title','varchar',100);
 		DaoMap::setStringType('description','text');
 		DaoMap::setIntType('noOfVisits', 'int', 10);
+		DaoMap::setIntType('unitPrice', 'double',"15,2");
 		
 		DaoMap::setManyToOne("language","PageLanguage","pl");
 		DaoMap::setManyToMany("productCategories","ProductCategory",DaoMap::RIGHT_SIDE,"pc");
