@@ -52,7 +52,7 @@
 							<%[ContactUs.spamChecking]%>: 
 						</td>
 						<td align="left">
-							<com:TCaptcha ID="captcha" TokenFontSize='20' style="display:inline;width:100px;"/>
+							<com:TCaptcha ID="captcha" TokenFontSize='20' style="display:inline;width:100px;" TokenImageTheme='1'/>
 							<com:TTextBox ID="spamInput" style="width:80px;"/>
 							<com:TCaptchaValidator CaptchaControl="captcha"
 										ControlToValidate="spamInput"

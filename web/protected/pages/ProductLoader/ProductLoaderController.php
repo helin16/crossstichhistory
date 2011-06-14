@@ -27,7 +27,7 @@ class ProductLoaderController extends ContentLoaderController
 			$productName = $product->getTitle();
 			$productSKU = $product->getSku();
 			$this->contactus->setTitle("For product ({$productName}[$productSKU])");
-			$this->contactus->setContent("In regards on the product: {$productName}[$productSKU] website (".$_SERVER['HTTP_HOST'].")");
+			$this->contactus->setContent("I want to ask a question about the product ({$productName}[$productSKU]) on your website (".$_SERVER['HTTP_HOST']."):");
 
 			$this->productId->setFocusContactUsTBoxId($this->contactus->spamInput->getClientId());
 			$this->productId->loadProduct($product->getId());

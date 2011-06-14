@@ -1,6 +1,6 @@
 <com:TContent ID="MainContent">
 	<div class="bodyWrapper">
 		<com:Application.controls.ProductDetailsControl.ProductDetailsControl id="productId" />
-		<com:Application.controls.ContactUs.ContactUsControl id="contactus" GroupingText="Question for this product? Feel free to contact us" Description="."/>
+		<com:Application.controls.Contactus.ContactusControl id="contactus" GroupingText="Question for this product? Feel free to contact us" Description="."/>
 	</div>
 </com:TContent>
