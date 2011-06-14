@@ -6,8 +6,30 @@ class ProductDetailsControl extends TTemplateControl
 	private $preview_image_w = 390;
 	private $preview_image_h = 300;
 	
+	public $focusContactUsTBoxId;
+	
 	public function onLoad($param)
 	{
+	}
+	
+	/**
+	 *  Getter for focusContactUsTBoxId
+	 *
+	 * @return string focusContactUsTBoxId
+	 */
+	public function getFocusContactUsTBoxId() 
+	{
+	  return $this->focusContactUsTBoxId;
+	}
+	
+	/**
+	 * Setter for focusContactUsTBoxId
+	 *
+	 * @param string $Value
+	 */
+	public function setFocusContactUsTBoxId($Value) 
+	{
+	  $this->focusContactUsTBoxId = $Value;
 	}
 	
 	public function loadProduct($productId="")
@@ -23,7 +45,7 @@ class ProductDetailsControl extends TTemplateControl
 		$this->description->Text = $product->getDescription();
 		$this->sku->Text = $product->getSku();
 		$unitPrice = ((trim($product->getUnitPrice())=="0.00" || trim($product->getUnitPrice())=="0" ) ? "" : trim($product->getUnitPrice()));
-		$this->unitPrice->Text = ($unitPrice=="" ? "<b style='color: orange;'>Call to find out</b>" : "<b style='color: #810e11;'>$ $unitPrice</b>");
+		$this->unitPrice->Text = ($unitPrice=="" ? "<a ".(trim($this->focusContactUsTBoxId)=="" ? "href='/contactus.html'" : "href=\"javascript: void(0);\" onclick=\"$('{$this->focusContactUsTBoxId}').focus();\"")." style='text-decoration:none;'><b style='color: orange;'>Contact Us To Find Out The Price</b></a>" : "<b style='color: #810e11;'>$ $unitPrice</b>");
 		
 		//get features
 		$this->length->Text = $product->getFeature(ProductFeatureCategory::ID_DIMENSION_L);

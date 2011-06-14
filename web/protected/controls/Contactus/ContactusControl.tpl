@@ -1,11 +1,8 @@
-<com:TPanel DefaultButton="email" Id="contactUsPanel">
+<com:TPanel DefaultButton="emailBtn" Id="contactUsPanel" GroupingText="<%= $this->groupingText %>">
 	<table width="100%">
 		<tr>
 			<td colspan="2">
-				<com:TLabel ID="contactusTitle" style="font-size:18px;" Text="<%[ContactUs.title]%>" />
-				<br />
-				<br />
-				<b><com:TLabel ID="result" ForeColor="green" Text="<%[ContactUs.successfullSent]%>"/></b>
+				<com:TLabel ID="contactusTitle" style="font-size:18px;" />
 			</td>
 		</tr>
 		<tr>
@@ -44,33 +41,25 @@
 					ControlToValidate="emailContent"
 					Text="* Field required." />
 				<br />
-				<com:TTextBox ID="emailContent" TextMode="MultiLine" width="100%" height="100px" Text="<%= $this->content %>"/>
+				<com:TTextBox ID="emailContent" TextMode="MultiLine" width="100%" height="100px"/>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
 				<table width="100%">
 					<tr>
-						<td width="35%">
+						<td width="25%">
 							<%[ContactUs.spamChecking]%>: 
 						</td>
 						<td align="left">
+							<com:TCaptcha ID="captcha" TokenFontSize='20' style="display:inline;width:100px;"/>
 							<com:TTextBox ID="spamInput" style="width:80px;"/>
-							<com:TActiveImageButton Id="captcha" Tooltip="Can't see it clearly? click here to change code." OnClick="changeCaptcha" >
-								<prop:ClientSide
-							        OnLoading="$('<%= $this->captcha->getClientId() %>').src='';Element.hide('<%= $this->captcha->getClientId() %>');Element.show('loading');"
-							        OnComplete="Element.hide('loading');Element.show('<%= $this->captcha->getClientId() %>');" />
-							</com:TActiveImageButton>
-							<img id="loading" src="/image/ajax-loader.gif" style="display:none;"/>
-							
-						</td>
-						<td align="left" width="40%">
-							<com:TRequiredFieldValidator    
-								ValidationGroup="Group1"
-								ControlToValidate="spamInput"
-								Display="Dynamic"
-								Text="* Field required." />
-							<com:TLabel ID="spamError" style="width:100%; color:red;" />
+							<com:TCaptchaValidator CaptchaControl="captcha"
+										ControlToValidate="spamInput"
+							 			ErrorMessage="Invalid Text!" 
+							 			ValidationGroup="Group1"
+							 			Display="Dynamic"/>
+							<com:TLinkButton ID="changeCaptchaBtn" Text="change image" OnClick="changeCaptcha" style="font-size:10px;display:inline;"/>
 						</td>
 					</tr>
 				</table>
@@ -78,9 +67,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<com:TButton ID="email" Text="<%[ContactUs.submitbutton]%>"
-					OnClick="sendEmail"
-					ValidationGroup="Group1"/>
+				<com:TButton ID="emailBtn" Text="<%[ContactUs.submitbutton]%>" OnClick="sendEmail" ValidationGroup="Group1" />
 			</td>
 		</tr>
 	</table>

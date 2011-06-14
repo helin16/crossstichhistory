@@ -6,7 +6,8 @@ class ContactusControl extends TTemplateControl
 	private $recieverEmail;
 	public $title="";
 	public $content="";
-	
+	public $description="";
+	public $groupingText="";
 	
 	
 	public function __construct()
@@ -20,9 +21,32 @@ class ContactusControl extends TTemplateControl
 	{
 		if(!$this->Page->IsPostBack)
 		{
-			$this->result->Visible=false;
-			$this->captcha->ImageUrl="/stream?method=getCaptcha&width=60&height=23";
+			if(trim($this->description)==".")
+				$this->contactusTitle->Text="";
+			else
+				$this->contactusTitle->Text= trim($this->description)=="" ? Prado::localize("ContactUs.title") : trim($this->description);
+			$this->emailContent->Text= trim($this->content);
 		}
+	}
+	
+	/**
+	 *  Getter for description
+	 *
+	 * @return PropertyType description
+	 */
+	public function getDescription() 
+	{
+	  return $this->description;
+	}
+	
+	/**
+	 * Setter for description
+	 *
+	 * @param PropertyType $Value
+	 */
+	public function setDescription($Value) 
+	{
+	  $this->description = $Value;
 	}
 	
 	/**
@@ -65,14 +89,31 @@ class ContactusControl extends TTemplateControl
 		$this->content = $content;
 	}
 	
+	/**
+	 *  Getter for groupingText
+	 *
+	 * @return string groupingText
+	 */
+	public function getGroupingText() 
+	{
+	  return $this->groupingText;
+	}
+	
+	/**
+	 * Setter for groupingText
+	 *
+	 * @param string $Value
+	 */
+	public function setGroupingText($Value) 
+	{
+	  $this->groupingText = $Value;
+	}
+	
 	
 	public function sendEmail($sender, $params)
 	{
-		$this->spamError->Text="";
-		$this->result->Visible=false;
-		if(md5(trim($this->spamInput->Text)).'a4xn' != $_COOKIE['tntcon'])
+		if(!$this->captcha->validate(trim($this->spamInput->Text)))
 		{
-			$this->spamError->Text="Invalid verification code!";
 			return;
 		}
 		
@@ -96,15 +137,14 @@ class ContactusControl extends TTemplateControl
 		
 		
 		mail($this->recieverEmail, $subject, $message,$from);
-		$this->result->Visible=true;
 	}
 	
-	public function changeCaptcha($sender, $param)
+	public function changeCaptcha($sender,$param)
 	{
-		$now = mktime();
-		$this->captcha->ImageUrl="/stream?method=getCaptcha&width=60&height=23&".$now;
+		$this->captcha->regenerateToken();
+		$this->spamInput->Text="";
+		$this->spamInput->focus();
 	}
-	
 }
 
 ?>
