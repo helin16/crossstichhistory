@@ -188,7 +188,8 @@ class ProductCategory extends HydraEntity
 	{
 		$nextPos = $parent->getNextPosInChildren();
 		$currentPos = $this->getposition();
-		$sql="update productcategory set rootId='".$parent->getRoot()->getId()."', position=concat('$nextPos',substr(position,length('$currentPos'))) where rootId='".$this->getRoot()->getId()."' and active=1 and position like '".$currentPos."%'";
+		Debug::inspect($nextPos);
+		$sql="update productcategory set rootId='".$parent->getRoot()->getId()."', position=concat('$nextPos',substr(position,(length('$currentPos')+1))) where rootId='".$this->getRoot()->getId()."' and active=1 and position like '".$currentPos."%'";
 		Dao::execSql($sql);
 		
 		$sql="update productcategory set parentId='".$parent->getId()."' where id=".$this->getId();
@@ -203,7 +204,7 @@ class ProductCategory extends HydraEntity
 	{
 		$nextPos = 1;
 		$currentPos = $this->getposition();
-		$sql="update productcategory set rootId='".$this->getId()."', position=concat('$nextPos',substr(position,length('$currentPos'))) where rootId='".$this->getRoot()->getId()."' and active=1 and position like '".$currentPos."%'";
+		$sql="update productcategory set rootId='".$this->getId()."', position=concat('$nextPos',substr(position,(length('$currentPos')+1))) where rootId='".$this->getRoot()->getId()."' and active=1 and position like '".$currentPos."%'";
 		Dao::execSql($sql);
 		
 		$sql="update productcategory set parentId=null where id=".$this->getId();
