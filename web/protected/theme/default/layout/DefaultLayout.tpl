@@ -8,18 +8,19 @@
 	<meta name="description" content="Welcome to Australian Cross Stitch Story. Completed Products are Great Gifts and Wall Decorations. The Store Owner Is a Cross Stitch Lover. Let's Stitch Up The World With Peace, Joyfulness and Storyline! " />
 	<meta name="keywords" content="Cross stich, Completed Products,Melbourne, Australia" />
 	<link rel="stylesheet" type="text/css" href="/Theme/<%=$this->Page->getDefaultThemeName() %>/default.css" />
+	<com:TClientScript PradoScripts="effects" />
 </com:THead>
 <body>
 	<center>
 		<com:TForm>
+	<com:Application.controls.3rdPartyScript.ModalBox ID="modalBox" />
+	<com:TClientScript>
+		function showMap()
+		{
+			Modalbox.show('<iframe width=\"100%\" height=\"420\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" src="http://maps.google.com.au/maps?hl=en&amp;q='+ "<%= $this->getStoreLocation('+')%>" + '&amp;ie=UTF8&amp;hq=&amp;hnear='+ "<%= $this->getStoreLocation('+')%>" + '&amp;z=14&amp;ll=-37.853025,145.042632&amp;output=embed\"></iframe><br /><small><a href=\"http://maps.google.com.au/maps?hl=en&amp;q='+ "<%= $this->getStoreLocation('+')%>" + '&amp;ie=UTF8&amp;hq=&amp;hnear='+ "<%= $this->getStoreLocation('+')%>" + '&amp;z=14&amp;ll=-37.853025,145.042632&amp;source=embed\" style=\"color:#0000FF;text-align:left\">View Larger Map</a></small>', {title: 'We are at: '+ "<%= $this->getStoreLocation()%>" + '', width: 600});
+		}
+	</com:TClientScript>
 			<br />
-			<com:Application.controls.3rdPartyScript.ModalBox ID="modalBox" />
-			<script type="text/javascript">
-				function showMap()
-				{
-					Modalbox.show('<iframe width=\"100%\" height=\"420\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" src="http://maps.google.com.au/maps?hl=en&amp;q='+ "<%= $this->getStoreLocation('+')%>" + '&amp;ie=UTF8&amp;hq=&amp;hnear='+ "<%= $this->getStoreLocation('+')%>" + '&amp;z=14&amp;ll=-37.853025,145.042632&amp;output=embed\"></iframe><br /><small><a href=\"http://maps.google.com.au/maps?hl=en&amp;q='+ "<%= $this->getStoreLocation('+')%>" + '&amp;ie=UTF8&amp;hq=&amp;hnear='+ "<%= $this->getStoreLocation('+')%>" + '&amp;z=14&amp;ll=-37.853025,145.042632&amp;source=embed\" style=\"color:#0000FF;text-align:left\">View Larger Map</a></small>', {title: 'We are at: '+ "<%= $this->getStoreLocation()%>" + '', width: 600});
-				}
-			</script>
 			<div style="width:910px;text-align: center;">
 				<div id="topMenu" style="width:100%;">
 					<div class="innerWrapper">
@@ -91,7 +92,7 @@
 				</com:TPanel>
 				<div id="copyright" style="width:100%;margin-top: 15px;">
 					<div class="innerWrapper">
-						<div>Cross Stitch Story (CSS) &copy; 2010 <%= $this->getFooterSeparator()%> <a href="/content/privacy_policy.html">Privacy Policy</a><div>
+						<div>Cross Stitch Story (CSS) &copy; <%= $this->getYear()%> <%= $this->getFooterSeparator()%> <a href="/content/privacy_policy.html">Privacy Policy</a><div>
 						<div>Address: <%= $this->getStoreLocation()%></div>
 						<div>Tel: <%= $this->getPhone()%> <%= $this->getFooterSeparator()%> Fax: <%= $this->getFax()%> <%= $this->getFooterSeparator()%> Email: <%= $this->getEmail()%></div>
 					</div>

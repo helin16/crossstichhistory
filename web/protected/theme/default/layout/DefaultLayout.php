@@ -66,5 +66,16 @@ class DefaultLayout extends TTemplateControl
 	{
 		return str_repeat("&nbsp;",3)."|".str_repeat("&nbsp;",3);
 	}
+	
+	public function getGoogleMaps()
+	{
+		return '<iframe width=\"100%\" height=\"420\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" src="http://maps.google.com.au/maps?hl=en&amp;q='. $this->getStoreLocation('+'). '&amp;ie=UTF8&amp;hq=&amp;hnear='. $this->getStoreLocation('+'). '&amp;z=14&amp;ll=-37.853025,145.042632&amp;output=embed\"></iframe><br /><small><a href=\"http://maps.google.com.au/maps?hl=en&amp;q='. $this->getStoreLocation('+'). '&amp;ie=UTF8&amp;hq=&amp;hnear='. $this->getStoreLocation('+'). '&amp;z=14&amp;ll=-37.853025,145.042632&amp;source=embed\" style=\"color:#0000FF;text-align:left\">View Larger Map</a></small>';
+	}
+	
+	public function getYear()
+	{
+		$today = new HydraDate();
+		return $today->getYear();
+	}
 }
 ?>
