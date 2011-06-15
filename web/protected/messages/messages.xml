@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.0">
-    <file original="I18N Example IndexPage" source-language="EN" datatype="plaintext" date="2010-04-27T20:32:43Z">
+    <file original="I18N Example IndexPage" source-language="EN" datatype="plaintext" date="2011-06-14T11:29:18Z">
         <body>
         	//-- start of Menu ----------------------------------------------------- 
 				<trans-unit>
@@ -43,6 +43,25 @@
 					<target>Projects</target>
 				</trans-unit>
 				
+				<trans-unit>
+					<source>Menu.Top Seller</source>
+					<target>Top Seller</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>Menu.Just Arrived</source>
+					<target>Just Arrived</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>Menu.Ready To Use</source>
+					<target>Ready To Use</target>
+				</trans-unit>
+				
+				<trans-unit>
+					<source>Menu.findus</source>
+					<target>Find Us</target>
+				</trans-unit>
         	//-- end of Menu ----------------------------------------------------- 
 			
 			//-- start of contact us ----------------------------------------------------- 
@@ -262,6 +281,13 @@
 					<target>Submit</target>
 				</trans-unit>
 			//-- end of propertyQuickSearch--------------------------------------------
+		
+			//-- start of product details--------------------------------------------
+			<trans-unit>
+				<source>Menu.prouductDetails</source>
+				<target>prouductDetails</target>
+			</trans-unit>
+			//-- end of product details--------------------------------------------
 		</body>
     </file>
 </xliff>

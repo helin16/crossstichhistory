@@ -41,5 +41,30 @@ class DefaultLayout extends TTemplateControl
 	{
 		return EshopPage::getRoundCornerFooter();
 	}
+	
+	public function getStoreLocation($space=" ")
+	{
+		return str_replace(" ",$space,"1445 Malvern Road, Glen Iris, Victoria 3146, Australia");
+	}
+	
+	public function getPhone()
+	{
+		return "+61 3 9883 8888";
+	}
+	
+	public function getFax()
+	{
+		return "+61 3 9883 8888";
+	}
+	
+	public function getEmail()
+	{
+		return "<a href='/contactus.html'>Feel Free To Contact Us On Email</a>";
+	}
+	
+	public function getFooterSeparator()
+	{
+		return str_repeat("&nbsp;",3)."|".str_repeat("&nbsp;",3);
+	}
 }
 ?>

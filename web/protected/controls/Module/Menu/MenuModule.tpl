@@ -63,6 +63,8 @@
 													<a style="color:#ffffff; text-decoration:none;" href="/aboutus.html" ><%[Menu.aboutus]%></a>
 													&nbsp;&nbsp; | &nbsp;&nbsp;
 													<a style="color:#ffffff; text-decoration:none;" href="/contactus.html" ><%[Menu.contactus]%></a>
+													&nbsp;&nbsp; | &nbsp;&nbsp;
+													<a style="color:#ffffff; text-decoration:none;" href="javascript:void(0);" OnClick="showMap();return false;"><%[Menu.findus]%></a>
 												</div>
 											</td>
 										</tr>
