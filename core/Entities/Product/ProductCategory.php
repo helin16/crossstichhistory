@@ -157,22 +157,21 @@ class ProductCategory extends HydraEntity
 	
 	public function getChildren($depth=1)
 	{
-		$depth = $depth * ProductCategory::POSITION_LEVEL_DIGITS +1;
+		$depth = $depth * ProductCategory::POSITION_LEVEL_DIGITS +strlen($this->getposition());
 		$service = new BaseService("ProductCategory");
-		return $service->findByCriteria("position like '".$this->getposition()."%' and length(position)=$depth");
+		return $service->findByCriteria("position like '".$this->getposition()."%' and length(position)=$depth and rootId = '".$this->getRoot()->getId()."'");
 	}
 	
 	public function getNextPosInChildren()
 	{
 		$position = $this->getPosition();
-		$sql="select id, position from productcategory where parentId='".$this->getId()."' and active=1 order by position asc";
-		$result = Dao::getResultsNative($sql,array(),PDO::FETCH_ASSOC);
-		if(count($result) == 0)															
+		$children = $this->getChildren();
+		if(count($children) == 0)															
 			return $position . "000";										//no nodes yet so start from start
 
 		$taken = array();
-		foreach ($result as $r)														//put all into array
-			$taken[] = (int)$r["position"];
+		foreach ($children as $child)														//put all into array
+			$taken[] = (int)trim(($child->getPosition()));
 
 		$range = range((int)($position.str_repeat("0",ProductCategory::POSITION_LEVEL_DIGITS)), (int)($position.str_repeat("9",ProductCategory::POSITION_LEVEL_DIGITS)));		//create array of all valid options
 		$avail = array_diff($range, $taken);										//get difference of two arrays, available positions
@@ -188,7 +187,8 @@ class ProductCategory extends HydraEntity
 	{
 		$nextPos = $parent->getNextPosInChildren();
 		$currentPos = $this->getposition();
-		Debug::inspect($nextPos);
+//		Debug::inspect($parent->getRoot()->getId());
+//		Debug::inspect($nextPos);
 		$sql="update productcategory set rootId='".$parent->getRoot()->getId()."', position=concat('$nextPos',substr(position,(length('$currentPos')+1))) where rootId='".$this->getRoot()->getId()."' and active=1 and position like '".$currentPos."%'";
 		Dao::execSql($sql);
 		

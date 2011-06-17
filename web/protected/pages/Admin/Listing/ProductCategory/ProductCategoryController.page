@@ -65,8 +65,8 @@
 					<table width="100%" height="32">
 						<tr align="left">
 							<td>Name</td>
-							<td width="20%">Created</td>
-							<td width="20%">Updated</td>
+							<td width="15%">Created</td>
+							<td width="15%">Updated</td>
 							<td width="10%">&nbsp;</td>
 						</tr>
 					</table>
@@ -79,11 +79,15 @@
 								<%# str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;",$this->Page->getLevel($this->DataItem)) %>
 								<%# $this->DataItem->getName() %>
 							</td>
-							<td width="20%">
+							<td width="15%" style="font-size:10px;">
+								RootId:<%# $this->DataItem->getRoot()->getId() %><br />
+								Position: <%# $this->DataItem->getPosition() %><br />
+							</td>
+							<td width="15%" style="font-size:10px;">
 								<b>By:</b> <%# $this->DataItem->getCreatedBy()->getPerson() %><br />
 								<b>@:</b> <%# $this->DataItem->getCreated() %>
 							</td>
-							<td width="20%">
+							<td width="15%" style="font-size:10px;">
 								<b>By:</b> <%# $this->DataItem->getUpdatedBy()->getPerson() %><br />
 								<b>@:</b> <%# $this->DataItem->getUpdated() %>
 							</td>
@@ -107,8 +111,8 @@
 									Text=" * required" />
 							</td>
 							<td width="20%">
-								<b>By:</b> <%# $this->DataItem->getCreatedBy()->getPerson() %><br />
-								<b>@:</b> <%# $this->DataItem->getCreated() %>
+								<b>RootId:</b> <%# $this->DataItem->getRoot()->getId() %><br />
+								<b>Position:</b> <%# $this->DataItem->getPosition() %>
 							</td>
 							<td width="25%">
 								<com:TButton ID="updateBtn" Text="Save" CommandName="Update" ValidationGroup="Group2"/>

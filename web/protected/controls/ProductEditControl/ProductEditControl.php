@@ -153,19 +153,19 @@ class ProductEditControl extends TTemplateControl
 	public function getCategories(array $selectedIds=array())
 	{
 		$service =new BaseService("ProductCategory");
-		$result =  $service->findByCriteria("languageId=".Core::getPageLanguage()->getId(),true,null,null,array("ProductCategory.position"=>"asc"));
+		$result =  $service->findByCriteria("languageId=".Core::getPageLanguage()->getId(),true,null,null,array("ProductCategory.rootId"=>"asc","ProductCategory.position"=>"asc"));
 		$array = Array();
 		foreach($result as $productCategory)
 		{
 			$position = trim($productCategory->getPosition());
 			$level =floor(((strlen($position)-1) / ProductCategory::POSITION_LEVEL_DIGITS));
+			$name = trim($productCategory->getName());
 			if($level==0)
 				$name = trim($productCategory->getName());
 			else
 				$name = str_repeat(" - - ",$level).trim($productCategory->getName());
-			$array[$position] = array("id"=>$productCategory->getId(),"name"=>$name);
+			$array[] = array("id"=>$productCategory->getId(),"name"=>$name);
 		}
-		ksort($array,SORT_ASC);
 		$this->categoryList->DataSource =$array;
 		$this->categoryList->DataBind();
 		
