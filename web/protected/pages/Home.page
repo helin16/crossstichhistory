@@ -10,4 +10,8 @@
 	<%= $this->getRoundCornerHead()%>
 		<com:Application.controls.ProductListControl.ProductListControl id="readyToUsePanel" maxOfItems='4' ShowMore="true"/>
 	<%= $this->getRoundCornerFooter()%>
+	<br />
+	<%= $this->getRoundCornerHead()%>
+		<com:Application.controls.ProductListControl.ProductListControl id="kitsPanel" maxOfItems='4' ShowMore="true"/>
+	<%= $this->getRoundCornerFooter()%>
 </com:TContent>

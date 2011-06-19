@@ -11,25 +11,7 @@ class DefaultLayout extends TTemplateControl
 	
 	public function onLoad()
 	{
-	}
-	
-	public function getCategory($categoryName,&$panel)
-	{
-		$service = new BaseService("ContentCategory");
-		$cate = $service->findByCriteria("name ='$categoryName' and languageId=".Core::getPageLanguage()->getId());
-		if(count($cate)==0)
-			return;
-		
-		$cateId = $cate[0]->getId();
-		$service1 = new BaseService("Content");
-		$content = $service1->findByCriteria("id in (select distinct x.contentId from content_contentcategory x where x.contentcategoryId=$cateId)");
-		$content=$content[0];
-		
-		if($content instanceof Content)
-		{
-			$panel->setTitle($content->getTitle());
-			$panel->setSubTitle($content->getSubTitle());
-		}
+		$this->loadContactUsSide();
 	}
 	
 	public function getRoundCornerHead()
@@ -49,12 +31,12 @@ class DefaultLayout extends TTemplateControl
 	
 	public function getPhone()
 	{
-		return "+61 3 9883 8888";
+		return "+61 3 9822 8896";
 	}
 	
 	public function getFax()
 	{
-		return "+61 3 9883 8888";
+		return "+61 3 9822 8896";
 	}
 	
 	public function getEmail()
@@ -76,6 +58,15 @@ class DefaultLayout extends TTemplateControl
 	{
 		$today = new HydraDate();
 		return $today->getYear();
+	}
+	
+	public function loadContactUsSide()
+	{
+		$service = new BaseService("Content");
+		$contents = $service->findByCriteria("title='Contact Us Side'");
+		if(count($contents)==0)
+			return;
+		$this->contactUsSide->Text = $contents[0]->getText();
 	}
 }
 ?>

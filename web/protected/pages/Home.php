@@ -11,6 +11,7 @@ class Home extends EshopPage
 			$this->topSellersPanel->loadProducts(2);
 			$this->justArrivedPanel->loadProducts(1);
 			$this->readyToUsePanel->loadProducts(3);
+			$this->kitsPanel->loadProducts(5);
 		}
 	}
 	

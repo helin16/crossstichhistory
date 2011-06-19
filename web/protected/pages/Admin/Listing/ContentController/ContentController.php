@@ -58,6 +58,7 @@ class ContentController extends CRUDPage
     
     public function shortenText($text,$maxLength=150)
     {
+    	$text = strip_tags($text);
     	if(strlen($text)>$maxLength)
     		return substr($text,0,$maxLength)." ... ";
     	return $text;

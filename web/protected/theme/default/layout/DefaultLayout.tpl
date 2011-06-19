@@ -53,6 +53,17 @@
 											</tr>
 										</table>
 									<%= $this->getRoundCornerFooter()%>
+									<br />
+									<%= $this->getRoundCornerHead()%>
+										<h3 style='background:#0084C8; color: white;font-size:14px; margin:0 0 10px 0; padding: 3px 0 3px 0;' >Our Contact Info</h3>
+										<table border='0' cellspacing="0" cellpadding="0" width="100%" >
+											<tr valign='top'>
+												<td>
+													<com:TLabel ID="contactUsSide" />
+												</td>
+											</tr>
+										</table>
+									<%= $this->getRoundCornerFooter()%>
 								</td>
 								<td valign="top" >
 									<com:TPanel ID="cotentSpace" style="margin: 7px 0 7px 7px; padding:10px; text-align:left; border: 1px #cccccc solid;">

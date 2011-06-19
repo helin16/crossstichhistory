@@ -144,6 +144,7 @@ class ContactusControl extends TTemplateControl
 		$this->captcha->regenerateToken();
 		$this->spamInput->Text="";
 		$this->spamInput->focus();
+		$this->getPage()->onLoad();
 	}
 }
 
