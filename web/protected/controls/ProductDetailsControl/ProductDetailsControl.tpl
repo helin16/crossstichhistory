@@ -38,12 +38,6 @@
 							</ul>
 						</td>
 					</tr>
-					<tr valign="top"  height='15px;'>
-						<td>Viewings:</td>
-						<td>
-							<com:TActiveLabel ID="visits" style="width:90%;"/>
-						</td>
-					</tr>
 					<tr valign="top">
 						<td colspan='2'>
 							<com:TActiveLabel ID="unitPrice" style="font-size:14px;"/>
