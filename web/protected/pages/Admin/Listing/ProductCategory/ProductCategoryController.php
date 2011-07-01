@@ -32,7 +32,7 @@ class ProductCategoryController extends CRUDPage
 	protected function searchEntity($searchString,&$focusObject = null,$pageNumber=null,$pageSize=null)
     {
     	$service = new BaseService($this->entityName);
-    	$result =  $service->findByCriteria("languageId=".$this->pageLanguage->getId()." and (name like '%$searchString%')",true,$pageNumber,$pageSize);
+    	$result =  $service->findByCriteria("languageId=".$this->pageLanguage->getId()." and (name like '%$searchString%')",false,$pageNumber,$pageSize);
     	$this->totalRows = $service->totalNoOfRows;
     	return $result;
     }
@@ -40,7 +40,7 @@ class ProductCategoryController extends CRUDPage
 	protected function getAllOfEntity(&$focusObject = null,$pageNumber=null,$pageSize=null,$searchActiveOnly=true)
     {
     	$service = new BaseService($this->entityName);
-    	$result =  $service->findByCriteria("languageId=".$this->pageLanguage->getId(),$searchActiveOnly,$pageNumber,$pageSize,array("ProductCategory.rootId"=>"asc","ProductCategory.position"=>"asc"));
+    	$result =  $service->findByCriteria("languageId=".$this->pageLanguage->getId(),false,$pageNumber,$pageSize,array("ProductCategory.rootId"=>"asc","ProductCategory.position"=>"asc"));
     	$this->totalRows = $service->totalNoOfRows;
     	return $result;
     }

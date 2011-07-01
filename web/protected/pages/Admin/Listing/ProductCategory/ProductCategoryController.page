@@ -67,7 +67,7 @@
 							<td>Name</td>
 							<td width="15%">Created</td>
 							<td width="15%">Updated</td>
-							<td width="10%">&nbsp;</td>
+							<td width="15%">&nbsp;</td>
 						</tr>
 					</table>
 				</prop:HeaderTemplate>
@@ -91,7 +91,8 @@
 								<b>By:</b> <%# $this->DataItem->getUpdatedBy()->getPerson() %><br />
 								<b>@:</b> <%# $this->DataItem->getUpdated() %>
 							</td>
-							<td width="10%">
+							<td width="15%">
+								<com:TCheckBox ID="Active" OnCheckedChanged="Page.toggleActive" Checked="<%# $this->DataItem->getActive() %>" AutoPostBack="true"/>
 								<com:TImageButton ID="EditButton" ImageUrl="/image/edit.png" CommandName="edit" ToolTip="Edit Record" />
 								<a href="/admin/list/product/ProductCategory/<%# $this->DataItem->getId() %>.html">Prducts</a>
 							</td>
