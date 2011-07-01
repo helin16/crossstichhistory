@@ -15,10 +15,10 @@
 									<a class='topMenuItem' href="/" <%= $this->changeId('home') %>><%[Menu.home]%></a>
 								</td>
 								<td width="102px">
-									<a  class='topMenuItem' href="/productlist/category/Just Arrived.html" <%= $this->changeId('Just Arrived') %>>Just Arrived</a>
+									<a  class='topMenuItem' href="/productlist/category/Top Seller.html" <%= $this->changeId('Top Seller') %>>Top Seller</a>
 								</td>
 								<td width="102px">
-									<a  class='topMenuItem' href="/productlist/category/Top Seller.html" <%= $this->changeId('Top Seller') %>>Top Sellers</a>
+									<a  class='topMenuItem' href="/productlist/category/Framed CS.html" <%= $this->changeId('Framed CS') %>>Framed CS</a>
 								</td>
 								<td width="102px">
 									<a  class='topMenuItem' href="/productlist/category/Completed CS.html" <%= $this->changeId('Completed CS') %>>Completed CS</a>

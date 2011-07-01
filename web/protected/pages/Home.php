@@ -9,7 +9,7 @@ class Home extends EshopPage
 			$this->setTitle("Home");
 			$this->getMaster()->cotentSpace->setStyle("margin: 10px 0 7px 7px; text-align:left; ");
 			$this->topSellersPanel->loadProducts(2);
-			$this->justArrivedPanel->loadProducts(1);
+			$this->justArrivedPanel->loadProducts(23);
 			$this->readyToUsePanel->loadProducts(3);
 			$this->kitsPanel->loadProducts(5);
 		}

@@ -1,5 +1,5 @@
 <com:TContent ID="MainContent">
 	<div class="bodyWrapper">
-		<com:Application.controls.ProductListControl.ProductListControl id="productId" NoOfRows="5"/>
+		<com:Application.controls.ProductListControl.ProductListControl id="productId"/>
 	</div>
 </com:TContent>

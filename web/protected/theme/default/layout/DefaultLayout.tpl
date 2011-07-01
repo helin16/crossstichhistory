@@ -64,11 +64,6 @@
 											</tr>
 										</table>
 									<%= $this->getRoundCornerFooter()%>
-									<br />
-									<div id="fb-root"></div>
-									<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
-									<fb:like-box href="http://www.facebook.com/pages/Cross-Stitch-Story-CSS/107563579336082" width="230" show_faces="true" border_color="#0084C8" stream="false" header="false">
-									</fb:like-box>
 								</td>
 								<td valign="top" >
 									<com:TPanel ID="cotentSpace" style="margin: 7px 0 7px 7px; padding:10px; text-align:left; border: 1px #cccccc solid;">
