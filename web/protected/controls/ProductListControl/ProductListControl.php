@@ -8,10 +8,24 @@ class ProductListControl extends TTemplateControl
 	
 	public $showMore=false;
 	
+	public function onLoad($param)
+	{
+		if(!$this->getPage()->getIsCallback() && !$this->getPage()->getIsPostBack())
+		{
+			$this->currentPageNo->Value = 1;
+		}
+	}
+	
 	public function loadProducts($categoryId)
 	{
-		if(trim($this->currentPageNo->Value)=="")
-			$this->currentPageNo->Value = 1;
+		$this->categoryId->Value = $categoryId;
+		$this->showProducts(null,null);
+	}
+	
+	public function showProducts($sender,$param)
+	{
+		$categoryId = trim($this->categoryId->Value);
+		
 		$pageNumber = trim($this->currentPageNo->Value);
 		$pageSize = $this->itemsPerRow * $this->noOfRows;
 		
@@ -69,18 +83,18 @@ class ProductListControl extends TTemplateControl
 			$html.="</tr>";
 		$html.="</table>";
 		
-		if($pageNumber < $pages && !($this->showMore))
+		if($pageNumber <= $pages && !($this->showMore))
 		{
 			$html.="<table id='nav_".$this->getId()."' class='nav_item_list'>";
 				$html.="<tr>";
 					$html.="<td>You can navigate to:</td>";
-					for($i=0;$i<$pages;$i++)
+					for($i=1;$i<=$pages;$i++)
 					{
 						$html.="<td style='width:10px;' class='nav_item'>";
 						if($pageNumber==$i)
-							$html.="<b>".($i+1)."</b>";
+							$html.="<b>$i</b>";
 						else
-							$html.="<a href='javascript:void(0);'>".($i+1)."</a>";
+							$html.="<a href='javascript:void(0);' onclick='changePage_".$this->getID()."($i); return false;'>$i</a>";
 						$html.="</td>";
 					}
 				$html.="</tr>";
