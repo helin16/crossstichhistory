@@ -65,16 +65,10 @@
 										</table>
 									<%= $this->getRoundCornerFooter()%>
 									<br />
-									<%= $this->getRoundCornerHead()%>
-										<h3 style='background:#0084C8; color: white;font-size:14px; margin:0 0 10px 0; padding: 3px 0 3px 0;' >Find Us On Facebook</h3>
-										<table border='0' cellspacing="0" cellpadding="0" width="100%" >
-											<tr valign='top'>
-												<td>
-													<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like-box href="http://www.facebook.com/platform" width="220" show_faces="true" border_color="#ffffff" stream="false" header="false"></fb:like-box>
-												</td>
-											</tr>
-										</table>
-									<%= $this->getRoundCornerFooter()%>
+									<div id="fb-root"></div>
+									<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+									<fb:like-box href="http://www.facebook.com/pages/Cross-Stitch-Story-CSS/107563579336082" width="230" show_faces="true" border_color="#0084C8" stream="false" header="false">
+									</fb:like-box>
 								</td>
 								<td valign="top" >
 									<com:TPanel ID="cotentSpace" style="margin: 7px 0 7px 7px; padding:10px; text-align:left; border: 1px #cccccc solid;">

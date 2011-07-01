@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.0">
-    <file original="I18N Example IndexPage" source-language="EN" datatype="plaintext" date="2011-06-14T11:29:18Z">
+    <file original="I18N Example IndexPage" source-language="EN" datatype="plaintext" date="2011-06-17T09:36:59Z">
         <body>
         	//-- start of Menu ----------------------------------------------------- 
 				<trans-unit>
@@ -288,6 +288,7 @@
 				<target>prouductDetails</target>
 			</trans-unit>
 			//-- end of product details--------------------------------------------
-		</body>
+
+</body>
     </file>
 </xliff>

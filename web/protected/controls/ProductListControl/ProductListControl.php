@@ -26,6 +26,7 @@ class ProductListControl extends TTemplateControl
 		$category = $cateService->get($categoryId);
 		if(!$category instanceof ProductCategory)
 			return;
+			
 		$colWidth = (100 /  $this->noOfRows)."%";
 		$html="<table style='width:100%;padding:0px;' border='0' cellspacing='0' cellpadding='0'>";
 			$html.="<tr>";
@@ -67,14 +68,23 @@ class ProductListControl extends TTemplateControl
 			
 			$html.="</tr>";
 		$html.="</table>";
-		if($pageNumber<$pages)
+		
+		if($pageNumber < $pages && !($this->showMore))
 		{
-			$html.="<div id='nav_".$this->getId()."'>$pageNumber: $pages";
-				for($i=0;$i<$pages;$i++)
-				{
-					$html.="<a href='#' style='display:block; padding: 3px;'>$i</a>";
-				}
-			$html.="</div>";
+			$html.="<table id='nav_".$this->getId()."' class='nav_item_list'>";
+				$html.="<tr>";
+					$html.="<td>You can navigate to:</td>";
+					for($i=0;$i<$pages;$i++)
+					{
+						$html.="<td style='width:10px;' class='nav_item'>";
+						if($pageNumber==$i)
+							$html.="<b>".($i+1)."</b>";
+						else
+							$html.="<a href='javascript:void(0);'>".($i+1)."</a>";
+						$html.="</td>";
+					}
+				$html.="</tr>";
+			$html.="</table>";
 		}
 		$this->productListPanel_display->Text = $html;
 	}
