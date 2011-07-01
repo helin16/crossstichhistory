@@ -83,7 +83,7 @@ class ProductListControl extends TTemplateControl
 			$html.="</tr>";
 		$html.="</table>";
 		
-		if($pageNumber <= $pages && !($this->showMore))
+		if($pages !=1 && !($this->showMore))
 		{
 			$html.="<table id='nav_".$this->getId()."' class='nav_item_list'>";
 				$html.="<tr>";
